@@ -59,10 +59,10 @@ const Navbar = () => {
                             className="text-sm text-black lg:flex lg:justify-between">
                             {navbar.map((item, i) => (
                                 <li key={item.name}>
-                                    <a href={`/${locale}/main_all${item.slug}`} className="*:hover:w-full p-2 font-semibold text-black tracking-wide block hover:text-maincolor duration-300" >
+                                    <Link href={`/`} className="*:hover:w-full p-2 font-semibold text-black tracking-wide block hover:text-maincolor duration-300" >
                                         {t(`${i}`)}
                                         <div className="w-0 duration-1000 h-0.5 bg-maincolor"></div>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

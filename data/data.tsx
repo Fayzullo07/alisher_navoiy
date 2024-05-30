@@ -1,10 +1,10 @@
 import { CalendarCheckIcon, HandshakeIcon, NewspaperIcon, RssIcon } from "lucide-react";
 
 export const navbar = [
-    { icon: <RssIcon />, name: "Tarjimai hol", slug: "/news" },
-    { icon: <NewspaperIcon />, name: "Devonlar", slug: "/projects" },
-    { icon: <HandshakeIcon />, name: "Yangiliklar", slug: "/partners" },
-    { icon: <CalendarCheckIcon />, name: "Korpus haqida", slug: "/events" },
+    { icon: <RssIcon />, name: "Tarjimai hol", slug: "/" },
+    { icon: <NewspaperIcon />, name: "Devonlar", slug: "/" },
+    { icon: <HandshakeIcon />, name: "Yangiliklar", slug: "/" },
+    { icon: <CalendarCheckIcon />, name: "Korpus haqida", slug: "/" },
     // { icon: <NewspaperIcon />, name: "Tashabbuskorlar", slug: "/initiators" },
     // { icon: <NewspaperIcon />, name: "Xizmatlar", slug: "/services" },
     // { icon: <NewspaperIcon />, name: "Aql Markazi", slug: "/center_mind" },

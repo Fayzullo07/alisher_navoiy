@@ -175,7 +175,7 @@
   background-position: 0% 0%;
   height: 100vh;
   width: 100vw;
-  animation: horizontalMove 50s infinite;
+  animation: horizontalMove 30s infinite;
   animation-timing-function: ease;
 }
 
