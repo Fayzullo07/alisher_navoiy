@@ -15,7 +15,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 import Provider from "@/utils/Provider";
-import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: "INAS",
@@ -33,7 +32,6 @@ export default function LocaleLayout({ children, params: { locale }, }: Readonly
   const messages = useMessages();
 
   return (
-    <ClerkProvider>
       <html lang={locale}>
         <body className={inter.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
@@ -62,7 +60,6 @@ export default function LocaleLayout({ children, params: { locale }, }: Readonly
           </NextIntlClientProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }
 
