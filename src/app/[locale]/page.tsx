@@ -17,7 +17,7 @@ import Initiators from '@/components/Initiators';
 import Projects from '@/components/Projects';
 import RegMembers from '@/components/RegMembers';
 import InitiatorsApplication from '@/components/InitiatorsApplication';
-import Slider from '@/components/Slider';
+import Slider from '@/components/SliderCard';
 
 export default function Index() {
   useEffect(() => {
