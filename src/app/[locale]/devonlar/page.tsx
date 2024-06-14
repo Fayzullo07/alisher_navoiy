@@ -14,7 +14,7 @@ const Devonlar = () => {
                 </div>
 
                 <div>
-                    <Title title="Ichki qism" />
+                    <Title title="Devon tarkibi" />
                     <SliderItem />
                 </div>
 

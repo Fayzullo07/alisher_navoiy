@@ -21,32 +21,45 @@ const SliderItem = () => {
         AutoScroll({ loop: true, speed: 1, autoScroll: false }),
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
     )
+    const [active, setActive] = React.useState(0);
 
     return (
         <div>
             <Carousel
-              
+
                 className="w-full">
                 <CarouselContent>
                     {Array.from({ length: 17 }).map((_, index) => (
-                        <CarouselItem key={index} className="pr-1 basis-1/3 lg:basis-[12.5%]">
-                            <div className="p-0.5">
+                        <CarouselItem key={index} className="px-1 basis-1/4 lg:basis-[10%] md:basis-1/6" onClick={() => setActive(index)}>
+                            <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
-                                    <div className="p-0 relative">
+                                    <div className="relative">
                                         <div >
-                                            <Image
-                                                src={"/item.png"}
-                                                width={50}
-                                                height={0}
-                                                // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                sizes="100vw"
-                                                style={{ width: '100%', height: 'auto' }} // optional
-                                                alt="Image"
-                                            />
+                                            {index == active ? (
+                                                <Image
+                                                    src={"/item-active.png"}
+                                                    width={50}
+                                                    height={50}
+                                                    className="transition scale-105 duration-300"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: 'auto' }} // optional
+                                                    alt="Image"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={"/item-disactive.png"}
+                                                    width={50}
+                                                    height={50}
+                                                    className="transition hover:scale-105 duration-300"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: 'auto' }} // optional
+                                                    alt="Image"
+                                                />
+                                            )}
                                         </div>
-                                        <div className=" absolute top-2 right-0 left-0">
-                                            <div className="text-base font-semibold text-gray-700  text-center ">Ilk devon</div>
-                                            <div className="text-base font-normal text-gray-400  text-center ">(160)</div>
+                                        <div className=" absolute top-2.5 right-0 left-0">
+                                            <div className="text-xs md:text-base font-medium text-gray-700  text-center ">Ilk devon</div>
+                                            <div className="text-[10px] md:text-xs font-medium text-gray-400  text-center ">(16{index + 1})</div>
                                         </div>
                                     </div>
                                 </div>

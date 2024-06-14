@@ -165,6 +165,7 @@
 
 .bg-image-flower{
   background-image: url("../../public/bg.png");
+  background-color: rgba(0, 0, 0, 0.05);
   /* background-repeat: no-repeat; */
   background-size: 100vw auto;
   background-position: 0% 0%;

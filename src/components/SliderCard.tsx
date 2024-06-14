@@ -21,39 +21,67 @@ const SliderCard = ({ isTrue = true }) => {
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
     )
 
+    const [active, setActive] = React.useState(0);
+
     return (
         <div>
             <Carousel
-                plugins={[plugin2.current]}
-                onMouseEnter={plugin2.current.stop}
-                onMouseLeave={plugin2.current.play}
-                className={`${isTrue && "w-full md:w-[90%]"} mx-auto`}>
+                // plugins={[plugin2.current]}
+                // onMouseEnter={plugin2.current.stop}
+                // onMouseLeave={plugin2.current.play}
+                className={`${isTrue && "w-full md:w-[90%]"} mx-auto py-1.5`}>
                 <CarouselContent>
                     {Array.from({ length: 7 }).map((_, index) => (
-                        <CarouselItem key={index} className="px-1.5 md:px-2 basis-2/5 md:basis-1/3 lg:basis-1/4">
-                            <div className="py-2">
-                                <div className=" cursor-pointer hover:scale-105 duration-300">
-                                    <div className="bg-white rounded-2xl ">
-                                        <div >
-                                            <Image
-                                                src={"/image.png"}
-                                                width={150}
-                                                height={0}
-                                                // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                sizes="100vw"
-                                                style={{ width: '100%', height: 'auto' }} // optional
-                                                alt="Image"
-                                            />
-                                        </div>
-                                        <div className="p-1.5 md:p-3 space-y-2">
-                                            <div className="text-sm md:text-base font-semibold text-gray-700">Ilk devon</div>
-                                            <p className=" text-xs md:text-sm  text-gray-500">zamondosh muxlislari tomonidan
-                                                tartib berilgan. 1465-1466-yillar</p>
-                                            <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
+                        <CarouselItem key={index} className="px-1.5 md:px-2 basis-2/5 md:basis-1/3 lg:basis-1/4" onClick={() => setActive(index)}>
+                            {index == active ? (
+                                <div className="py-2">
+                                    <div className=" cursor-pointer scale-105 duration-300">
+                                        <div className="bg-white rounded-2xl shadow-2xl ">
+                                            <div >
+                                                <Image
+                                                    src={"/image.png"}
+                                                    width={150}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: 'auto' }} // optional
+                                                    alt="Image"
+                                                />
+                                            </div>
+                                            <div className="p-1.5 md:p-3 space-y-2">
+                                                <div className="text-sm md:text-base font-semibold text-gray-700">Ilk devon</div>
+                                                <p className=" text-xs md:text-sm  text-gray-500">zamondosh muxlislari tomonidan
+                                                    tartib berilgan. 1465-1466-yillar</p>
+                                                <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="py-2">
+                                    <div className=" cursor-pointer hover:scale-105 duration-300">
+                                        <div className="bg-white rounded-2xl ">
+                                            <div >
+                                                <Image
+                                                    src={"/image.png"}
+                                                    width={150}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: 'auto' }} // optional
+                                                    alt="Image"
+                                                />
+                                            </div>
+                                            <div className="p-1.5 md:p-3 space-y-2">
+                                                <div className="text-sm md:text-base font-semibold text-gray-700">Ilk devon</div>
+                                                <p className=" text-xs md:text-sm  text-gray-500">zamondosh muxlislari tomonidan
+                                                    tartib berilgan. 1465-1466-yillar</p>
+                                                <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </CarouselItem>
                     ))}
                 </CarouselContent>
