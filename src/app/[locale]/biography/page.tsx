@@ -4,7 +4,7 @@ import { biography } from "../../../../data/data";
 const Biography = () => {
     return (
         <div className="">
-            <div className=" h-[25vh] md:h-[34vh] lg:h-[90vh] relative border" style={{
+            <div className=" h-[22vh] md:h-[34vh] lg:h-[90vh] relative border" style={{
                 backgroundImage: `url(/biography.png)`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '100vw',

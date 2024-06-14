@@ -13,7 +13,7 @@ const About = () => {
                         <MoveLeftIcon className="w-6 h-6" />
                     </Link>
 
-                    <h2 className="text-lg font-semibold">Til korpusi nima ?</h2>
+                    <h2 className="text-xl font-semibold">Til korpusi nima ?</h2>
                 </div>
             </div>
             <Link href={`/${locale}/about`} className="md:flex absolute top-2 lg:top-12 left-2 lg:left-12 hidden gap-2 bg-white py-1 px-2 rounded-full shadow cursor-pointer text-gray-500 text-base">
