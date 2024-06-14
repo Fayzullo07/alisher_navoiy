@@ -9,7 +9,7 @@ const Asarlar = () => {
         <div className="bg-image-flower pt-10 md:pt-0 pb-10 relative">
             <div className=" md:hidden block absolute  top-0 left-0">
                 <div className=" w-screen text-center relative">
-                    <Link href={`/${locale}/about`} className=" hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
+                    <Link href={`/`} className=" hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
                         <MoveLeftIcon className="w-6 h-6" />
                     </Link>
 
