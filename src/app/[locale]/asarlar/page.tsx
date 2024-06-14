@@ -58,13 +58,13 @@ const Asarlar = () => {
                 <div>
                     <div className=" space-y-2">
                         {Array.from({ length: 10 }).map((_, i) => (
-                            <div key={i} className="p-3 bg-white rounded-2xl space-y-2 border">
+                            <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
                                 <div className="pb-2 text-base font-semibold">{`"Xamsa" - "Hayrat ul-abror" dostoni`}</div>
                                 <div className="text-sm">
-                                    <div><span className="text-gray-400">Muallifi: </span> Alisher Navoiy</div>
-                                    <div className="pb-5"><span className="text-gray-400">Yaratilgan vaqti: </span> 1483-yil</div>
+                                    <div><span className="text-blue-300">Muallifi: </span> Alisher Navoiy</div>
+                                    <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> 1483-yil</div>
                                 </div>
-                                <button className="bg-blue-50 w-full rounded-lg text-xs md:text-sm py-2 ">Batafsil</button>
+                                <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-xs md:text-sm py-2 ">{"Ko‘rish"}</button>
                             </div>
                         ))}
 
