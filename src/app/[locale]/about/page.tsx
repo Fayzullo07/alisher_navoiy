@@ -15,7 +15,7 @@ const About = () => {
                     {Array.from({ length: 20 }).map((_, i) => (
                         <div key={i} className="p-5 bg-pink-100 rounded-3xl shadow-lg">
                             <div className="flex justify-between items-center pb-1.5">
-                                <div className="text-base font-semibold">Til korpusi nima?</div>
+                                <div className="text-lg font-semibold">Til korpusi nima?</div>
                                 <Link href={`/${locale}/about/${i}`} className="text-base rounded-full p-1 text-center bg-white">
                                     <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
                                 </Link>
