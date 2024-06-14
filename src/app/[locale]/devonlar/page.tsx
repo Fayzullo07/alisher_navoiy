@@ -14,6 +14,11 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination"
 
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 const Devonlar = () => {
     return (
@@ -107,10 +112,22 @@ const Devonlar = () => {
                                         Qilmay qabul ijodning imkoni yo'q, so'ngra yana
                                         Maqbulini rad aylamak lutfungdin o'lg'aymu ravo
                                         Zohid, ko'ngulning xilvatin matlub g'ayridin orit
-                                        Sen sayr qilsang qil, kerak ko'nglungga bo'lsa inzivo.
+                                        Sen sayr qilsang qil kerak ko'nglungga bo'lsa inzivo.
                                         Desang Navoiy jon aro mahbub bo'lg'ay jilvagar
                                         Avval ko'ngul ko'zgusidin mahv ayla naqshi mosivo.`.split(" ").map((item, i) => (
-                                            <span key={i} className="text-sm hover:bg-yellow-300 px-1 hover:px-1.5 duration-300 py-0.5 rounded-full cursor-pointer">{item}</span>
+                                            <HoverCard>
+                                                <HoverCardTrigger>
+                                                    <span key={i} className="text-sm hover:bg-yellow-300 px-1  duration-300 py-0.5 rounded-full cursor-pointer">{item}</span>
+                                                </HoverCardTrigger>
+                                                <HoverCardContent className="p-2 px-4 w-fit">
+                                                    <div>
+                                                        <p className="text-xs">Semantik izoh:</p>
+                                                        <span>{item}</span> - <span>{i} {item}</span>
+                                                    </div>
+                                                </HoverCardContent>
+                                            </HoverCard>
+
+
                                         ))}
                                     </p>
                                     <div className="flex justify-between items-center gap-2 pt-2">
