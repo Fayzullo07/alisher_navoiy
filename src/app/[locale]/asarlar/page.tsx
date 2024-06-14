@@ -56,7 +56,7 @@ const Asarlar = () => {
                 </div>
 
                 <div>
-                    <div className=" space-y-2">
+                    <div className=" space-y-4">
                         {Array.from({ length: 10 }).map((_, i) => (
                             <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
                                 <div className="pb-2 text-base font-semibold">{`"Xamsa" - "Hayrat ul-abror" dostoni`}</div>
