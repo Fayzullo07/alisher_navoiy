@@ -38,7 +38,7 @@ const Navbar = () => {
 
     return (
         <header className="flex justify-center items-center">
-            <nav className={`${stickyNav ? "active" : ""} fle items-center justify-between gap-8 w-screen mx-auto    px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
+            <nav className={`${stickyNav ? "active" : ""} flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-1 md:px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
                 <Link href={"/"}>
                     <Image
@@ -50,7 +50,7 @@ const Navbar = () => {
                     />
                 </Link>
 
-                <div className="flex items-center gap-2 border p-2 rounded-full md:flex-1">
+                <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
                     <input type="text" placeholder="Qidiruv" className="bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
