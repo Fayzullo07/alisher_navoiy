@@ -70,7 +70,9 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex items-center gap-2 z-[9]">
-                    <LocalSwitcher />
+                    <div className="hidden md:block">
+                        <LocalSwitcher />
+                    </div>
 
                     <div className="h-6 w-6 cursor-pointer lg:hidden block " >
                         <Sheet>
@@ -95,6 +97,10 @@ const Navbar = () => {
                                                     </SheetClose>
                                                 </li>
                                             ))}
+                                            <div className="block md:hidden w-full">
+
+                                                <LocalSwitcher />
+                                            </div>
 
                                         </ul>
                                     </SheetDescription>

@@ -1,5 +1,5 @@
 "use client"
-import { ArrowDownIcon, ChevronDown, ChevronDownIcon, Languages } from "lucide-react"
+import { ArrowDownIcon, ChevronDown, ChevronDownIcon, ChevronRightIcon, Languages } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -30,8 +30,8 @@ const LocalSwitcher = () => {
     return (
         <DropdownMenu >
             <DropdownMenuTrigger asChild className=" z-[99999]">
-                <Button variant="ghost" size="icon" disabled={isPending} className="w-full px-2" >
-                    <div>
+                <Button variant="ghost" size="icon" disabled={isPending} className="w-full px-1 md:px-2" >
+                    <div className=" hidden md:block">
 
                         <Image
                             src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : "russia"}.png`}
@@ -40,7 +40,21 @@ const LocalSwitcher = () => {
                             alt="Image"
                         />
                     </div>
-                   
+
+                    <div className=" block md:hidden w-full">
+                        <div className="flex justify-between items-center ">
+
+                            <Image
+                                src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : "russia"}.png`}
+                                width={25}
+                                height={25}
+                                alt="Image"
+                            />
+
+                            <ChevronRightIcon className="w-5 h-5 text-gray-400" />
+                        </div>
+                    </div>
+
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

@@ -14,7 +14,6 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 
-import useEmblaCarousel from 'embla-carousel-react'
 import Image from "next/image";
 const SliderCard = ({ isTrue = true }) => {
     const plugin2 = React.useRef(
