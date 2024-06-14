@@ -27,7 +27,7 @@ const SliderCard = ({ isTrue = true }) => {
                 plugins={[plugin2.current]}
                 onMouseEnter={plugin2.current.stop}
                 onMouseLeave={plugin2.current.play}
-                className={`${isTrue && "w-[90%]"} mx-auto`}>
+                className={`${isTrue && "w-full md:w-[90%]"} mx-auto`}>
                 <CarouselContent>
                     {Array.from({ length: 7 }).map((_, index) => (
                         <CarouselItem key={index} className="px-1.5 md:px-2 basis-2/5 md:basis-1/3 lg:basis-1/4">
@@ -58,10 +58,10 @@ const SliderCard = ({ isTrue = true }) => {
                     ))}
                 </CarouselContent>
                 {isTrue && (
-                    <>
+                    <div className=" hidden md:block">
                         <CarouselPrevious />
                         <CarouselNext />
-                    </>
+                    </div>
                 )}
             </Carousel>
 
