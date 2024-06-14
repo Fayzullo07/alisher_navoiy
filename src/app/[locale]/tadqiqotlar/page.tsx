@@ -2,7 +2,7 @@ import Title from "@/components/Core/Title";
 import { EyeIcon, MoveLeftIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 
-const Asarlar = () => {
+const Tadqiqotlar = () => {
     return (
         <div className="bg-image-flower pt-10 md:pt-0 pb-10 relative">
             <div className=" md:hidden block absolute  top-0 left-0">
@@ -11,14 +11,14 @@ const Asarlar = () => {
                         <MoveLeftIcon className="w-6 h-6" />
                     </Link>
 
-                    <h2 className="text-xl font-semibold">Asarlar</h2>
+                    <h2 className="text-xl font-semibold">Ilmiy tadqiqotlar</h2>
                 </div>
             </div>
 
             <div className="w-full lg:w-[85vw] mx-auto px-4">
                 <div className=" hidden md:block">
 
-                    <Title title="Asarlar" />
+                    <Title title="Ilmiy tadqiqotlar" />
                 </div>
 
                 <div className=" hidden md:block">
@@ -40,9 +40,9 @@ const Asarlar = () => {
                             <tbody className="bg-white">
                                 {Array.from({ length: 10 }).map((_, i) => (
                                     <tr key={i}>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">{`"Xamsa" - "Hayrat ul-abror" dostoni`}</td>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm ">Alisher Navoiy</td>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">1483-yil</td>
+                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">{`Alisher Navoiy mualliflik korpusida g‘azallar tahlili, maqollar va iboralarning tadqiqi`}</td>
+                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">Abjalova Manzura</td>
+                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">06.09.2021</td>
                                         <td className="py-3 px-6 border-b border-gray-200 text-sm">
                                             <EyeIcon strokeWidth={1} size={20} className=" mx-auto" />
                                         </td>
@@ -57,10 +57,12 @@ const Asarlar = () => {
                     <div className=" space-y-4">
                         {Array.from({ length: 10 }).map((_, i) => (
                             <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
-                                <div className="pb-2 text-base font-semibold">{`"Xamsa" - "Hayrat ul-abror" dostoni`}</div>
+                                <div className="pb-2 text-base font-semibold">{`Alisher Navoiy mualliflik korpusida
+g‘azallar tahlili, maqollar va iboralarning
+tadqiqi`}</div>
                                 <div className="text-sm">
-                                    <div><span className="text-blue-300">Muallifi: </span> Alisher Navoiy</div>
-                                    <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> 1483-yil</div>
+                                    <div><span className="text-blue-300">Muallifi: </span> Abjalova Manzura</div>
+                                    <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span>  06.09.2021</div>
                                 </div>
                                 <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
                             </div>
@@ -75,4 +77,4 @@ const Asarlar = () => {
     )
 }
 
-export default Asarlar;
+export default Tadqiqotlar;
