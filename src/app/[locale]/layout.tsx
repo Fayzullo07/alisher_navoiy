@@ -55,7 +55,7 @@ export default function LocaleLayout({ children, params: { locale }, }: Readonly
               </Provider>
             </div>
             <TailwindIndicator />
-            {/* <Footer /> */}
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

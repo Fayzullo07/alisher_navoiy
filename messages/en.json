@@ -2,12 +2,10 @@
     "Navbar": [
         "Biography",
         "Devonians",
+        "Works",
+        "Scientific research",
         "News",
-        "About the body",
-        "Sponsors",
-        "Services",
-        "Think tank",
-        "Scientific Ethics"
+        "About the body"
     ],
     "Hero": {
         "contact": "Connection",

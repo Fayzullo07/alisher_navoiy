@@ -16,7 +16,7 @@ import {
 
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from "next/image";
-const SliderCard = () => {
+const SliderCard = ({ isTrue = true }) => {
     const plugin2 = React.useRef(
         AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
@@ -28,11 +28,11 @@ const SliderCard = () => {
                 plugins={[plugin2.current]}
                 onMouseEnter={plugin2.current.stop}
                 onMouseLeave={plugin2.current.play}
-                className="w-[90%] mx-auto">
+                className={`${isTrue && "w-[90%]"} mx-auto`}>
                 <CarouselContent>
                     {Array.from({ length: 7 }).map((_, index) => (
-                        <CarouselItem key={index} className="pr-1 basis-1/2 lg:basis-1/4">
-                            <div className="p-2">
+                        <CarouselItem key={index} className=" basis-2/5 md:basis-1/3 lg:basis-1/4">
+                            <div className="p-1.5">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="bg-white rounded-2xl ">
                                         <div >
@@ -46,11 +46,11 @@ const SliderCard = () => {
                                                 alt="Image"
                                             />
                                         </div>
-                                        <div className="p-3">
-                                            <div className="text-base font-semibold text-gray-700">Ilk devon</div>
-                                            <p className="text-sm opacity-60 font-medium">zamondosh muxlislari tomonidan
+                                        <div className="p-1.5 md:p-3 space-y-2">
+                                            <div className="text-sm md:text-base font-semibold text-gray-700">Ilk devon</div>
+                                            <p className=" text-xs md:text-sm  text-gray-500">zamondosh muxlislari tomonidan
                                                 tartib berilgan. 1465-1466-yillar</p>
-                                            <button className="bg-blue-100 w-full rounded-lg text-sm px-3 py-1 ">Batafsil</button>
+                                            <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
                                         </div>
                                     </div>
                                 </div>
@@ -58,8 +58,12 @@ const SliderCard = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                {isTrue && (
+                    <>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </>
+                )}
             </Carousel>
 
         </div>

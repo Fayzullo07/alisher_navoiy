@@ -1,13 +1,11 @@
 {
     "Navbar": [
         "Tarjimai hol",
-        "Devonlar",
+        "Devonlari",
+        "Asarlari",
+        "Ilmiy tadqiqotlar",
         "Yangiliklar",
-        "Korpus haqida",
-        "Tashabbuskorlar",
-        "Xizmatlar",
-        "Aql markazi",
-        "Ilmiy etika"
+        "Korpus haqida"
     ],
     "Hero": {
         "contact": "Bog'lanish",

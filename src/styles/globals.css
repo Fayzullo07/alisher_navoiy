@@ -98,29 +98,15 @@
 
 }
 
-.tiptap h1 {
-  @apply text-xl font-semibold;
-}
-
-.tiptap h2 {
-  @apply text-lg font-semibold;
-}
-
-.tiptap h3 {
-  @apply text-base font-semibold;
-}
-
-
-
 /* Navbar */
 .active {
-  left: 0;
+  /* left: 0; */
   position: fixed;
-  top: 0;
+  top: 0px;
   transition: 1s;
   z-index: 50;
   opacity: 1;
-  animation: opacity_animate 0.8s;
+  animation: opacity_animate 1s;
   /* border: 1px solid black; */
 }
 
@@ -166,15 +152,24 @@
 
 
 /*  */
-
-
 .img-background-horizontal {
-  background-image: url("../../public/hero1.png");
+  background-image: url("../../public/Header-bg.gif");
   background-repeat: no-repeat;
   background-size: 105vw auto;
   background-position: 0% 0%;
   height: 100vh;
-  width: 100vw;
+  width: 99.5vw;
+  /* animation: horizontalMove 30s infinite; */
+  animation-timing-function: ease;
+}
+
+.bg-image-flower{
+  background-image: url("../../public/bg.png");
+  /* background-repeat: no-repeat; */
+  background-size: 100vw auto;
+  background-position: 0% 0%;
+  width: 99.5vw;
+  /* height: 100%; */
   animation: horizontalMove 30s infinite;
   animation-timing-function: ease;
 }

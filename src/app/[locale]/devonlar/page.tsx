@@ -9,7 +9,6 @@ const Devonlar = () => {
 
                 <div className="py-5">
                     <div className="text-2xl font-medium pb-5">Devonlar</div>
-
                     <SliderCard />
                 </div>
                 <div>
