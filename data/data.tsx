@@ -1,15 +1,12 @@
-import { CalendarCheckIcon, HandshakeIcon, NewspaperIcon, RssIcon } from "lucide-react";
+import { ScrollTextIcon } from "lucide-react";
 
 export const navbar = [
-    { icon: <RssIcon />, name: "Tarjimai hol", slug: "/biography" },
-    { icon: <NewspaperIcon />, name: "Devonlari", slug: "/devonlar" },
-    { icon: <HandshakeIcon />, name: "Asarlari", slug: "/asarlar" },
-    { icon: <HandshakeIcon />, name: "Ilmiy tadqiqotlar", slug: "/tadqiqotlar" },
-    { icon: <HandshakeIcon />, name: "Yangiliklar", slug: "/news" },
-    { icon: <CalendarCheckIcon />, name: "Korpus haqida", slug: "/about" },
-    // { icon: <NewspaperIcon />, name: "Xizmatlar", slug: "/services" },
-    // { icon: <NewspaperIcon />, name: "Aql Markazi", slug: "/center_mind" },
-    // { icon: <NewspaperIcon />, name: "Ilmiy etika", slug: "/ilmiy_etika" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Tarjimai hol", slug: "/biography" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Devonlari", slug: "/devonlar" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Asarlari", slug: "/asarlar" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Ilmiy tadqiqotlar", slug: "/tadqiqotlar" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Yangiliklar", slug: "/news" },
+    { icon: <ScrollTextIcon strokeWidth={1} />, name: "Korpus haqida", slug: "/about" },
 ];
 
 export const stats = [
