@@ -30,7 +30,7 @@ const LocalSwitcher = () => {
     return (
         <DropdownMenu >
             <DropdownMenuTrigger asChild className=" z-[99999]">
-                <Button variant="ghost" size="icon" disabled={isPending} className="w-full px-1 md:px-2" >
+                <Button variant="ghost" size="icon" disabled={isPending} className="w-full px-1 md:px-2 shadow md:shadow-none" >
                     <div className=" hidden md:block">
 
                         <Image
