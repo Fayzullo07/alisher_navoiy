@@ -7,7 +7,7 @@ import Link from "next/link";
 const About = () => {
     const locale = useLocale();
     return (
-        <div className="my-5">
+        <div className="pb-5 bg-image-flower">
             <Container>
 
                 <Title title="Korpus haqida" />

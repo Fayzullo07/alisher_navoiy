@@ -1,8 +1,7 @@
 import Title from "@/components/Core/Title";
-import { ArrowLeftIcon, MoveLeftIcon } from "lucide-react";
+import {  MoveLeftIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import Link from "next/link";
-import { useNavigation } from "react-day-picker";
 
 const About = () => {
     const locale = useLocale();
