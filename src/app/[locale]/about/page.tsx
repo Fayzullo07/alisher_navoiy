@@ -13,19 +13,19 @@ const About = () => {
                 <Title title="Korpus haqida" />
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {Array.from({ length: 20 }).map((_, i) => (
-                        <Link href={`/${locale}/about/${i}`} key={i} className="p-4 bg-pink-100 rounded-3xl shadow-lg">
+                        <div key={i} className="p-5 bg-pink-100 rounded-3xl shadow-lg">
                             <div className="flex justify-between items-center pb-1.5">
                                 <div className="text-base font-semibold">Til korpusi nima?</div>
-                                <div className="text-base rounded-full p-1 text-center bg-white">
-                                    <ArrowUpRightIcon strokeWidth={1} size={16} />
-                                </div>
+                                <Link href={`/${locale}/about/${i}`} className="text-base rounded-full p-1 text-center bg-white">
+                                    <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
+                                </Link>
                             </div>
                             <div className="text-sm font-normal text-gray-500">
                                 Tilshunoslar uchun turli muammolarni
                                 hal etish manbasi, foydalanuvchilar
                                 uchun esa...
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </Container>

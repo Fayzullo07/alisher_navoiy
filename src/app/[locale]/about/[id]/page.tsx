@@ -10,8 +10,8 @@ const About = () => {
         <div className="bg-image-flower py-10 md:pt-12 relative">
             <div className=" md:hidden block absolute  top-0 left-0">
                 <div className=" w-screen text-center relative">
-                    <Link href={`/${locale}/about`} className=" absolute top-0 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
-                        <MoveLeftIcon className="w-5 h-5" />
+                    <Link href={`/${locale}/about`} className=" hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
+                        <MoveLeftIcon className="w-6 h-6" />
                     </Link>
 
                     <h2 className="text-lg font-semibold">Til korpusi nima ?</h2>
