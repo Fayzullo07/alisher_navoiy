@@ -79,6 +79,17 @@
 
   body {
     @apply bg-background text-foreground;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
   }
 
   body::-webkit-scrollbar {
@@ -163,7 +174,7 @@
   animation-timing-function: ease;
 }
 
-.bg-image-flower{
+.bg-image-flower {
   background-image: url("../../public/bg.png");
   background-color: rgba(62, 139, 255, 0.06);
   /* background-repeat: no-repeat; */
@@ -179,9 +190,11 @@
   0% {
     background-position: 0% 0%;
   }
+
   50% {
     background-position: 100% 20%;
   }
+
   100% {
     background-position: 0% 0%;
   }
