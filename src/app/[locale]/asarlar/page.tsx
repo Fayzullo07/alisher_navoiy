@@ -64,7 +64,7 @@ const Asarlar = () => {
                                     <div><span className="text-blue-300">Muallifi: </span> Alisher Navoiy</div>
                                     <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> 1483-yil</div>
                                 </div>
-                                <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-xs md:text-sm py-2 ">{"Ko‘rish"}</button>
+                                <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
                             </div>
                         ))}
 
