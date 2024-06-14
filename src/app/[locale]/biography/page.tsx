@@ -3,7 +3,7 @@ import { biography } from "../../../../data/data";
 
 const Biography = () => {
     return (
-        <div className="">
+        <div className=" bg-image-flower">
             <div className=" h-[20vh] md:h-[34vh] lg:h-[90vh] relative border" style={{
                 backgroundImage: `url(/biography.png)`,
                 backgroundRepeat: 'no-repeat',
