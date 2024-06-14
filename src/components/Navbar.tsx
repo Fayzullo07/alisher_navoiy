@@ -38,7 +38,7 @@ const Navbar = () => {
 
     return (
         <header className="flex justify-center items-center">
-            <nav className={`${stickyNav ? "active" : ""} flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-1 md:px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
+            <nav className={`${stickyNav ? "active" : ""} flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-2 md:px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
                 <Link href={"/"}>
                     <Image
