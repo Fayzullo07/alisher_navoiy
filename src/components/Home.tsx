@@ -49,7 +49,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             ))}
-                            <div className="text-center">
+                            <div className="text-center block md:hidden">
 
                                 <div className=" inline-block text-xs text-center bg-white rounded-2xl border px-2 py-1">{"Ko‘proq ko’rish"}</div>
                             </div>
