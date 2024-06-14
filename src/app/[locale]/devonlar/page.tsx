@@ -97,10 +97,10 @@ const Devonlar = () => {
                                 </div>
 
                             </div>
-                            <div className="bg-white rounded-2xl text-center py-2 px-8" >
+                            <div className="bg-white rounded-2xl text-center py-2 md:px-8 px-2" >
                                 <div className="text-xl font-semibold py-1">{"1-G'azal"}</div>
                                 <div>
-                                    <p className="text-sm leading-7">
+                                    <p className="text-sm leading-7 text-justify">
                                         {`Ey navbahori orazing subhig'a jonparvar havo, Andin gulu bulbul topib yuz barg birla ming navo. To'bi-yu shohi sidradur ko'yung giyohi, negakim Ushshoq ashku ohidin har dam topar su-yu havo. Zahri firoqingdin qayu oshiqki bo'ldi talxkom,No'shi visoling yetmasa Iso anga topmas davo. Chun qoziy ul-hojot sen da'voi mahring qilg'ali,Dard-u firoq anduhidin kelturmisham ikki guvo. Qilmay qabul ijodning imkoni yo'q, so'ngra yanaMaqbulini rad aylamak lutfungdin o'lg'aymu ravoZohid, ko'ngulning xilvatin matlub g'ayridin orit Sen sayr qilsang qil kerak ko'nglungga bo'lsa inzivo. Desang Navoiy jon aro mahbub bo'lg'ay jilvagarAvval ko'ngul ko'zgusidin mahv ayla naqshi mosivo.`.split(" ").map((item, i) => (
                                             <HoverCard key={i}>
                                                 <HoverCardTrigger>
