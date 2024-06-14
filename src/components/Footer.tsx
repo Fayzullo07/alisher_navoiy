@@ -61,7 +61,7 @@ const Footer = () => {
                     </div>
 
                 </footer>
-                <div className="text-xs md:text-base text-black pt-5">
+                <div className="text-xs md:text-base text-black py-5">
                     Copyright © 2023 Alisher Navoiy Korpusi. All rights reserved.
                 </div>
 

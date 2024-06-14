@@ -45,7 +45,7 @@ const Navbar = () => {
                         src="/logo.png"
                         width={40}
                         height={40}
-                        className=" rounded-full"
+                        className=" rounded-full object-cover"
                         alt="Logo"
                     />
                 </Link>

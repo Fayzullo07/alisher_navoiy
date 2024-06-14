@@ -31,8 +31,8 @@ const SliderCard = ({ isTrue = true }) => {
                 className={`${isTrue && "w-[90%]"} mx-auto`}>
                 <CarouselContent>
                     {Array.from({ length: 7 }).map((_, index) => (
-                        <CarouselItem key={index} className=" basis-2/5 md:basis-1/3 lg:basis-1/4">
-                            <div className="p-1.5">
+                        <CarouselItem key={index} className="px-1.5 md:px-2 basis-2/5 md:basis-1/3 lg:basis-1/4">
+                            <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="bg-white rounded-2xl ">
                                         <div >
