@@ -80,7 +80,7 @@ const Home = () => {
                                 Lutfiy (1369-1465) keksaygan chog‘larida yosh Alisher bilan
                                 ko‘rishadi va uning she’riy iqtidorini yuqori baholaydi.`}
                             </div>
-                            <div className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{"Ko‘proq o‘qish..."}</div>
+                            <Link href={`/${locale}/biography`} className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{"Ko‘proq o‘qish..."}</Link>
                         </div>
                     </div>
                 </Container>
