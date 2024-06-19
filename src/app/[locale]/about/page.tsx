@@ -7,7 +7,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 
-export const AboutPage = () => {
+const AboutPage = () => {
     const locale = useLocale();
     const { data, isLoading, isError } = useQuery({
         queryKey: ["about"],
@@ -40,16 +40,6 @@ export const AboutPage = () => {
 
 
 const About = () => {
-    const locale = useLocale();
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["questions"],
-        queryFn: async () => {
-            return await questionsGetApi();
-        }
-    });
-
-    if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
         <div className="pb-5 min-h-screen bg-image-flower">
             <Container>
