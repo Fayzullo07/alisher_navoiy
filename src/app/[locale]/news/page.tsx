@@ -22,7 +22,7 @@ const NewsList = ({ search }: { search: string }) => {
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <div className="snip1360 shadow-md">
+                <div key={i} className="snip1360 shadow-md">
                     <div className="h-48 flex justify-center items-center bg-gray-100">
                         <Image
                             width={0}
