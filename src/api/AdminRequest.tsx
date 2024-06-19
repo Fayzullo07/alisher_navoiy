@@ -1,6 +1,6 @@
 import axios from "axios";
-const URL = process.env.NEXT_PUBLIC_BACKEND_API;
-const API = axios.create({ baseURL: URL });
+// const URL = process.env.NEXT_PUBLIC_BACKEND_API;
+const API = axios.create({ baseURL: 'http://biryuzikki.uz/api/v1' });
 
 // const config = {
 //   headers: {
