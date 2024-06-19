@@ -26,11 +26,10 @@ const SliderItem = () => {
     return (
         <div>
             <Carousel
-
                 className="w-full">
                 <CarouselContent>
                     {Array.from({ length: 17 }).map((_, index) => (
-                        <CarouselItem key={index} className="px-1 basis-1/4 lg:basis-[10%] md:basis-1/6" onClick={() => setActive(index)}>
+                        <CarouselItem key={index} className="px-1 basis-1/4 lg:basis-[10%] md:basis-[15%]" onClick={() => setActive(index)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">
@@ -57,9 +56,9 @@ const SliderItem = () => {
                                                 />
                                             )}
                                         </div>
-                                        <div className=" absolute top-2.5 right-0 left-0">
-                                            <div className="text-xs md:text-base font-medium text-gray-700  text-center ">Ilk devon</div>
-                                            <div className="text-[10px] md:text-xs font-medium text-gray-400  text-center ">(16{index + 1})</div>
+                                        <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0">
+                                            <div className="text-xs 2xl:text-2xl xl:text-lg lg:text-base md:text-base font-medium text-gray-700  text-center ">Ilk devon</div>
+                                            <div className="text-[10px] 2xl:text-base xl:text-xs lg:text-xs md:text-xs font-medium text-gray-400  text-center ">(16{index + 1})</div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,7 +1,16 @@
+"use client"
 import Container from "@/components/Core/Container";
 import { biography } from "../../../../data/data";
+import { useQuery } from "@tanstack/react-query";
+import { biographyGetApi } from "@/api/AdminRequest";
 
 const Biography = () => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["biography"],
+        queryFn: async () => {
+            return await biographyGetApi();
+        }
+    });
     return (
         <div className=" bg-image-flower">
             <div className=" h-[20vh] md:h-[34vh] lg:h-[90vh] relative border" style={{
@@ -28,13 +37,12 @@ const Biography = () => {
                 </div>
             </div>
             <Container>
-                <div className="w-full md:w-[70vw] mx-auto pt-5">
-                    {biography.map((bio, index) => (
-                        <div key={index}>
-                            <p className="text-sm md:text-lg text-justify text-gray-500">{bio}</p>
-                            <br />
-                        </div>
-                    ))}
+                <div className="py-5">
+                    <div
+                        className=" whitespace-pre-line text-sm md:text-lg text-justify text-gray-500"
+                        style={{ whiteSpace: "pre-line" }}
+                        dangerouslySetInnerHTML={{ __html: data?.data?.biography }}
+                    />
                 </div>
             </Container>
         </div >

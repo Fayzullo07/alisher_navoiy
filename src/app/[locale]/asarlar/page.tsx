@@ -1,10 +1,50 @@
+"use client"
+import { useQuery } from "@tanstack/react-query";
 import Title from "@/components/Core/Title";
 import { EyeIcon, MoveLeftIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import { worksGetApi } from "@/api/AdminRequest";
+import { useState } from "react";
+
+const AsarList = ({ search }: { search: string }) => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["works", search],
+        queryFn: async () => {
+            return await worksGetApi({ search });
+        }
+    });
+
+    // if (isLoading) return <h1>Loading...</h1>;
+    if (isError) return <div>Xatolik yuz berdi...</div>;
+    return (
+        <>
+            {data?.data?.results.map((item: any, i: any) => (
+                <tr key={i}>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.title}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm ">{"Alisher Navoiy"}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.from_year}-{item.to_year} yil</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm">
+                        <Link href={item.pdf_file} target="_blank">
+                            <EyeIcon strokeWidth={1} size={20} className=" mx-auto" />
+                        </Link>
+                    </td>
+                </tr >
+            ))}
+
+            <tr >
+                <td className="py-3 px-6 border-b border-gray-200 text-sm">{""}</td>
+            </tr >
+        </>
+    )
+
+};
+
 
 const Asarlar = () => {
+    const [search, setSearch] = useState("");
+
     return (
-        <div className="bg-image-flower pt-10 md:pt-0 pb-10 relative">
+        <div className="bg-image-flower min-h-screen pt-10 md:pt-0 pb-10 relative">
             <div className=" md:hidden block absolute  top-0 left-0">
                 <div className=" w-screen text-center relative">
                     <Link href={`/`} className=" hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
@@ -26,11 +66,11 @@ const Asarlar = () => {
                     <div className="shadow-lg rounded-lg overflow-hidden px-4 bg-white pt-6 ">
                         <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-60 ">
                             <SearchIcon strokeWidth={1} size={20} />
-                            <input type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <table className="w-full table-fixed">
-                            <thead className=" rounded-full overflow-hidden">
-                                <tr className="bg-gray-100 rounded-full overflow-hidden text-sm">
+                            <thead className="">
+                                <tr className="bg-gray-100 overflow-hidden text-sm mb-5">
                                     <th className="w-3/4 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">Nomi</th>
                                     <th className="w-1/4 py-2 px-6 text-left text-gray-600">Muallifi</th>
                                     <th className="w-1/4 py-2 px-6 text-left text-gray-600">Sanasi</th>
@@ -38,16 +78,7 @@ const Asarlar = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white">
-                                {Array.from({ length: 10 }).map((_, i) => (
-                                    <tr key={i}>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">{`"Xamsa" - "Hayrat ul-abror" dostoni`}</td>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm ">Alisher Navoiy</td>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">1483-yil</td>
-                                        <td className="py-3 px-6 border-b border-gray-200 text-sm">
-                                            <EyeIcon strokeWidth={1} size={20} className=" mx-auto" />
-                                        </td>
-                                    </tr>
-                                ))}
+                                <AsarList search={search} />
                             </tbody>
                         </table>
                     </div>

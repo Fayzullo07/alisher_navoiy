@@ -29,14 +29,14 @@ const SliderCard = ({ isTrue = true }) => {
                 // plugins={[plugin2.current]}
                 // onMouseEnter={plugin2.current.stop}
                 // onMouseLeave={plugin2.current.play}
-                className={`${isTrue && "w-full md:w-[90%]"} mx-auto py-1.5`}>
+                className={`${isTrue && "w-full md:w-[95%]"} mx-auto py-1.5`}>
                 <CarouselContent>
                     {Array.from({ length: 7 }).map((_, index) => (
-                        <CarouselItem key={index} className="px-1.5 md:px-2 basis-2/5 md:basis-1/3 lg:basis-1/4" onClick={() => setActive(index)}>
-                            {index == active ? (
+                        <CarouselItem key={index} className="px-1.5 md:p-3 basis-2/5 md:basis-1/3 lg:basis-1/4" onClick={() => setActive(index)}>
+                            {isTrue && index == active ? (
                                 <div className="py-2">
-                                    <div className=" cursor-pointer scale-105 duration-300">
-                                        <div className="bg-white rounded-2xl shadow-2xl ">
+                                    <div className=" cursor-pointer hover:scale-105 duration-300">
+                                        <div className="bg-white rounded-2xl  overflow-hidden border-gray-400 shadow-xl shadow-gray-500">
                                             <div >
                                                 <Image
                                                     src={"/image.png"}

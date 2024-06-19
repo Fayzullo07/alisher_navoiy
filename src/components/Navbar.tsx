@@ -37,7 +37,7 @@ const Navbar = () => {
     const t = useTranslations('Navbar');
 
     return (
-        <header className="flex justify-center items-center">
+        <header className="flex justify-center items-center max-w-screen-2xl mx-auto">
             <nav className={`${stickyNav ? "active" : ""} flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-2 md:px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
                 <Link href={"/"}>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input type="text" placeholder="Qidiruv" className="bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input type="text" placeholder="Qidiruv" className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>

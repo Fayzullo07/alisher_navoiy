@@ -10,7 +10,8 @@ import Image from "next/image"
 import { useRef } from "react"
 
 import AutoScroll from "embla-carousel-auto-scroll"
-const ImagesCarusel = ({ images, button = false }: { images: any, button: Boolean }) => {
+import Link from "next/link"
+const ImagesCarusel = ({ images }: { images: any }) => {
     const plugin1 = useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })
         // AutoScroll({ loop: true, speed: 1, autoScroll: true }),
@@ -25,28 +26,24 @@ const ImagesCarusel = ({ images, button = false }: { images: any, button: Boolea
             <CarouselContent>
                 {images.map((item: any, index: number) => (
                     <CarouselItem key={index}>
-                        <div className=" border bg-maincolor">
-                            {/* <Card> */}
-                            {/* <CardContent className="flex aspect-square items-center justify-center p-6"> */}
-                            {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
-                            <Image
-                                src={item}
-                                width={0}
-                                height={0}
-                                className="transition hover:scale-110 duration-300 shadow-xl"
-                                sizes="100vw"
-                                style={{ width: '100%', height: 'auto' }} // optional
-                                alt="Image"
-                            />
-                            {/* </CardContent> */}
-                            {/* </Card> */}
+                        <div className=" h-80 w-full md:w-[80%] mx-auto flex justify-center items-center">
+                            <Link href={item} target="_blank">
+                                <Image
+                                    src={item}
+                                    width={0}
+                                    height={0}
+                                    className="object-cover"
+                                    sizes="100vw"
+                                    style={{ width: 'auto', height: 'auto' }} // optional
+                                    alt="Image"
+                                />
+                            </Link>
                         </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            {!button && (
-                <><CarouselPrevious /><CarouselNext /></>
-            )}
+
+
         </Carousel>
     )
 }

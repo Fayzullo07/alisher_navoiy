@@ -1,4 +1,6 @@
+"use client"
 import { ArrowUpRightIcon } from "lucide-react";
+
 import Container from "./Core/Container";
 import Title from "./Core/Title";
 import Hero from "./Hero";
@@ -6,63 +8,108 @@ import SliderCard from "./SliderCard";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import { AboutPage } from "@/app/[locale]/about/page";
+import { useQuery } from "@tanstack/react-query";
+import { devonsGetApi } from "@/api/AdminRequest";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+
+import AutoScroll from "embla-carousel-auto-scroll"
+import { useRef } from "react";
+
+const Devons = () => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["devans_home"],
+        queryFn: async () => {
+            return await devonsGetApi();
+        }
+    });
+
+
+    if (isLoading) return <h1>Loading...</h1>;
+    if (isError) return <div>Xatolik yuz berdi...</div>;
+    return (
+        <>
+            {data?.data.devans.map((item: any, index: any) => (
+                <CarouselItem key={index} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4">
+                    <div className="py-2">
+                        <div className=" cursor-pointer hover:scale-105 duration-300">
+                            <div className={`bg-white rounded-2xl overflow-hidden`}>
+                                <Link href={item.image} target="_blank">
+                                    <div className="w-full h-36 bg-gray-200">
+                                        <Image
+                                            src={item.image}
+                                            width={0}
+                                            height={0}
+                                            // className="transition hover:scale-110 duration-300 shadow-xl"
+                                            sizes="100vw"
+                                            style={{ width: '100%', height: '100%' }} // optional
+                                            alt="Image"
+                                        />
+                                    </div>
+                                </Link>
+                                <div className="p-1.5 md:p-3">
+                                    <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                    <p className="min-h-12 md:min-h-16 text-xs md:text-sm  text-gray-500">
+                                        {item.desc}
+                                        <br />
+                                        {item.from_year}-{item.to_year}-yillar
+                                    </p>
+                                    <Link href={item.pdf_file} target="_blank">
+                                        <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </CarouselItem>
+            ))}
+        </>
+    )
+}
+
 
 const Home = () => {
     const locale = useLocale();
-    const data = [
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-    ]
+    const plugin2 = useRef(
+        AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
+        // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
+    )
     return (
         <>
             <Hero />
             <div className="bg-image-flower">
 
                 <Container>
-                    <div className="my-5">
+                    <div className="">
 
                         <Title title="Devonlar" />
+                        <div>
+                            <Carousel
+                                plugins={[plugin2.current]}
+                                onMouseEnter={plugin2.current.stop}
+                                onMouseLeave={plugin2.current.play}
+                                className={`w-full  mx-auto`}>
+                                <CarouselContent>
+                                    <Devons />
 
-                        <SliderCard isTrue={false} />
+                                </CarouselContent>
+
+                            </Carousel>
+
+                        </div>
                     </div>
 
-                    <div className="my-5">
+                    <div>
                         <Title title="Korpus haqida" />
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {data.map((_, i) => (
-                                <div key={i} className="p-5 bg-pink-100 rounded-3xl shadow-lg">
-                                    <div className="flex justify-between items-center pb-1.5">
-                                        <div className="text-lg font-semibold">Til korpusi nima?</div>
-                                        <Link href={`/${locale}/about/${i}`} className="text-base rounded-full p-1 text-center bg-white">
-                                            <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
-                                        </Link>
-                                    </div>
-                                    <div className="text-sm font-normal text-gray-500">
-                                        Tilshunoslar uchun turli muammolarni
-                                        hal etish manbasi, foydalanuvchilar
-                                        uchun esa...
-                                    </div>
-                                </div>
-                            ))}
-                            <div className="text-center block md:hidden">
-
-                                <div className=" inline-block text-xs text-center bg-white rounded-2xl border px-2 py-1">{"Ko‘proq ko’rish"}</div>
-                            </div>
+                            <AboutPage />
                         </div>
                     </div>
 
                     <div className="py-5 pb-10">
                         <Title title="Alisher Navoiy biografiyasi" />
-                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 bg-white p-4 md:p-6 shadow-lg rounded-3xl relative">
-                            <div className=" overflow-hidden rounded-xl">
+                        <div className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative">
+                            <div className=" overflow-hidden rounded-xl col-span-2">
                                 <Image
                                     src={"/home_alisher_navoiy.png"}
                                     width={350}
@@ -72,7 +119,7 @@ const Home = () => {
                                     alt="Image"
                                 />
                             </div>
-                            <div className=" text-sm md:text-base font-normal text-gray-500 md:pb-4">
+                            <div className=" col-span-3 text-sm 2xl:text-xl md:text-base font-normal text-gray-500 md:pb-4 pt-2">
                                 {`Alisher Navoiy (1441-1501) - buyuk shoir va mutafakkir, davlat arbobi. To‘liq ismi – Nizomiddin Mir Alisher. “Navoiy” taxallusi ostida chig‘atoy (eski o‘zbek tili) hamda fors tilida “Foniy” taxallusi bilan ijod qilgan. Navoiy yoshligidan Xurosonning bo‘lajak hukmdori Husayn
                                 Boyqaro bilan (humronlik davri:1469-1506 - yillar) do‘st bo‘lgan. 7-8 yoshidan
                                 she’rlar yozishni boshlagan. Navoiyning zamondoshi bo‘lmish tarixchi

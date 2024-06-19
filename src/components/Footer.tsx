@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
 
     return (
-        <div className={`bg-white  md:py-6`}>
+        <div className={`bg-white py-6`}>
             <Container>
                 {/* <!-- Footer --> */}
                 <footer className=" border-b pb-6">
@@ -61,7 +61,7 @@ const Footer = () => {
                     </div>
 
                 </footer>
-                <div className="text-xs md:text-base text-black py-5">
+                <div className="text-xs md:text-base text-black pt-5">
                     Copyright © 2023 Alisher Navoiy Korpusi. All rights reserved.
                 </div>
 

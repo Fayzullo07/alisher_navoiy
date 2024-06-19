@@ -79,17 +79,17 @@
 
   body {
     @apply bg-background text-foreground;
-    -webkit-touch-callout: none;
+    /* -webkit-touch-callout: none; */
     /* iOS Safari */
-    -webkit-user-select: none;
+    /* -webkit-user-select: none; */
     /* Safari */
-    -khtml-user-select: none;
+    /* -khtml-user-select: none; */
     /* Konqueror HTML */
-    -moz-user-select: none;
+    /* -moz-user-select: none; */
     /* Firefox */
-    -ms-user-select: none;
+    /* -ms-user-select: none; */
     /* Internet Explorer/Edge */
-    user-select: none;
+    /* user-select: none; */
   }
 
   body::-webkit-scrollbar {
@@ -112,12 +112,13 @@
 /* Navbar */
 .active {
   /* left: 0; */
+
   position: fixed;
   top: 0px;
   transition: 1s;
   z-index: 50;
   opacity: 1;
-  animation: opacity_animate 1s;
+  animation: opacity_animate 0.2s;
   /* border: 1px solid black; */
 }
 
@@ -198,4 +199,91 @@
   100% {
     background-position: 0% 0%;
   }
+}
+
+
+/* News */
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Quattrocento);
+
+.snip1360 {
+  font-family: 'Quattrocento', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  /* margin: 10px; */
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.snip1360 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.snip1360 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.snip1360 figcaption {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px 25px 55px;
+  position: relative;
+}
+
+.snip1360 figcaption:before {
+  position: absolute;
+  content: '';
+  z-index: 2;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+
+.snip1360 figcaption a {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #cccccc;
+  color: #000000;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.snip1360 figcaption a:hover {
+  opacity: 1;
+}
+
+.snip1360 h2 {
+  margin: 0 0 10px;
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  font-family: 'Oswald', Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.snip1360 p {
+  margin: 0 0 10px;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
 }
