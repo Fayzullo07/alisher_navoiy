@@ -61,7 +61,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                     className="w-full">
                     <CarouselContent>
                         {Array.from({ length: 10 }).map((_, i) => (
-                            <CarouselItem key={i} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4">
+                            <CarouselItem key={i} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-1/4">
                                 <div className="h-60 md:h-80  bg-gray-200 rounded-3xl"></div>
                             </CarouselItem>
                         ))}
@@ -76,7 +76,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                 className={`w-full md:w-[95%] mx-auto `}>
                 <CarouselContent>
                     {data?.data.devans.map((item: any, index: any) => (
-                        <CarouselItem key={index} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4" onClick={() => setDevan_id(item)}>
+                        <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-1/4" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`${item.id == devan_id.id && "shadow-md shadow-gray-500 "} bg-white rounded-2xl overflow-hidden`}>
@@ -235,20 +235,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {firstFilter.id == 0 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
                     <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{"G'azallar"}</div>
-
-                    <div className="flex items-center gap-2 mb-2 ">
-
-                        <div className="flex items-center  gap-2  p-1 rounded-full bg-gray-50 border ">
-                            <SearchIcon strokeWidth={1} size={20} />
-                            <input value={genre_detail_number} onChange={(e) => {
-                                if (/[a-zA-Z]/.test(e.target.value)) {
-                                    return
-                                }
-                                setCurrent(1);
-                                setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
-                        </div>
-                        {/* <div className="flex items-center"> */}
+                    <div className="flex items-center float-center gap-2  md:hidden mb-2">
 
                         <div className="w-full ">
                             <Popover>
@@ -307,7 +294,79 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 </PopoverContent>
                             </Popover>
                         </div>
-                        {/* </div> */}
+                    </div>
+                    <div className="flex items-center gap-2 mb-2 w-full ">
+
+                        <div className="flex items-center  gap-2  p-1 rounded-full bg-gray-50 border w-full">
+                            <SearchIcon strokeWidth={1} size={20} />
+                            <input value={genre_detail_number} onChange={(e) => {
+                                if (/[a-zA-Z]/.test(e.target.value)) {
+                                    return
+                                }
+                                setCurrent(1);
+                                setGenre_detail_number(e.target.value)
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full md:w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                        </div>
+                        <div className=" items-center gap-2 hidden md:flex">
+
+                            <div className="w-full ">
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <div className="flex w-max items-center gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                                            <span className=" text-sm">{"Matn tipi"}</span>
+                                            <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                                        </div>
+                                    </PopoverTrigger>
+                                    <PopoverContent align="start">
+                                        <div className="">
+                                            <ScrollArea className="h-[30vh]">
+
+                                                {data?.data?.text_types.map((item: any, i: any) => (
+                                                    <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
+                                                        <Checkbox id="terms" />
+                                                        <label
+                                                            htmlFor="terms"
+                                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        >
+                                                            {item.name}
+                                                        </label>
+                                                    </div>
+                                                ))}
+                                            </ScrollArea>
+                                        </div>
+
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                            <div className="w-full ">
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <div className="flex items-center gap-2  w-max  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                                            <span className="text-sm">{"Yosh bo'yicha"}</span>
+                                            <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                                        </div>
+                                    </PopoverTrigger>
+                                    <PopoverContent align="start">
+                                        <div className="">
+                                            <ScrollArea className="h-[15vh]">
+                                                {data?.data?.auditory_ages.map((item: any, i: any) => (
+                                                    <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
+                                                        <Checkbox id="terms" />
+                                                        <label
+                                                            htmlFor="terms"
+                                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        >
+                                                            {item.auditory_age}
+                                                        </label>
+                                                    </div>
+                                                ))}
+                                            </ScrollArea>
+                                        </div>
+
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                        </div>
                     </div>
                     <div className="space-y-2 h-[350px]">
                         {data?.data?.main?.count == 0 && (
