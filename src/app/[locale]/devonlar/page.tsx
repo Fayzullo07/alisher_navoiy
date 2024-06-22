@@ -330,7 +330,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             }
                             setCurrent(1);
                             setGenre_detail_number(e.target.value)
-                        }} type="search" placeholder="Raqamlar bo‘yicha qidiruv" className=" w-full placeholder:text-xs inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                        }} type="number" placeholder="Raqamlar bo‘yicha qidiruv" className=" w-full placeholder:text-xs inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                     </div>
                     <div className="space-y-2">
                         {data?.data?.main?.count == 0 && (
@@ -785,9 +785,9 @@ const Gazal = ({ id }) => {
                     <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
                     <div>
                         <ScrollArea className=" h-[60vh] md:h-auto border md:border-0">
-                            <div className="text-sm leading-7 space-y-1 overflow-auto">
+                            <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
-                                    <div key={i}>
+                                    <div key={i} className={`${i == 2 || i == 3 ? "bg-yellow-200 w-fit mx-auto rounded-full":""} `}>
                                         {item.text.split(" ").map((item_in: any, i: any) => (
                                             <HoverCard key={i} >
                                                 <HoverCardTrigger>
