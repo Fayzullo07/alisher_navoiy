@@ -43,6 +43,7 @@ import {
 } from "@/components/ui/popover"
 
 import { Checkbox } from "@/components/ui/checkbox"
+import Modal from "@/components/Core/Modal";
 
 
 const DevonList = ({ devan_id, setDevan_id }) => {
@@ -856,15 +857,25 @@ const Gazal = ({ id }) => {
                                 )}
                             </div>
                         </ScrollArea>
-                        <div className="flex justify-between items-center gap-2 pt-2 px-4">
-                            <div className="p-1.5 border rounded-full cursor-pointer">
+                        <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
+                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                 <MoveLeftIcon className="w-4 h-4" />
                             </div>
-                            <div className="flex items-center gap-2">
-                                <div className="px-2 py-1 border rounded-full cursor-pointer">{"Batafsil"}</div>
-                                <div className="px-2 py-1 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
+                            <div className="flex items-center gap-2 ">
+                                <Modal title="Metama’lumot" button={
+                                    <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Batafsil"}</div>
+                                } >
+
+                                    {Object.entries(data?.data?.metadata).map(([key, value]) => (
+                                        <div className="flex justify-between gap-2 items-center" key={key}>
+                                            <div>{key}</div>
+                                            <div>{value.toString()}</div>
+                                        </div>
+                                    ))}
+                                </Modal>
+                                <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
-                            <div className="p-1.5 border rounded-full cursor-pointer">
+                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                 <MoveRightIcon className="w-4 h-4" />
                             </div>
                         </div>
@@ -898,14 +909,23 @@ const GazalMobile = ({ item, children }) => {
 }
 
 const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild }) => {
+    const [secondsData, setSecondsData] = useState([]);
+    const [poetic_artsData, setPoeticArtsData] = useState([]);
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["janrlar_filter", search, devan_id],
+        queryKey: ["janrlar_filter", search, devan_id, firstFilter, firstFilterChild],
         queryFn: async () => {
-            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id });
+            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id });
         }
     });
 
     // if (isLoading) return <h1>Loading...</h1>;
+    useEffect(() => {
+        if (data && data.data && data.data.seconds) {
+            setSecondsData(data.data.seconds);
+            setPoeticArtsData(data.data.poetic_arts);
+        }
+    }, [data]);
+
 
     useEffect(() => {
         setFirstFilterChild({ id: 0, name: "" })
@@ -931,7 +951,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                             <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts} ta</span>
                         </div>
                     )}
-                    {data?.data?.seconds.map((item: any, i: any) => (
+                    {secondsData.map((item: any, i: any) => (
                         <div key={i}>
                             <div className={`flex justify-between items-center ${firstFilter.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter(item)}>
                                 <div className="flex gap-2 items-center">
@@ -953,21 +973,21 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                     </span>
                                 </div>
                             </div>
-                            {4 == i && firstFilter.id == 5 && data?.data?.poetic_arts.map((item: any, i: any) => (
+                            {4 == i && firstFilter.id == 5 && poetic_artsData.map((itemchild: any, i: any) => (
 
-                                <div key={i} className={`w-[80%] my-1.5 ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
+                                <div key={i} className={`w-[95%] my-1.5 ml-auto flex justify-between items-center ${firstFilterChild.id == itemchild.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(itemchild)}>
                                     <div className="flex gap-2 items-center">
-                                        <CircleIcon strokeWidth={1} className="w-3 h-3" />
-                                        <div className="text-sm">{item.name}</div>
+                                        <CircleIcon strokeWidth={3} className="w-3 h-3 text-green-500" />
+                                        <div className="text-sm">{itemchild.name}</div>
                                     </div>
-                                    <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{item.counts} ta</span>
+                                    <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts} ta</span>
                                 </div>
                             ))}
 
                         </div>
                     ))}
 
-                    {isLoading && Array.from({ length: 4 }).map((_, i) => (
+                    {/* {isInitialized && Array.from({ length: 4 }).map((_, i) => (
                         <div key={i}>
                             <div className="flex h-6 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
 
@@ -978,7 +998,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                             ))}
 
                         </div>
-                    ))}
+                    ))} */}
                 </div>
 
             </div>
@@ -1025,7 +1045,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                 </div>
                                 {4 == i && firstFilter.id == 5 && data?.data?.poetic_arts.map((item: any, i: any) => (
 
-                                    <div key={i} className={`w-[80%]  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
+                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
                                         <div className="flex gap-2 items-center">
                                             <CircleIcon strokeWidth={1} className="w-3 h-3" />
                                             <div className="text-sm">{item.name}</div>
@@ -1038,12 +1058,12 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                         ))}
 
                         {isLoading && Array.from({ length: 4 }).map((_, i) => (
-                            <div key={i}>
-                                <div className="flex h-6 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
+                            <div key={i} className="flex items-center gap-2">
+                                <div className="flex h-6 w-20 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
 
                                 </div>
                                 {i == 3 && Array.from({ length: 4 }).map((item: any, i: any) => (
-                                    <div key={i} className="w-[80%] h-6 ml-auto flex justify-between items-center my-1.5 bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
+                                    <div key={i} className="flex h-6 w-16 ml-auto  justify-between items-center my-1.5 bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
                                     </div>
                                 ))}
 
@@ -1090,7 +1110,7 @@ const Devonlar = () => {
 
                 {/* Filter */}
                 <div className="py-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-3">
+                    <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-5 gap-3">
 
                         {/* Filter 1 */}
                         <JanrlarFilter
@@ -1106,7 +1126,7 @@ const Devonlar = () => {
 
 
                         {/* Filter 2 */}
-                        <div className=" md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div className=" md:col-span-4 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-4">
 
                             {/* Filter 2.2 */}
                             <GazalList
