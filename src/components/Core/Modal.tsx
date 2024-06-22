@@ -16,7 +16,7 @@ const Modal = ({ children, button, title }: Readonly<{ children: React.ReactNode
             <DialogTrigger asChild>
                 {button}
             </DialogTrigger>
-            <DialogContent className="md:w-[70vw] w-full" >
+            <DialogContent className="md:w-[70vw] w-[95vw]" >
                 <DialogHeader >
                     <DialogTitle className="text-center text-xl font-semibold">{title}</DialogTitle>
                     <DialogDescription>

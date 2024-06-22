@@ -867,9 +867,21 @@ const Gazal = ({ id }) => {
                                 } >
 
                                     {Object.entries(data?.data?.metadata).map(([key, value]) => (
-                                        <div className="flex justify-between gap-2 items-center" key={key}>
-                                            <div>{key}</div>
-                                            <div>{value.toString()}</div>
+                                        <div key={key}>
+                                            {/* Desktop */}
+                                            <div className="hidden md:block">
+
+                                                <div className="grid grid-cols-2 gap-2 items-center border-b py-1 text-black">
+                                                    <div className="text-start">{key}</div>
+                                                    <div className="text-end">{value.toString()}</div>
+                                                </div>
+                                            </div>
+                                            {/* Mobile */}
+                                            <div className="block md:hidden">
+                                                <div className=" text-start text-black mb-1 ">
+                                                    <span className="text-gray-400">{key}:</span> {value.toString()}
+                                                </div>
+                                            </div>
                                         </div>
                                     ))}
                                 </Modal>
