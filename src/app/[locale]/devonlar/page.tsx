@@ -200,6 +200,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter }) => {
 
 const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild }) => {
     const [current, setCurrent] = useState(1);
+    const [countPage, setCountPage] = useState(1);
     const [genre_detail_number, setGenre_detail_number] = useState("");
 
 
@@ -217,122 +218,98 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
     };
 
 
+
+    useEffect(() => {
+        if (data && data.data && data.data.main) {
+            setCountPage(data.data.main.count);
+        }
+    }, [data])
+
+    useEffect(() => {
+        setCurrent(1);
+    }, [search])
+
     return (
         <>
             {/* G'azallar */}
             {firstFilter.id == 0 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="pb-1 relative flex justify-between items-center">
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{"G'azallar"}</div>
 
-                        <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{"G'azallar"}</div>
-                        <Drawer>
-                            <DrawerTrigger >
-                                <div className="  p-2.5 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                                    <FilterIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                    <div className="flex items-center gap-2 mb-2 ">
 
-                                </div>
-                            </DrawerTrigger>
-                            <DrawerContent>
-                                <DrawerHeader className=" absolute right-0 top-0">
-                                    <DrawerClose>
-                                        <XIcon />
-                                    </DrawerClose>
-                                </DrawerHeader>
-                                <div className="w-[80vw] md:w-[25vw] mx-auto border mt-2">
-                                    <h2 className="text-black font-bold p-2 border-b">{"Matn tipi"}</h2>
-                                    <ScrollArea className="h-[30vh]">
+                        <div className="flex items-center  gap-2  p-1 rounded-full bg-gray-50 border ">
+                            <SearchIcon strokeWidth={1} size={20} />
+                            <input value={genre_detail_number} onChange={(e) => {
+                                if (/[a-zA-Z]/.test(e.target.value)) {
+                                    return
+                                }
+                                setCurrent(1);
+                                setGenre_detail_number(e.target.value)
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                        </div>
+                        {/* <div className="flex items-center"> */}
 
-                                        {data?.data?.text_types.map((item: any, i: any) => (
-                                            <div key={i} className="flex items-center space-x-2 my-1 hover:bg-blue-100 px-2 py-1 rounded-3xl duration-300 cursor-pointer">
-                                                <Checkbox id="terms" name="text_types" />
-                                                <label
-                                                    htmlFor="terms"
-                                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    {item.name}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </ScrollArea>
+                        <div className="w-full ">
+                            <Popover>
+                                <PopoverTrigger>
+                                    <div className="flex w-max items-center gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                                        <span className=" text-sm">{"Matn tipi"}</span>
+                                        <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                                    </div>
+                                </PopoverTrigger>
+                                <PopoverContent align="start">
+                                    <div className="">
+                                        <ScrollArea className="h-[30vh]">
 
-                                    <h2 className="text-black font-bold p-2 border-b border-t">{"Yosh bo'yicha"}</h2>
-                                    {/* <ScrollArea className="h-  "> */}
+                                            {data?.data?.text_types.map((item: any, i: any) => (
+                                                <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
+                                                    <Checkbox id="terms" />
+                                                    <label
+                                                        htmlFor="terms"
+                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                    >
+                                                        {item.name}
+                                                    </label>
+                                                </div>
+                                            ))}
+                                        </ScrollArea>
+                                    </div>
 
-                                    {data?.data?.auditory_ages.map((item: any, i: any) => (
-                                        <div key={i} className="flex items-center space-x-2 my-1 hover:bg-blue-100 px-2 py-1 rounded-3xl duration-300 cursor-pointer">
-                                            <Checkbox id="terms" />
-                                            <label
-                                                htmlFor="terms"
-                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                            >
-                                                {item.auditory_age}
-                                            </label>
-                                        </div>
-                                    ))}
-                                    {/* </ScrollArea> */}
-                                    {/* <br /> */}
-                                </div>
-                                <DrawerFooter>
-                                </DrawerFooter>
-                            </DrawerContent>
-                        </Drawer>
-                        <Popover>
-                            <PopoverTrigger>
-                                <div className="  top-0 right-0  p-2.5 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                                    <FilterIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        <div className="w-full ">
+                            <Popover>
+                                <PopoverTrigger>
+                                    <div className="flex items-center gap-2  w-max  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                                        <span className="text-sm">{"Yosh bo'yicha"}</span>
+                                        <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                                    </div>
+                                </PopoverTrigger>
+                                <PopoverContent align="start">
+                                    <div className="">
+                                        <ScrollArea className="h-[15vh]">
+                                            {data?.data?.auditory_ages.map((item: any, i: any) => (
+                                                <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
+                                                    <Checkbox id="terms" />
+                                                    <label
+                                                        htmlFor="terms"
+                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                    >
+                                                        {item.auditory_age}
+                                                    </label>
+                                                </div>
+                                            ))}
+                                        </ScrollArea>
+                                    </div>
 
-                                </div>
-                            </PopoverTrigger>
-                            <PopoverContent align="end">
-                                <div className="">
-                                    <h2 className="text-black font-bold p-2 border-b">{"Matn tipi"}</h2>
-                                    <ScrollArea className="h-[20vh]">
-
-                                        {data?.data?.text_types.map((item: any, i: any) => (
-                                            <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-3xl duration-300 cursor-pointer">
-                                                <Checkbox id="terms" />
-                                                <label
-                                                    htmlFor="terms"
-                                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    {item.name}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </ScrollArea>
-                                    <h2 className="text-black font-bold p-2 border-b border-t">{"Yosh bo'yicha"}</h2>
-
-                                    {data?.data?.auditory_ages.map((item: any, i: any) => (
-                                        <div key={i} className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-3xl duration-300 cursor-pointer">
-                                            <Checkbox id="terms" />
-                                            <label
-                                                htmlFor="terms"
-                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                            >
-                                                {item.auditory_age}
-                                            </label>
-                                        </div>
-                                    ))}
-
-
-                                    <br />
-                                </div>
-
-                            </PopoverContent>
-                        </Popover>
-
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        {/* </div> */}
                     </div>
-                    <div className="flex items-center mb-2 gap-2 p-2 rounded-full bg-gray-50 ">
-                        <SearchIcon strokeWidth={1} size={20} />
-                        <input value={genre_detail_number} onChange={(e) => {
-                            if (/[a-zA-Z]/.test(e.target.value)) {
-                                return
-                            }
-                            setCurrent(1);
-                            setGenre_detail_number(e.target.value)
-                        }} type="number" placeholder="Raqamlar bo‘yicha qidiruv" className=" w-full placeholder:text-xs inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
-                    </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 h-[350px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -343,14 +320,14 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         {isLoading && Array.from({ length: 10 }).map((_, i) => (
                             <div
                                 key={i}
-                                className={` flex justify-between items-center bg-gray-100 rounded-full duration-300 py-2.5 md:py-4 px-2 cursor-pointer`}
+                                className={` flex justify-between items-center bg-gray-100 rounded-full duration-300 py-2.5 md:py-3.5 px-2 cursor-pointer`}
                             >
 
                             </div>
                         ))}
 
                         {data?.data?.main?.results.map((item: any, i: any) => (
-                            <div key={i}>
+                            <div key={i} >
                                 <div className=" hidden md:block">
 
                                     <div
@@ -379,11 +356,11 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             </div>
                         ))}
                     </div>
-                    {!isLoading && (
-                        <div className={` text-center my-2 ${data?.data?.main?.count > 9 ? "" : "hidden"} `}>
-                            <Pagination current={current} onChange={onChange} showSizeChanger={false} total={data?.data?.main?.count} responsive={true} />
-                        </div>
-                    )}
+
+                    <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
+                    </div>
+
 
                 </div>
             )}
@@ -787,7 +764,7 @@ const Gazal = ({ id }) => {
                         <ScrollArea className=" h-[60vh] md:h-auto border md:border-0">
                             <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
-                                    <div key={i} className={`${i == 2 || i == 3 ? "bg-yellow-200 w-fit mx-auto rounded-full":""} `}>
+                                    <div key={i} className={`${i == 2 || i == 3 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
                                         {item.text.split(" ").map((item_in: any, i: any) => (
                                             <HoverCard key={i} >
                                                 <HoverCardTrigger>
@@ -855,7 +832,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
     });
 
     // if (isLoading) return <h1>Loading...</h1>;
-    
+
     useEffect(() => {
         setFirstFilterChild({ id: 0, name: "" })
     }, [firstFilter]);
