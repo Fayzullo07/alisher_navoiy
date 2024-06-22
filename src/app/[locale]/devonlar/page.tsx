@@ -830,7 +830,7 @@ const Gazal = ({ id, setGazal_id }) => {
     function getNextPrev(number) {
         const result = dataNextPrev.data.main.results.find(entry => entry.number == number);
         setGazal_id(result);
-        
+
     }
     return (
         <>
@@ -856,10 +856,10 @@ const Gazal = ({ id, setGazal_id }) => {
                     </div>
                 </div>
             )}
-            {!isLoading && (
-                <div className="h-fit bg-white rounded-2xl text-center py-2 pb-4" >
-                    <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
-                    <div>
+            <div className="h-fit bg-white rounded-2xl text-center py-2 pb-4" >
+                <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
+                <div>
+                    {!isLoading && (
                         <ScrollArea className=" h-[60vh] md:h-auto border md:border-0">
                             <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
@@ -881,10 +881,13 @@ const Gazal = ({ id, setGazal_id }) => {
                                 )}
                             </div>
                         </ScrollArea>
-                        <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
-                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
-                                <MoveLeftIcon className="w-4 h-4" />
-                            </div>
+                    )}
+                    <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
+                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number > 1 ? data?.data?.number - 1 : 1)}>
+                            <MoveLeftIcon className="w-4 h-4" />
+                        </div>
+                        {!isLoading && (
+
                             <div className="flex items-center gap-2 ">
                                 <Modal title="Metama’lumot" button={
                                     <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Batafsil"}</div>
@@ -911,13 +914,13 @@ const Gazal = ({ id, setGazal_id }) => {
                                 </Modal>
                                 <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
-                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number + 1)}>
-                                <MoveRightIcon className="w-4 h-4" />
-                            </div>
+                        )}
+                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number + 1)}>
+                            <MoveRightIcon className="w-4 h-4" />
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
         </>
     )
 }
