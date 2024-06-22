@@ -79,7 +79,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                         <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-1/4" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
-                                    <div className={`${item.id == devan_id.id && "shadow-md shadow-gray-500 "} bg-white rounded-2xl overflow-hidden`}>
+                                    <div className={`${item.id == devan_id.id && "shadow-2xl border shadow-gray-500 "} bg-white rounded-2xl overflow-hidden`}>
                                         {/* <Link href={item.image} target="_blank"> */}
                                         <div className="w-full h-36 bg-gray-200">
                                             <Image
@@ -95,7 +95,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                                         {/* </Link> */}
                                         <div className="p-1.5 md:p-3">
                                             <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
-                                            <p className="min-h-12 md:min-h-16 text-xs md:text-sm  text-gray-500">
+                                            <p className="min-h-16 md:min-h-16 text-xs md:text-sm  text-gray-500">
                                                 {item.desc}
                                                 <br />
                                                 {item.from_year}-{item.to_year}-yillar
@@ -216,8 +216,6 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
     const onChange: PaginationProps['onChange'] = (page) => {
         setCurrent(page);
     };
-
-
 
     useEffect(() => {
         if (data && data.data && data.data.main) {
@@ -376,14 +374,28 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className="text-sm text-center w-full">Not found</div>
                             </div>
                         )}
-                        {isLoading && Array.from({ length: 10 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className={` flex justify-between items-center bg-gray-100 rounded-full duration-300 py-2.5 md:py-3.5 px-2 cursor-pointer`}
-                            >
-
+                        {isLoading && (
+                            <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
+                                <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
+                                    <svg className="h-10 w-10 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+                                        <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                                        <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                        <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                        <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                                        <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                    </svg>
+                                </div>
                             </div>
-                        ))}
+                        )}
 
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i} >
@@ -827,7 +839,7 @@ const Gazal = ({ id }) => {
                                         {item.text.split(" ").map((item_in: any, i: any) => (
                                             <HoverCard key={i} >
                                                 <HoverCardTrigger>
-                                                    <span className="text-sm hover:bg-yellow-300 px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in} </span>
+                                                    <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                 </HoverCardTrigger>
                                                 <HoverCardContent className="p-2 px-4 w-fit">
                                                     <div>
