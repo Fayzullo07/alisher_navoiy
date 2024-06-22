@@ -203,6 +203,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
     const [current, setCurrent] = useState(1);
     const [countPage, setCountPage] = useState(1);
     const [genre_detail_number, setGenre_detail_number] = useState("");
+    const [isInitialized, setIsInitialized] = useState(false);
 
 
     const { data, isLoading, isError } = useQuery({
@@ -228,14 +229,22 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
         setCurrent(1);
     }, [search])
 
+    useEffect(() => {
+        if (!isInitialized && data && data.data && data.data.main) {
+            setGazal_id(data.data.main.results[0]);
+            setIsInitialized(true);
+        }
+        return () => { }; // cleanup funksiyasi
+    }, [isInitialized, data]);
+
     return (
         <>
             {/* G'azallar */}
             {firstFilter.id == 0 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
                     <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{"G'azallar"}</div>
+                    {/* Header */}
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
-
                         <div className="w-full ">
                             <Popover>
                                 <PopoverTrigger>
@@ -265,6 +274,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 </PopoverContent>
                             </Popover>
                         </div>
+
                         <div className="w-full ">
                             <Popover>
                                 <PopoverTrigger>
@@ -416,7 +426,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block lg:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -486,7 +496,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -556,7 +566,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -626,7 +636,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -696,7 +706,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -766,7 +776,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile item={item.id} >
+                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -793,7 +803,15 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
     )
 }
 
-const Gazal = ({ id }) => {
+const Gazal = ({ id, setGazal_id }) => {
+
+    const { data: dataNextPrev } = useQuery({
+        queryKey: ["gazal_next_prev"],
+        queryFn: async () => {
+            return await devonsGetApi({});
+        }
+    });
+
     const { data, isLoading, isError } = useQuery({
         queryKey: ["genres_id", id],
         queryFn: async () => {
@@ -807,6 +825,12 @@ const Gazal = ({ id }) => {
     function getExplanation(searchWord) {
         const result = data.data.word_explanations.find(entry => entry.word === searchWord);
         return result ? result.explanation : 'Kiritilmagan';
+    }
+
+    function getNextPrev(number) {
+        const result = dataNextPrev.data.main.results.find(entry => entry.number == number);
+        setGazal_id(result);
+        
     }
     return (
         <>
@@ -887,7 +911,7 @@ const Gazal = ({ id }) => {
                                 </Modal>
                                 <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
-                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
+                            <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number + 1)}>
                                 <MoveRightIcon className="w-4 h-4" />
                             </div>
                         </div>
@@ -898,7 +922,7 @@ const Gazal = ({ id }) => {
     )
 }
 
-const GazalMobile = ({ item, children }) => {
+const GazalMobile = ({ item, children, setGazal_id }) => {
 
     return (
         <Drawer>
@@ -911,7 +935,7 @@ const GazalMobile = ({ item, children }) => {
                         <XIcon />
                     </DrawerClose>
                 </DrawerHeader>
-                <Gazal id={item} />
+                <Gazal id={item} setGazal_id={setGazal_id} />
                 <DrawerFooter>
                 </DrawerFooter>
             </DrawerContent>
@@ -1155,7 +1179,7 @@ const Devonlar = () => {
 
                             {/* Deteil */}
                             <div className="hidden lg:block">
-                                {gazal_id.id && <Gazal id={gazal_id.id} />}
+                                {gazal_id.id && <Gazal id={gazal_id.id} setGazal_id={setGazal_id} />}
                             </div>
 
                         </div>
