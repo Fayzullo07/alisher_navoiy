@@ -369,7 +369,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         </div>
                     </div>
 
-                    <div className="space-y-2 h-[350px]">
+                    <div className="space-y-2 h-[350px] md:h-[400px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -403,7 +403,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i} >
-                                <div className=" hidden md:block">
+                                <div className=" hidden lg:block">
 
                                     <div
                                         className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -415,13 +415,13 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" block md:hidden">
+                                <div className=" block lg:hidden">
                                     <GazalMobile item={item.id} >
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
                                         >
-                                            <div className="flex gap-1 items-center text-xs md:text-sm">
+                                            <div className="flex gap-1 items-center text-xs lg:text-sm md:text-base">
                                                 <span>{item.number}.</span>
                                                 <div>{item.text}</div>
                                             </div>
@@ -947,7 +947,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
     return (
         <>
             {/* Desktop */}
-            <div className="bg-white h-fit rounded-2xl text-center py-2 px-4 hidden md:block" >
+            <div className="bg-white h-fit rounded-2xl text-center py-2 px-4 hidden lg:block" >
                 <div className="text-xl py-1 pb-2 font-semibold">Janrlar</div>
                 <div className=" space-y-2">
                     {genre_id.name == "" ? (
@@ -1016,7 +1016,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
             </div>
 
             {/* Mobile */}
-            <div className=" rounded-2xl text-start block md:hidden" >
+            <div className=" rounded-2xl text-start block lg:hidden" >
                 <Title title="Janrlar filter" />
                 <ScrollArea className="py-2  whitespace-nowrap ">
                     <div className=" flex gap-2 items-center">
@@ -1122,7 +1122,7 @@ const Devonlar = () => {
 
                 {/* Filter */}
                 <div className="py-5">
-                    <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-5 gap-3">
+                    <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-5 gap-3">
 
                         {/* Filter 1 */}
                         <JanrlarFilter
@@ -1138,7 +1138,7 @@ const Devonlar = () => {
 
 
                         {/* Filter 2 */}
-                        <div className=" md:col-span-4 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div className=" md:col-span-4 grid grid-cols-1  lg:grid-cols-2  gap-4">
 
                             {/* Filter 2.2 */}
                             <GazalList
@@ -1154,7 +1154,7 @@ const Devonlar = () => {
                             />
 
                             {/* Deteil */}
-                            <div className="hidden md:block">
+                            <div className="hidden lg:block">
                                 {gazal_id.id && <Gazal id={gazal_id.id} />}
                             </div>
 
