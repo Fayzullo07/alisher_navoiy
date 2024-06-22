@@ -293,6 +293,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             </Popover>
                         </div>
                     </div>
+
                     <div className="flex items-center gap-2 mb-2 w-full ">
 
                         <div className="flex items-center  gap-2  p-1 rounded-full bg-gray-50 border w-full">
@@ -366,6 +367,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             </div>
                         </div>
                     </div>
+
                     <div className="space-y-2 h-[350px]">
                         {data?.data?.main?.count == 0 && (
                             <div
@@ -374,6 +376,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className="text-sm text-center w-full">Not found</div>
                             </div>
                         )}
+
                         {isLoading && (
                             <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
                                 <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
@@ -414,7 +417,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className=" block md:hidden">
                                     <GazalMobile item={item.id} >
                                         <div
-                                            className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
+                                            className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
                                         >
                                             <div className="flex gap-1 items-center text-xs md:text-sm">
