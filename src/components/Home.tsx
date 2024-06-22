@@ -4,7 +4,6 @@ import { ArrowUpRightIcon } from "lucide-react";
 import Container from "./Core/Container";
 import Title from "./Core/Title";
 import Hero from "./Hero";
-import SliderCard from "./SliderCard";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
@@ -48,52 +47,78 @@ const AboutPage = () => {
 
 
 const Devons = () => {
+    const plugin2 = useRef(
+        AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
+        // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
+    )
     const { data, isLoading, isError } = useQuery({
         queryKey: ["devans_home"],
         queryFn: async () => {
-            return await devonsGetApi();
+            return await devonsGetApi({});
         }
     });
 
 
-    if (isLoading) return <h1>Loading...</h1>;
+    // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
         <>
-            {data?.data.devans.map((item: any, index: any) => (
-                <CarouselItem key={index} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4">
-                    <div className="py-2">
-                        <div className=" cursor-pointer hover:scale-105 duration-300">
-                            <div className={`bg-white rounded-2xl overflow-hidden`}>
-                                <Link href={item.image} target="_blank">
-                                    <div className="w-full h-36 bg-gray-200">
-                                        <Image
-                                            src={item.image}
-                                            width={0}
-                                            height={0}
-                                            // className="transition hover:scale-110 duration-300 shadow-xl"
-                                            sizes="100vw"
-                                            style={{ width: '100%', height: '100%' }} // optional
-                                            alt="Image"
-                                        />
+            {isLoading && (
+                <Carousel
+                    className="w-full">
+                    <CarouselContent>
+                        {Array.from({ length: 10 }).map((_, i) => (
+                            <CarouselItem key={i} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4">
+                                <div className="h-60 md:h-80  bg-gray-200 rounded-3xl"></div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+            )}
+            <Carousel
+                plugins={[plugin2.current]}
+                onMouseEnter={plugin2.current.stop}
+                onMouseLeave={plugin2.current.play}
+                className={`w-full  mx-auto`}>
+                <CarouselContent>
+                    {data?.data.devans.map((item: any, index: any) => (
+                        <CarouselItem key={index} className="px-2 md:p-3 basis-2/4 md:basis-1/3 lg:basis-1/4">
+                            <div className="py-2">
+                                <div className=" cursor-pointer hover:scale-105 duration-300">
+                                    <div className={`bg-white rounded-2xl overflow-hidden`}>
+                                        <Link href={item.image} target="_blank">
+                                            <div className="w-full h-36 bg-gray-200">
+                                                <Image
+                                                    src={item.image}
+                                                    width={0}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }} // optional
+                                                    alt="Image"
+                                                />
+                                            </div>
+                                        </Link>
+                                        <div className="p-1.5 md:p-3">
+                                            <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                            <p className="min-h-12 md:min-h-16 text-xs md:text-sm  text-gray-500">
+                                                {item.desc}
+                                                <br />
+                                                {item.from_year}-{item.to_year}-yillar
+                                            </p>
+                                            <Link href={item.pdf_file} target="_blank">
+                                                <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
+                                            </Link>
+                                        </div>
                                     </div>
-                                </Link>
-                                <div className="p-1.5 md:p-3">
-                                    <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
-                                    <p className="min-h-12 md:min-h-16 text-xs md:text-sm  text-gray-500">
-                                        {item.desc}
-                                        <br />
-                                        {item.from_year}-{item.to_year}-yillar
-                                    </p>
-                                    <Link href={item.pdf_file} target="_blank">
-                                        <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
-                                    </Link>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </CarouselItem>
-            ))}
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+
+            </Carousel>
+
         </>
     )
 }
@@ -101,10 +126,7 @@ const Devons = () => {
 
 const Home = () => {
     const locale = useLocale();
-    const plugin2 = useRef(
-        AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
-        // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
-    )
+
     return (
         <>
             <Hero />
@@ -115,17 +137,8 @@ const Home = () => {
 
                         <Title title="Devonlar" />
                         <div>
-                            <Carousel
-                                plugins={[plugin2.current]}
-                                onMouseEnter={plugin2.current.stop}
-                                onMouseLeave={plugin2.current.play}
-                                className={`w-full  mx-auto`}>
-                                <CarouselContent>
-                                    <Devons />
+                            <Devons />
 
-                                </CarouselContent>
-
-                            </Carousel>
 
                         </div>
                     </div>

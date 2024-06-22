@@ -1,11 +1,9 @@
 "use client"
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { AlignRightIcon, SearchIcon } from "lucide-react";
 import LocalSwitcher from "./Core/local-switcher";
 import { useLocale, useTranslations } from "next-intl";
-import { Button } from "./ui/button";
 
 import {
     Sheet,
@@ -17,13 +15,15 @@ import {
 } from "@/components/ui/sheet"
 import { navbar } from "../../data/data";
 import Image from "next/image";
-import Container from "./Core/Container";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Navbar = () => {
+    const searchParams = useSearchParams();
+    const searchParam = searchParams.get('search');
     const locale = useLocale();
     const [stickyNav, setStickyNav] = useState(false);
-
-    const pathname = usePathname();
+    const [search, setSearch] = useState(searchParam ? searchParam : "");
+    const router = useRouter();
 
     const handleScroll = () => {
         window.pageYOffset >= 80 ? setStickyNav(true) : setStickyNav(false);
@@ -36,8 +36,13 @@ const Navbar = () => {
 
     const t = useTranslations('Navbar');
 
+    const enterSearch = (e: any) => {
+        if (e.key == "Enter") {
+            router.push(`/${locale}/devonlar?search=` + e.target.value);
+        }
+    }
     return (
-        <header className="flex justify-center items-center max-w-screen-2xl mx-auto">
+        <header className="flex justify-center items-center max-w-screen-2xl mx-auto sticky top-0 z-[10]">
             <nav className={`${stickyNav ? "active" : ""} flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-2 md:px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
                 <Link href={"/"}>
@@ -52,7 +57,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input type="text" placeholder="Qidiruv" className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Qidiruv" className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>

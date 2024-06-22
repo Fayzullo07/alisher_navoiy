@@ -11,7 +11,8 @@ const API = axios.create({ baseURL: URL });
 
 // -----------------------------------------DEVONS-----------------------------
 // GET
-export const devonsGetApi = async () => API.get(`/general`);
+export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_number = "", genre_id = "", second = "", poetic_art_id = "", auditory_age__in = "", text_type_id__in = "", page = 1, per_page = 10 }) =>
+    API.get(`/general/?search=${search}&devan_id=${devan_id}&genre_detail_number=${genre_detail_number}&genre_id=${genre_id}&poetic_art_id=${poetic_art_id}&auditory_age__in=${auditory_age__in}&text_type_id__in=${text_type_id__in}&second=${second}&page=${page}&per_page=${per_page}`);
 
 // -----------------------------------------DEVONS-----------------------------
 // GET
@@ -25,7 +26,7 @@ export const genresGetOneAPI = async ({ id = "" }: { id: any }) =>
 
 // -----------------------------------------NEWS-----------------------------
 // GET
-export const newsGetApi = async ({search = ""}) => API.get(`/news/?search=${search}`);
+export const newsGetApi = async ({ search = "" }) => API.get(`/news/?search=${search}`);
 
 // GET BY ID
 export const newsGetOneAPI = async ({ id = "" }: { id: any }) =>
