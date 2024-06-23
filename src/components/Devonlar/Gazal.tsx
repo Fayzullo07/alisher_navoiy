@@ -128,7 +128,7 @@ const Gazal = ({ id, setGazal_id, current, setCurrent }) => {
                         )}
                         {/* <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span> */}
                         <div>
-                            {data?.data?.genre_detail_number < current * 10 && (
+                            {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count  && (
                                 <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                                     <MoveRightIcon className="w-4 h-4" />
                                 </div>
