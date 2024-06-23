@@ -10,12 +10,12 @@ import {
 import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Modal from "@/components/Core/Modal";
 
-const Gazal = ({ id, setGazal_id }) => {
+const Gazal = ({ id, setGazal_id, current, setCurrent }) => {
 
     const { data: dataNextPrev } = useQuery({
-        queryKey: ["gazal_next_prev"],
+        queryKey: ["gazal_next_prev", current],
         queryFn: async () => {
-            return await devonsGetApi({});
+            return await devonsGetApi({ page: current });
         }
     });
 
@@ -90,8 +90,12 @@ const Gazal = ({ id, setGazal_id }) => {
                         )}
                     </ScrollArea>
                     <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
-                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
-                            <MoveLeftIcon className="w-4 h-4" />
+                        <div>
+                            {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && (
+                                <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
+                                    <MoveLeftIcon className="w-4 h-4" />
+                                </div>
+                            )}
                         </div>
                         {!isLoading && (
 
@@ -122,8 +126,13 @@ const Gazal = ({ id, setGazal_id }) => {
                                 <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
                         )}
-                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
-                            <MoveRightIcon className="w-4 h-4" />
+                        {/* <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span> */}
+                        <div>
+                            {data?.data?.genre_detail_number < current * 10 && (
+                                <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
+                                    <MoveRightIcon className="w-4 h-4" />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

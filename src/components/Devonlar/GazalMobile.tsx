@@ -9,7 +9,7 @@ import {
 import { XIcon } from "lucide-react";
 import Gazal from "./Gazal";
 
-const GazalMobile = ({ item, children, setGazal_id }) => {
+const GazalMobile = ({ item, children, setGazal_id, current, setCurrent }) => {
 
     return (
         <Drawer>
@@ -22,7 +22,12 @@ const GazalMobile = ({ item, children, setGazal_id }) => {
                         <XIcon />
                     </DrawerClose>
                 </DrawerHeader>
-                <Gazal id={item} setGazal_id={setGazal_id} />
+                <Gazal
+                    id={item}
+                    setGazal_id={setGazal_id}
+                    current={current}
+                    setCurrent={setCurrent}
+                />
                 <DrawerFooter>
                 </DrawerFooter>
             </DrawerContent>
