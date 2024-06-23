@@ -53,7 +53,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter }) => {
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">
-                                        <div className=" h-14 2xl:h-16" >
+                                        <div className=" h-14 2xl:h-20" >
                                             <Image
                                                 src={`${item.name == genre_id?.name ? "/item-active.png" : "/item-disactive.png"}`}
                                                 width={50}
@@ -65,7 +65,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter }) => {
                                             />
                                         </div>
                                         <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0">
-                                            <div className="text-xs 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
+                                            <div className="text-sm 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
                                             <div className="text-[10px] 2xl:text-base xl:text-xs lg:text-xs md:text-xs font-medium text-gray-400  text-center ">({item.counts})</div>
                                         </div>
                                     </div>

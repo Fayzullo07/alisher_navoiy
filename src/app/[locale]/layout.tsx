@@ -48,7 +48,7 @@ export default function LocaleLayout({ children, params: { locale }, }: Readonly
               pauseOnHover
               theme="light" />
             <TopLoader />
-            <div className="min-h-screen">
+            <div className="min-h-screen bg-image-flower">
               <Provider>
                 <Navbar />
                 {children}

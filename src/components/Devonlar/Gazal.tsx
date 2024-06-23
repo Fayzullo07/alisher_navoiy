@@ -41,34 +41,35 @@ const Gazal = ({ id, setGazal_id }) => {
     }
     return (
         <>
-            {isLoading && (
-                <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
-                    <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
-                        <svg className="h-10 w-10 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-                            <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                            <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="24"></line>
-                            <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                            </line>
-                            <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="24"></line>
-                            <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                            </line>
-                            <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="24"></line>
-                            <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                            <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                            </line>
-                        </svg>
-                    </div>
-                </div>
-            )}
-            
-            <div className="h-fit bg-white rounded-2xl text-center py-2 pb-4" >
+
+
+            <div className="h-fit bg-white rounded-2xl text-center py-2 " >
                 <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
                 <div>
-                    {!isLoading && (
-                        <ScrollArea className=" h-[380px] md:h-[430px] border md:border-0">
+                    <ScrollArea className="h-[370px] md:h-[420px] border md:border-0">
+                        {isLoading && (
+                            <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
+                                <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
+                                    <svg className="h-10 w-10 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+                                        <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                                        <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                        <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                        <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="24"></line>
+                                        <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                                        <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+                                        </line>
+                                    </svg>
+                                </div>
+                            </div>
+                        )}
+                        {!isLoading && (
                             <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
                                     <div key={i} className={`${i == 2 || i == 3 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
@@ -88,8 +89,8 @@ const Gazal = ({ id, setGazal_id }) => {
                                     </div>
                                 )}
                             </div>
-                        </ScrollArea>
-                    )}
+                        )}
+                    </ScrollArea>
                     <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
                         <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number > 1 ? data?.data?.number - 1 : 1)}>
                             <MoveLeftIcon className="w-4 h-4" />

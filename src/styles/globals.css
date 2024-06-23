@@ -119,6 +119,7 @@
   z-index: 50;
   opacity: 1;
   animation: opacity_animate 0.5s;
+  border-radius: 50px;
   /* border: 1px solid black; */
 }
 
