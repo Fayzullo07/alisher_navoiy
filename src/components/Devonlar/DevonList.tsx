@@ -20,7 +20,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                     className="w-full">
                     <CarouselContent>
                         {Array.from({ length: 10 }).map((_, i) => (
-                            <CarouselItem key={i} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-1/4">
+                            <CarouselItem key={i} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[22.5%] 2xl:basis-[21%]">
                                 <div className="h-60 md:h-80  bg-gray-200 rounded-3xl"></div>
                             </CarouselItem>
                         ))}
@@ -35,12 +35,12 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                 className={`w-full md:w-[95%] mx-auto `}>
                 <CarouselContent>
                     {data?.data.devans.map((item: any, index: any) => (
-                        <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-1/4" onClick={() => setDevan_id(item)}>
+                        <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[22.5%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`${item.id == devan_id.id && "shadow-2xl border shadow-gray-500 "} bg-white rounded-2xl overflow-hidden`}>
                                         {/* <Link href={item.image} target="_blank"> */}
-                                        <div className="w-full h-36 bg-gray-200">
+                                        <div className="w-full h-40 bg-gray-200">
                                             <Image
                                                 src={item.image}
                                                 width={0}

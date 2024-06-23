@@ -68,7 +68,7 @@ const Gazal = ({ id, setGazal_id }) => {
                 <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
                 <div>
                     {!isLoading && (
-                        <ScrollArea className=" h-[60vh] lg:h-auto  border md:border-0">
+                        <ScrollArea className=" h-[380px] md:h-[430px] border md:border-0">
                             <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
                                     <div key={i} className={`${i == 2 || i == 3 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
