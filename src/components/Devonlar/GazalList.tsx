@@ -208,7 +208,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block lg:hidden">
-                                    <GazalMobile item={item.id} setGazal_id={setGazal_id}>
+                                    <GazalMobile item={gazal_id.id} setGazal_id={setGazal_id}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -364,7 +364,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             setGenre_detail_number(e.target.value)
                         }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                     </div>
-                    <div className="h-[520px] md:h-[580px]">
+                    <div className="h-[560px] md:h-[580px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}

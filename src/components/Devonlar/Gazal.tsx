@@ -20,7 +20,7 @@ const Gazal = ({ id, setGazal_id }) => {
     });
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["genres_id", id],
+        queryKey: ["genres_id", id, setGazal_id],
         queryFn: async () => {
             return await genresGetOneAPI({ id });
         }
@@ -41,10 +41,8 @@ const Gazal = ({ id, setGazal_id }) => {
     }
     return (
         <>
-
-
             <div className="h-fit bg-white rounded-2xl text-center py-2 " >
-                <div className="text-xl font-semibold py-1 pb-2">{data?.data?.number} - {data?.data?.genre_name}</div>
+                <div className="text-xl font-semibold py-1 pb-2">{data?.data?.genre_detail_number} - {data?.data?.genre_name}</div>
                 <div>
                     <ScrollArea className="h-[370px] md:h-[420px] border md:border-0">
                         {isLoading && (
@@ -92,7 +90,7 @@ const Gazal = ({ id, setGazal_id }) => {
                         )}
                     </ScrollArea>
                     <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
-                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number > 1 ? data?.data?.number - 1 : 1)}>
+                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
                             <MoveLeftIcon className="w-4 h-4" />
                         </div>
                         {!isLoading && (
@@ -124,7 +122,7 @@ const Gazal = ({ id, setGazal_id }) => {
                                 <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
                         )}
-                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.number + 1)}>
+                        <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                             <MoveRightIcon className="w-4 h-4" />
                         </div>
                     </div>
