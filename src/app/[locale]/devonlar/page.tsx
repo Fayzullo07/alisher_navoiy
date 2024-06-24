@@ -20,6 +20,7 @@ const Devonlar = () => {
     const [current, setCurrent] = useState(1);
 
     const [auditory_age__in, setAuditory_age__in] = useState("");
+    const [text_type_id__in, setText_type_id__in] = useState("");
 
     // Filter Janrlar
     const [firstFilter, setFirstFilter] = useState({ id: 0, name: "" });
@@ -48,6 +49,7 @@ const Devonlar = () => {
                         setGenreId={setGenreId}
                         firstFilter={firstFilter}
                         auditory_age__in={auditory_age__in}
+                        text_type_id__in={text_type_id__in}
                     />
                 </div>
 
@@ -85,6 +87,8 @@ const Devonlar = () => {
                                 setCurrent={setCurrent}
                                 auditory_age__in={auditory_age__in}
                                 setAuditory_age__in={setAuditory_age__in}
+                                text_type_id__in={text_type_id__in}
+                                setText_type_id__in={setText_type_id__in}
                             />
 
                             {/* Deteil */}

@@ -16,9 +16,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import GazalMobile from "./GazalMobile";
 import Loading from "../Core/Loading";
 
-const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__in }) => {
+const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const [agesAll, setAgesAll] = useState(false);
     const [ages, setAges] = useState<string[]>([]);
+
+    const [textTypeAll, setTextTypeAll] = useState(false);
+    const [textType, setTextType] = useState<string[]>([]);
 
     const { data } = useQuery({
         queryKey: ["filter_list"],
@@ -39,6 +42,18 @@ const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__
         }
     }
 
+    function getTextTypes(text_type: string) {
+        if (textType.includes(text_type)) {
+            let textTypeFilter = textType.filter((text_typef) => text_typef !== text_type);
+            setTextType(textTypeFilter)
+            setText_type_id__in(textTypeFilter.join(','));
+        } else {
+            let copyTextTypes = [...textType, text_type];
+            setTextType(copyTextTypes);
+            setText_type_id__in(copyTextTypes.join(','));
+        }
+    }
+
     useEffect(() => {
         if (!agesAll) {
             setAges([]);
@@ -48,7 +63,18 @@ const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__
             setAges(listAgesAll);
             setAuditory_age__in(listAgesAll);
         }
-    }, [agesAll])
+    }, [agesAll]);
+
+    useEffect(() => {
+        if (!textTypeAll) {
+            setTextType([]);
+            setText_type_id__in("");
+        } else {
+            let listTextTypesAll = data?.data?.text_types.map((text_type) => text_type.id);
+            setTextType(listTextTypesAll);
+            setText_type_id__in(listTextTypesAll);
+        }
+    }, [textTypeAll]);
 
     return (
         <>
@@ -63,24 +89,22 @@ const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__
                     <PopoverContent align="start">
                         <div className="">
                             <ScrollArea className="h-[30vh] ">
-                                <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
-                                    <Checkbox id="terms" />
-                                    <label
-                                        htmlFor="terms"
+                                <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer" onClick={() => setTextTypeAll(!textTypeAll)}>
+                                    <Checkbox checked={textTypeAll} />
+                                    <span
                                         className="text-sm font-medium"
                                     >
                                         All
-                                    </label>
+                                    </span>
                                 </div>
                                 {data?.data?.text_types.map((item: any, i: any) => (
-                                    <div key={i} className="flex items-center space-x-2 mb-4 hover:bg-blue-100 px-2 py-1 duration-300 cursor-pointer">
-                                        <Checkbox id="terms" />
-                                        <label
-                                            htmlFor="terms"
-                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    <div key={i} className={`flex items-center space-x-2 ${textType.includes(item.id) ? " bg-blue-100" : ""}  hover:bg-blue-100 px-2 py-1 mb-1 rounded duration-300 cursor-pointer`} onClick={() => getTextTypes(item.id)}>
+                                        <Checkbox checked={textType.includes(item.id)} />
+                                        <span
+                                            className="text-sm font-medium"
                                         >
                                             {item.name}
-                                        </label>
+                                        </span>
                                     </div>
                                 ))}
                             </ScrollArea>
@@ -101,23 +125,21 @@ const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__
                         <div className="">
                             <ScrollArea className="h-[20vh]">
                                 <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer" onClick={() => setAgesAll(!agesAll)}>
-                                    <Checkbox id="termsAll" checked={agesAll} />
-                                    <label
-                                        htmlFor="termsAll"
+                                    <Checkbox checked={agesAll} />
+                                    <span
                                         className="text-sm font-medium"
                                     >
                                         All
-                                    </label>
+                                    </span>
                                 </div>
                                 {data?.data?.auditory_ages.map((item: any, i: any) => (
                                     <div key={i} className={`flex items-center space-x-2 ${ages.includes(item.auditory_age) ? " bg-blue-100" : ""}  hover:bg-blue-100 px-2 py-1 mb-1 rounded duration-300 cursor-pointer`} onClick={() => getAges(item.auditory_age)}>
-                                        <Checkbox id="terms" checked={ages.includes(item.auditory_age)} />
-                                        <label
-                                            htmlFor="terms"
-                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        <Checkbox checked={ages.includes(item.auditory_age)} />
+                                        <span
+                                            className="text-sm font-medium"
                                         >
                                             {item.auditory_age}<span>+</span>
-                                        </label>
+                                        </span>
                                     </div>
                                 ))}
                             </ScrollArea>
@@ -130,16 +152,16 @@ const Filter = ({ text_types, auditory_ages, auditory_age__in, setAuditory_age__
     )
 }
 
-const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, current, setCurrent, auditory_age__in, setAuditory_age__in }) => {
+const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in }) => {
 
     const [countPage, setCountPage] = useState(1);
     const [genre_detail_number, setGenre_detail_number] = useState("");
     const [isInitialized, setIsInitialized] = useState(false);
 
     const { data, isLoading } = useQuery({
-        queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in],
+        queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in],
         queryFn: async () => {
-            return await devonsGetApi({ genre_detail_number, page: current, devan_id: devan_id.id, genre_id: genre_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in });
+            return await devonsGetApi({ genre_detail_number, page: current, devan_id: devan_id.id, genre_id: genre_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in, text_type_id__in });
         }
     });
 
@@ -155,7 +177,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
     useEffect(() => {
         setCurrent(1);
-    }, [search, firstFilter, auditory_age__in])
+    }, [search, firstFilter, auditory_age__in, text_type_id__in]);
 
     useEffect(() => {
         if (!isInitialized && data && data.data && data.data.main) {
@@ -174,10 +196,8 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter
-                            text_types={data?.data?.text_types || []}
-                            auditory_ages={data?.data?.auditory_ages || []}
-                            auditory_age__in={auditory_age__in}
                             setAuditory_age__in={setAuditory_age__in}
+                            setText_type_id__in={setText_type_id__in}
                         />
                     </div>
 
@@ -196,10 +216,8 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
                             <Filter
-                                text_types={data?.data?.text_types || []}
-                                auditory_ages={data?.data?.auditory_ages || []}
-                                auditory_age__in={auditory_age__in}
                                 setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
                             />
                         </div>
                     </div>
@@ -336,8 +354,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
-                        <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                            setAuditory_age__in={setAuditory_age__in} />
+                        <Filter
+                            setAuditory_age__in={setAuditory_age__in}
+                            setText_type_id__in={setText_type_id__in}
+                        />
                     </div>
 
                     <div className="flex items-center gap-2 mb-2 w-full ">
@@ -354,8 +374,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
-                            <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                                setAuditory_age__in={setAuditory_age__in} />
+                            <Filter
+                                setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
+                            />
                         </div>
                     </div>
 
@@ -429,8 +451,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
-                        <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                            setAuditory_age__in={setAuditory_age__in} />
+                        <Filter
+                            setAuditory_age__in={setAuditory_age__in}
+                            setText_type_id__in={setText_type_id__in}
+                        />
                     </div>
 
                     <div className="flex items-center gap-2 mb-2 w-full ">
@@ -447,8 +471,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
-                            <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                                setAuditory_age__in={setAuditory_age__in} />
+                            <Filter
+                                setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
+                            />
                         </div>
                     </div>
                     <div className="h-[620px] md:h-[650px]">
@@ -521,8 +547,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
-                        <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                            setAuditory_age__in={setAuditory_age__in} />
+                        <Filter
+                            setAuditory_age__in={setAuditory_age__in}
+                            setText_type_id__in={setText_type_id__in}
+                        />
                     </div>
 
                     <div className="flex items-center gap-2 mb-2 w-full ">
@@ -539,8 +567,10 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
-                            <Filter text_types={data?.data?.text_types || []} auditory_ages={data?.data?.auditory_ages || []} auditory_age__in={auditory_age__in}
-                                setAuditory_age__in={setAuditory_age__in} />
+                            <Filter
+                                setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
+                            />
                         </div>
                     </div>
                     <div className="h-[560px] md:h-[580px]">
@@ -602,8 +632,6 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
                         <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
                     </div>
-
-
                 </div>
             )}
         </>
