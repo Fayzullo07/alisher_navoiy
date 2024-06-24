@@ -5,7 +5,7 @@ import Container from "./Core/Container";
 const Hero = () => {
     return (
         <div>
-{/* Desktop */}
+            {/* Desktop */}
             <div className=" hidden md:block relative h-screen w-full overflow-hidden">
                 <Image
                     width={0}
@@ -36,16 +36,16 @@ const Hero = () => {
             {/* Mobile */}
             <div className=" block md:hidden relative h-screen w-full overflow-hidden">
                 <Image
+                    src={"/hero_mobile.png"}
                     width={0}
                     height={0}
-                    src="/hero_mobile.png" // Rasm manzilini to'g'rilang
-                    alt="Full Height Image"
-                    className="h-full w-full object-cover"
+                    sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                    alt="Image"
                 />
                 <div className=" absolute top-0 h-screen w-full flex items-center justify-center">
                     <div className="font-bold text-9xl text-white font-serif">
                         <div className="absolute bottom-0 left-60 z-10 flex justify-center items-center">
-                            
+
                         </div>
 
                     </div>
