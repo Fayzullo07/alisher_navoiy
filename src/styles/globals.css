@@ -244,6 +244,10 @@
   position: relative;
 }
 
+.snip1360:hover figcaption {
+  background-color: rgba(0, 0, 255, 0.226) ;
+}
+
 .snip1360 figcaption:before {
   position: absolute;
   content: '';
@@ -254,6 +258,10 @@
   height: 80px;
   background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
   background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+
+.snip1360:hover figcaption:before {
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 255, 0.226) 100%);
 }
 
 .snip1360 figcaption a {

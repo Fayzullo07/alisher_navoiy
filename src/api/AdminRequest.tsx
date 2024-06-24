@@ -42,8 +42,8 @@ export const questionGetOneAPI = async ({ id = "" }: { id: any }) =>
 
 // -----------------------------------------RESEARCH-----------------------------
 // GET
-export const researchGetApi = async ({ search = "" }) => API.get(`/researches/?search=${search}`);
+export const researchGetApi = async ({ search = "", page = 1 }) => API.get(`/researches/?search=${search}&page=${page}`);
 
 // -----------------------------------------WORKS-----------------------------
 // GET
-export const worksGetApi = async ({ search = "" }) => API.get(`/works/?search=${search}`);
+export const worksGetApi = async ({ search = "", page = 1 }) => API.get(`/works/?search=${search}&page=${page}`);

@@ -18,6 +18,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const Navbar = () => {
+    const [isActiveLink, setIsActiveLink] = useState(0);
     const searchParams = useSearchParams();
     const searchParam = searchParams.get('search');
     const locale = useLocale();
@@ -46,7 +47,7 @@ const Navbar = () => {
         <header className={`flex justify-center items-center max-w-screen-2xl mx-auto sticky ${stickyNav ? "top-0" : ""} z-[10]`}>
             <nav className={`${stickyNav ? "active  rounded-full" : ""} 2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
-                <Link href={"/"}>
+                <Link href={"/"} onClick={() => setIsActiveLink(0)}>
                     <Image
                         src="/logo.png"
                         width={40}
@@ -58,17 +59,17 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Qidiruv" className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Devonlar bo'yicha qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>
                     <ul
                         className="text-sm text-black lg:flex lg:justify-between">
                         {navbar.map((item, i) => (
-                            <li key={item.name}>
-                                <Link href={`/${locale}${item.slug}`} className="*:hover:w-full p-2 font-semibold text-black tracking-wide block hover:text-maincolor duration-300" >
+                            <li key={item.name} onClick={() => setIsActiveLink(item.id)}>
+                                <Link href={`/${locale}${item.slug}`} className={`*:hover:w-full  p-2 font-semibold tracking-wide block ${item.id == isActiveLink ? "text-maincolor" : "text-black"} hover:text-maincolor duration-300`} >
                                     {t(`${i}`)}
-                                    <div className="w-0 duration-1000 h-0.5 bg-maincolor"></div>
+                                    <div className={`duration-1000 h-0.5 bg-maincolor ${item.id == isActiveLink ? "w-full" : "w-0"}`}></div>
                                 </Link>
                             </li>
                         ))}

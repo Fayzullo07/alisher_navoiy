@@ -66,7 +66,7 @@ const Filter = ({ text_types, auditory_ages }) => {
                     </PopoverTrigger>
                     <PopoverContent align="start">
                         <div className="">
-                            <ScrollArea className="h-[15vh]">
+                            <ScrollArea className="h-[20vh]">
                                 <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer">
                                     <Checkbox id="terms" />
                                     <label
@@ -83,7 +83,7 @@ const Filter = ({ text_types, auditory_ages }) => {
                                             htmlFor="terms"
                                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         >
-                                            {item.auditory_age} <span>+</span>
+                                            {item.auditory_age}<span>+</span>
                                         </label>
                                     </div>
                                 ))}

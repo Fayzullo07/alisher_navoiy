@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/hover-card";
 import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Modal from "@/components/Core/Modal";
+import Loading from "../Core/Loading";
 
 const Gazal = ({ id, setGazal_id, current, setCurrent }) => {
 
@@ -44,29 +45,8 @@ const Gazal = ({ id, setGazal_id, current, setCurrent }) => {
             <div className="h-fit bg-white rounded-2xl text-center py-2 " >
                 <div className="text-xl font-semibold py-1 pb-2">{data?.data?.genre_detail_number} - {data?.data?.genre_name}</div>
                 <div>
-                    <ScrollArea className="h-[370px] md:h-[420px] border md:border-0">
-                        {isLoading && (
-                            <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
-                                <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
-                                    <svg className="h-10 w-10 animate-spin stroke-gray-500" viewBox="0 0 256 256">
-                                        <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                                        <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="24"></line>
-                                        <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                                        </line>
-                                        <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="24"></line>
-                                        <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                                        </line>
-                                        <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="24"></line>
-                                        <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
-                                        <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
-                                        </line>
-                                    </svg>
-                                </div>
-                            </div>
-                        )}
+                    <ScrollArea className="h-[400px] md:h-[420px]">
+                        {isLoading && <Loading />}
                         {!isLoading && (
                             <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                 {data?.data?.lines.map((item: any, i: any) =>
@@ -126,10 +106,20 @@ const Gazal = ({ id, setGazal_id, current, setCurrent }) => {
                                 <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                             </div>
                         )}
-                        {/* <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span> */}
+                        {isLoading && (
+                            <div className="flex items-center gap-2 ">
+                                <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Batafsil"}</div>
+                                <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
+                            </div>
+                        )}
                         <div>
-                            {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count  && (
+                            {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && (
                                 <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
+                                    <MoveRightIcon className="w-4 h-4" />
+                                </div>
+                            )}
+                            {isLoading && (
+                                <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                     <MoveRightIcon className="w-4 h-4" />
                                 </div>
                             )}

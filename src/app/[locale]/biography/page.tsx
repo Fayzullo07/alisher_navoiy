@@ -1,11 +1,11 @@
 "use client"
 import Container from "@/components/Core/Container";
-import { biography } from "../../../../data/data";
 import { useQuery } from "@tanstack/react-query";
 import { biographyGetApi } from "@/api/AdminRequest";
+import Loading from "@/components/Core/Loading";
 
 const Biography = () => {
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["biography"],
         queryFn: async () => {
             return await biographyGetApi();
@@ -38,6 +38,7 @@ const Biography = () => {
             </div>
             <Container>
                 <div className="py-5">
+                    {isLoading && <Loading />}
                     <div
                         className=" whitespace-pre-line text-sm md:text-lg text-justify text-gray-500"
                         style={{ whiteSpace: "pre-line" }}

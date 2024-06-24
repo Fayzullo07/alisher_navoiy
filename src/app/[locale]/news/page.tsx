@@ -23,12 +23,13 @@ const NewsList = ({ search }: { search: string }) => {
         <>
             {data?.data?.results.map((item: any, i: any) => (
                 <div key={i} className="snip1360 shadow-md">
-                    <div className="h-48 flex justify-center items-center bg-gray-100">
+                    <div className="h-48  flex justify-center items-center bg-gray-100">
                         <Image
                             width={0}
                             height={0}
                             sizes="100vw"
-                            style={{ width: '100%', height: '100%' }}
+                            
+                            style={{ width: 'auto', height: '100%' }}
                             src={item.main_image} alt="sample88"
                         />
                     </div>
@@ -72,12 +73,11 @@ const News = () => {
                 <div className=" ">
 
                     <div className="shadow-lg rounded-lg overflow-hidden px-4 bg-white py-6 ">
-                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-60 ">
+                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-80 ">
                             <SearchIcon strokeWidth={1} size={20} />
                             <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-
                             <NewsList search={search} />
                         </div>
                     </div>

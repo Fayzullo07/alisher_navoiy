@@ -4,22 +4,33 @@ import Title from "@/components/Core/Title";
 import { useQuery } from "@tanstack/react-query";
 import { EyeIcon, MoveLeftIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const TadqiqotList = ({ search }: { search: string }) => {
+import { Pagination } from 'antd';
+import type { PaginationProps } from 'antd'
+import Loading from "@/components/Core/Loading";
+
+const TadqiqotList = ({ search, setCountPage, current }) => {
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["researches", search],
+        queryKey: ["researches", search, current],
         queryFn: async () => {
             return await researchGetApi({ search });
         }
     });
 
+    useEffect(() => {
+        if (data && data.data && data.data.count) {
+            setCountPage(data.data.count);
+        }
+    }, [data])
+
     // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
         <>
+            {isLoading && <Loading />}
             {data?.data?.results.map((item: any, i: any) => (
-                <tr key={i}>
+                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.title}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.authors}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.published_at}</td>
@@ -31,9 +42,12 @@ const TadqiqotList = ({ search }: { search: string }) => {
                 </tr>
             ))}
 
-            <tr >
-                <td className="py-3 px-6 border-b border-gray-200 text-sm">{""}</td>
-            </tr >
+            {data?.data?.results.length == 0 && (
+
+                <tr >
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{""}</td>
+                </tr >
+            )}
         </>
     )
 
@@ -41,6 +55,12 @@ const TadqiqotList = ({ search }: { search: string }) => {
 
 const Tadqiqotlar = () => {
     const [search, setSearch] = useState("");
+    const [countPage, setCountPage] = useState(1);
+    const [current, setCurrent] = useState(1);
+
+    const onChange: PaginationProps['onChange'] = (page) => {
+        setCurrent(page);
+    };
     return (
         <div className="bg-image-flower min-h-screen pt-10 md:pt-0 pb-10 relative">
             <div className=" md:hidden block absolute  top-0 left-0">
@@ -59,10 +79,10 @@ const Tadqiqotlar = () => {
                     <Title title="Ilmiy tadqiqotlar" />
                 </div>
 
-                <div className=" hidden md:block">
+                <div className=" hidden md:block bg-white shadow-lg rounded-lg pb-5 ">
 
-                    <div className="shadow-lg rounded-lg overflow-hidden px-4 bg-white pt-6 ">
-                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-60 ">
+                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[700px]" : "h-auto"} `}>
+                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-80 ">
                             <SearchIcon strokeWidth={1} size={20} />
                             <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
@@ -75,10 +95,13 @@ const Tadqiqotlar = () => {
                                     <th className="w-1/4 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{"Ko‘rish"}</th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white">
-                                <TadqiqotList search={search} />
+                            <tbody className="bg-white ">
+                                <TadqiqotList search={search} setCountPage={setCountPage} current={current} />
                             </tbody>
                         </table>
+                    </div>
+                    <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
                     </div>
                 </div>
 
