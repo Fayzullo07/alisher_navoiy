@@ -170,11 +170,13 @@
 /*  */
 .img-background-horizontal {
   background-image: url("../../public/Header-bg.gif");
+  object-fit: 100%;
   background-repeat: no-repeat;
   background-size: 105vw auto;
   background-position: 0% 0%;
-  height: 100vh;
+  height: 90vh;
   width: 99.5vw;
+  border: 2px solid black;
   /* animation: horizontalMove 30s infinite; */
   animation-timing-function: ease;
 }

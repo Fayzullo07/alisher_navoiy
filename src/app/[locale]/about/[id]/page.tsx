@@ -21,18 +21,14 @@ const About = ({ params }: { params: { id: string } }) => {
     if (isError) return <div>Xatolik yuz berdi...</div>;
 
     return (
-        <div className="bg-image-flower min-h-screen ">
-            <div className="w-[95vw] md:w-[80vw] lg:w-[55vw] mx-auto flex items-center justify-center py-5 ">
-                <Link href={`/${locale}/about`} className=" hover:scale-105 duration-300 cursor-pointer text-gray-500 text-base">
-                    <MoveLeftIcon className="w-6 h-6" />
-                </Link>
-
-                <h2 className="text-xl font-semibold text-center flex-grow">{data?.data?.question + " ?"}</h2>
-            </div>
-            
+        <div className="bg-image-flower min-h-screen py-10 ">
             <div className="w-full md:w-[80vw] lg:w-[55vw] mx-auto bg-white px-6 pb-6 pt-6 md:pt-0 text-center rounded-xl shadow">
-                <div className="hidden md:block">
-                    <Title title={data?.data?.question + " ?"} />
+                <div className="flex items-center justify-center py-5 ">
+                    <Link href={`/${locale}/about`} className=" hover:scale-105 duration-300 cursor-pointer text-gray-500 text-base">
+                        <MoveLeftIcon className="w-6 h-6" />
+                    </Link>
+
+                    <h2 className="text-xl font-semibold text-center flex-grow">{data?.data?.question + " ?"}</h2>
                 </div>
                 <div className="">
                     <div

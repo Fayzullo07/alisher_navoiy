@@ -29,17 +29,19 @@ const AboutPage = () => {
     return (
         <>
             {data?.data?.results.map((item: any, i: number) => (
-                <div key={i} className="p-5 bg-pink-100 rounded-3xl shadow-lg">
-                    <div className="flex justify-between items-center pb-1.5">
-                        <div className="text-lg font-semibold">{item.question}?</div>
-                        <Link href={`/${locale}/about/${item.id}`} className="text-base rounded-full p-1 text-center bg-white">
-                            <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
-                        </Link>
+                <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300">
+                    <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
+                        <div className="flex justify-between items-center pb-1.5">
+                            <div className="text-lg font-semibold">{item.question}?</div>
+                            <div className="text-base rounded-full p-1 text-center bg-white">
+                                <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
+                            </div>
+                        </div>
+                        <div className="text-sm font-normal text-gray-500 ">
+                            {item.short_answer.length > 100 ? item.short_answer.substring(0, 100) + "..." : item.short_answer}
+                        </div>
                     </div>
-                    <div className="text-sm font-normal text-gray-500 ">
-                        {item.short_answer.length > 100 ? item.short_answer.substring(0, 100) + "..." : item.short_answer}
-                    </div>
-                </div>
+                </Link>
             ))}
         </>
     )
@@ -138,8 +140,6 @@ const Home = () => {
                         <Title title="Devonlar" />
                         <div>
                             <Devons />
-
-
                         </div>
                     </div>
 

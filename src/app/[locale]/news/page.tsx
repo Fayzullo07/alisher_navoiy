@@ -49,7 +49,6 @@ const NewsList = ({ search }: { search: string }) => {
 
 
 const News = () => {
-    const locale = useLocale();
     const [search, setSearch] = useState("");
 
     return (
@@ -63,9 +62,9 @@ const News = () => {
                         <Title title="Yangiliklar" />
                     </div>
                     <div className="shadow-lg rounded-lg overflow-hidden px-4 bg-white py-6 ">
-                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-80 ">
+                        <div className="flex items-center gap-2 border w-full p-2 rounded-full mb-5 md:w-80 ">
                             <SearchIcon strokeWidth={1} size={20} />
-                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             <NewsList search={search} />

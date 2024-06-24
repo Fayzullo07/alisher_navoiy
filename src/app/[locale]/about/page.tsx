@@ -23,7 +23,7 @@ const AboutPage = () => {
     return (
         <>
             {data?.data?.results.map((item: any, i: number) => (
-                <Link key={i} href={`/${locale}/about/${item.id}`} className="duration-300">
+                <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300">
                     <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
 
                         <div className="flex justify-between items-center pb-1.5">
