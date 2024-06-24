@@ -8,7 +8,44 @@ import { useEffect, useState } from "react";
 
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
-import Loading from "@/components/Core/Loading";
+
+const TadqiqotListMobile = ({ search, setCountPage, current }) => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["works", search, current],
+        queryFn: async () => {
+            return await researchGetApi({ search, page: current });
+        }
+    });
+
+    useEffect(() => {
+        if (data && data.data && data.data.count) {
+            setCountPage(data.data.count);
+        }
+    }, [data])
+
+    // if (isLoading) return <h1>Loading...</h1>;
+    if (isError) return <div>Xatolik yuz berdi...</div>;
+    return (
+        <>
+            {data?.data?.results.map((item: any, i: any) => (
+                <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
+                    <div className="pb-2 text-sm font-semibold">{item.title}</div>
+                    <div className="text-sm">
+                        <div><span className="text-blue-300">Muallifi: </span> {item.authors}</div>
+                        <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> {item.published_at}</div>
+                    </div>
+                    <Link href={item.pdf_file} target="_blank">
+                        <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
+                    </Link>
+                </div>
+            ))}
+
+
+        </>
+    )
+
+};
+
 
 const TadqiqotList = ({ search, setCountPage, current }) => {
     const { data, isLoading, isError } = useQuery({
@@ -28,7 +65,6 @@ const TadqiqotList = ({ search, setCountPage, current }) => {
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
         <>
-            {isLoading && <Loading />}
             {data?.data?.results.map((item: any, i: any) => (
                 <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.title}</td>
@@ -62,20 +98,11 @@ const Tadqiqotlar = () => {
         setCurrent(page);
     };
     return (
-        <div className="bg-image-flower min-h-screen pt-10 md:pt-0 pb-10 relative">
-            <div className=" md:hidden block absolute  top-0 left-0">
-                <div className=" w-screen text-center relative">
-                    <Link href={`/`} className=" hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
-                        <MoveLeftIcon className="w-6 h-6" />
-                    </Link>
+        <div className="bg-image-flower min-h-screen">
 
-                    <h2 className="text-xl font-semibold">Ilmiy tadqiqotlar</h2>
-                </div>
-            </div>
 
-            <div className="w-full lg:w-[85vw] mx-auto px-4">
+            <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
-
                     <Title title="Ilmiy tadqiqotlar" />
                 </div>
 
@@ -106,20 +133,19 @@ const Tadqiqotlar = () => {
                 </div>
 
                 <div className="block md:hidden">
-                    <div className=" space-y-4">
-                        {Array.from({ length: 10 }).map((_, i) => (
-                            <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
-                                <div className="pb-2 text-base font-semibold">{`Alisher Navoiy mualliflik korpusida
-g‘azallar tahlili, maqollar va iboralarning
-tadqiqi`}</div>
-                                <div className="text-sm">
-                                    <div><span className="text-blue-300">Muallifi: </span> Abjalova Manzura</div>
-                                    <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span>  06.09.2021</div>
-                                </div>
-                                <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
-                            </div>
-                        ))}
+                    <div className="flex items-center justify-center py-5 ">
+                        <Link href={`/`} className=" hover:scale-105 duration-300 cursor-pointer text-gray-500 text-base">
+                            <MoveLeftIcon className="w-6 h-6" />
+                        </Link>
 
+                        <h2 className="text-xl font-semibold text-center flex-grow">Ilmiy tadqiqotlar</h2>
+                    </div>
+                    <div className="flex items-center gap-2 border p-2 rounded-full mb-5 bg-white ">
+                        <SearchIcon strokeWidth={1} size={20} />
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" w-full bg-transparent focus:outline-none text-sm text-gray-500" />
+                    </div>
+                    <div className=" space-y-4">
+                        <TadqiqotListMobile search={search} setCountPage={setCountPage} current={current} />
                     </div>
                 </div>
 

@@ -22,13 +22,13 @@ const NewsList = ({ search }: { search: string }) => {
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <div key={i} className="snip1360 shadow-md">
+                <div key={i} className="snip1360 shadow-md duration-300">
                     <div className="h-48  flex justify-center items-center bg-gray-100">
                         <Image
                             width={0}
                             height={0}
                             sizes="100vw"
-                            
+
                             style={{ width: 'auto', height: '100%' }}
                             src={item.main_image} alt="sample88"
                         />
@@ -53,25 +53,15 @@ const News = () => {
     const [search, setSearch] = useState("");
 
     return (
-        <div className="bg-image-flower min-h-screen pt-10 md:pt-0 pb-10 relative">
-            <div className=" md:hidden block absolute  top-0 left-0">
-                <div className=" w-screen text-center relative">
-                    <Link href={`/${locale}/nes`} className="hover:scale-105 duration-300 absolute top-0.5 left-2 md:hidden py-1 px-2 rounded-full cursor-pointer text-gray-500 text-base">
-                        <MoveLeftIcon className="w-6 h-6" />
-                    </Link>
+        <div className="bg-image-flower min-h-screen">
 
-                    <h2 className="text-xl font-semibold">News</h2>
-                </div>
-            </div>
+            <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
 
-            <div className="w-full lg:w-[85vw] mx-auto px-4">
-                <div className=" hidden md:block">
-
-                    <Title title="News" />
-                </div>
 
                 <div className=" ">
-
+                    <div className="flex items-center justify-center  ">
+                        <Title title="Yangiliklar" />
+                    </div>
                     <div className="shadow-lg rounded-lg overflow-hidden px-4 bg-white py-6 ">
                         <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-80 ">
                             <SearchIcon strokeWidth={1} size={20} />
