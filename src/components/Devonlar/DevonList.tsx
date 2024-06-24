@@ -13,6 +13,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
     });
     // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
+
     return (
         <>
             {isLoading && (
@@ -38,7 +39,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                         <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
-                                    <div className={`${item.id == devan_id.id && " bg-blue-200 shadow-lg border shadow-gray-500 "} bg-white rounded-2xl overflow-hidden`}>
+                                    <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
                                         {/* <Link href={item.image} target="_blank"> */}
                                         <div className="w-full h-32 md:h-40 bg-gray-200">
                                             <Image
@@ -60,7 +61,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                                                 {item.from_year}-{item.to_year}-yillar
                                             </p>
                                             <Link href={item.pdf_file} target="_blank">
-                                                <button className={`${item.id == devan_id.id ? "bg-white": "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                                <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
                                             </Link>
                                         </div>
                                     </div>

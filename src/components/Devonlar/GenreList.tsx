@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter }) => {
+const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, auditory_age__in }) => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [dataGenres, setDataGenres] = useState([]);
 
     const { data } = useQuery({
-        queryKey: ["genre_list", devan_id.id, search, firstFilter.id],
+        queryKey: ["genre_list", devan_id.id, search, firstFilter.id, auditory_age__in],
         queryFn: async () => {
-            return await devonsGetApi({ devan_id: devan_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id });
+            return await devonsGetApi({ devan_id: devan_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in: auditory_age__in ? auditory_age__in : "" });
         }
     });
 

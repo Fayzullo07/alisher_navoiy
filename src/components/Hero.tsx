@@ -1,6 +1,5 @@
 'use client'
 import Image from "next/image";
-import Container from "./Core/Container";
 
 const Hero = () => {
     return (
@@ -27,9 +26,7 @@ const Hero = () => {
                                 alt="Image"
                             />
                         </div>
-
                     </div>
-
                 </div>
             </div>
 

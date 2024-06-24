@@ -19,6 +19,8 @@ const Devonlar = () => {
 
     const [current, setCurrent] = useState(1);
 
+    const [auditory_age__in, setAuditory_age__in] = useState("");
+
     // Filter Janrlar
     const [firstFilter, setFirstFilter] = useState({ id: 0, name: "" });
     const [firstFilterChild, setFirstFilterChild] = useState({ id: 0, name: "" });
@@ -39,7 +41,14 @@ const Devonlar = () => {
                 {/* Janrlar */}
                 <div>
                     <Title title="Janrlar" />
-                    <GenreList search={search} devan_id={devan_id} genre_id={genre_id} setGenreId={setGenreId} firstFilter={firstFilter} />
+                    <GenreList
+                        search={search}
+                        devan_id={devan_id}
+                        genre_id={genre_id}
+                        setGenreId={setGenreId}
+                        firstFilter={firstFilter}
+                        auditory_age__in={auditory_age__in}
+                    />
                 </div>
 
 
@@ -74,15 +83,18 @@ const Devonlar = () => {
 
                                 current={current}
                                 setCurrent={setCurrent}
+                                auditory_age__in={auditory_age__in}
+                                setAuditory_age__in={setAuditory_age__in}
                             />
 
                             {/* Deteil */}
                             <div className="hidden lg:block">
                                 {gazal_id.id && <Gazal
-                                    id={gazal_id.id}
+                                    gazal_id={gazal_id}
                                     setGazal_id={setGazal_id}
                                     current={current}
                                     setCurrent={setCurrent}
+                                    firstFilter={firstFilter}
                                 />}
                             </div>
                         </div>

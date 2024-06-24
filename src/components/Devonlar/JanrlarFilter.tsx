@@ -84,18 +84,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                         </div>
                     ))}
 
-                    {/* {isInitialized && Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i}>
-                            <div className="flex h-6 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
-
-                            </div>
-                            {i == 3 && Array.from({ length: 4 }).map((_: any, i: any) => (
-                                <div key={i} className="w-[80%] h-6 ml-auto flex justify-between items-center my-1.5 bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
-                                </div>
-                            ))}
-
-                        </div>
-                    ))} */}
+                    
                 </div>
 
             </div>
