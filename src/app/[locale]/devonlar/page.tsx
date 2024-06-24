@@ -82,6 +82,7 @@ const Devonlar = () => {
 
                                 // Filter
                                 firstFilter={firstFilter}
+                                firstFilterChild={firstFilterChild}
 
                                 current={current}
                                 setCurrent={setCurrent}

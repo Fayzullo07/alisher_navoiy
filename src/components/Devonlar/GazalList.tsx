@@ -152,16 +152,16 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     )
 }
 
-const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in }) => {
+const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in }) => {
 
     const [countPage, setCountPage] = useState(1);
     const [genre_detail_number, setGenre_detail_number] = useState("");
     const [isInitialized, setIsInitialized] = useState(false);
 
     const { data, isLoading } = useQuery({
-        queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in],
+        queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in, firstFilterChild.id],
         queryFn: async () => {
-            return await devonsGetApi({ genre_detail_number, page: current, devan_id: devan_id.id, genre_id: genre_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in, text_type_id__in });
+            return await devonsGetApi({ genre_detail_number, page: current, devan_id: devan_id.id, genre_id: genre_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in, text_type_id__in, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id });
         }
     });
 
@@ -177,7 +177,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
     useEffect(() => {
         setCurrent(1);
-    }, [search, firstFilter, auditory_age__in, text_type_id__in]);
+    }, [search, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in]);
 
     useEffect(() => {
         if (!isInitialized && data && data.data && data.data.main) {
