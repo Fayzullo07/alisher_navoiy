@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Container from "./Core/Container";
 
-
 const Hero = () => {
     return (
         <div className={` h-screen img-background-horizontal`}>

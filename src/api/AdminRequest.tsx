@@ -2,13 +2,6 @@ import axios from "axios";
 const URL = process.env.NEXT_PUBLIC_BACKEND_API;
 const API = axios.create({ baseURL: URL });
 
-// const config = {
-//   headers: {
-//     Authorization: "Bearer " + JSON.parse(localStorage.getItem("user"))?.access,
-//   },
-// };
-
-
 // -----------------------------------------DEVONS-----------------------------
 // GET
 export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_number = "", genre_id = "", second = "", poetic_art_id = "", auditory_age__in = "", text_type_id__in = "", page = 1, per_page = 10 }) =>
