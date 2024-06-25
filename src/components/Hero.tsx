@@ -15,7 +15,7 @@ const Hero = () => {
                 />
                 <div className=" absolute top-0 h-screen w-full flex items-center justify-center">
                     <div className="font-bold text-9xl text-white font-serif">
-                        <div className="absolute bottom-0 left-60 z-10 flex justify-center items-center">
+                        <div className="absolute bottom-0 left-60  flex justify-center items-center">
                             <Image
                                 src={"/alisher_navoiy1.png"}
                                 width={350}

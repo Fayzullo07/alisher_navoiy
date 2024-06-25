@@ -26,9 +26,6 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter }) => {
             return await genresGetOneAPI({ id: gazal_id.id });
         }
     });
-
-
-    // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
 
     function getExplanation(searchWord) {

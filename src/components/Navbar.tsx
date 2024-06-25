@@ -15,19 +15,19 @@ import {
 } from "@/components/ui/sheet"
 import { navbar } from "../../data/data";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Navbar = () => {
-    const [isActiveLink, setIsActiveLink] = useState(0);
+    const pathname = usePathname();
     const searchParams = useSearchParams();
     const searchParam = searchParams.get('search');
     const locale = useLocale();
     const [stickyNav, setStickyNav] = useState(false);
     const [search, setSearch] = useState(searchParam ? searchParam : "");
     const router = useRouter();
-
+   
     const handleScroll = () => {
-        window.pageYOffset >= 40 ? setStickyNav(true) : setStickyNav(false);
+        window.pageYOffset >= 50 ? setStickyNav(true) : setStickyNav(false);
     };
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const Navbar = () => {
         <header className={`flex justify-center items-center max-w-screen-2xl mx-auto sticky ${stickyNav ? "top-0" : ""} z-[10]`}>
             <nav className={`${stickyNav ? "active  rounded-full" : ""} 2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
-                <Link href={"/"} onClick={() => setIsActiveLink(0)}>
+                <Link href={"/"}>
                     <Image
                         src="/logo.png"
                         width={40}
@@ -66,10 +66,10 @@ const Navbar = () => {
                     <ul
                         className="text-sm text-black lg:flex lg:justify-between">
                         {navbar.map((item, i) => (
-                            <li key={item.name} onClick={() => setIsActiveLink(item.id)}>
-                                <Link href={`/${locale}${item.slug}`} className={`*:hover:w-full  p-2 font-semibold tracking-wide block ${item.id == isActiveLink ? "text-maincolor" : "text-black"} hover:text-maincolor duration-300`} >
+                            <li key={item.name}>
+                                <Link href={`/${locale}${item.slug}`} className={`*:hover:w-full  p-2 font-semibold tracking-wide block ${item.slug == '/' + pathname.split("/")[2] ? "text-maincolor" : "text-black"} hover:text-maincolor duration-300`} >
                                     {t(`${i}`)}
-                                    <div className={`duration-1000 h-0.5 bg-maincolor ${item.id == isActiveLink ? "w-full" : "w-0"}`}></div>
+                                    <div className={`duration-1000 h-0.5 bg-maincolor ${item.slug == '/' + pathname.split("/")[2] ? "w-full" : "w-0"}`}></div>
                                 </Link>
                             </li>
                         ))}

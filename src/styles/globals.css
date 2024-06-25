@@ -109,6 +109,19 @@
 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
 /* Navbar */
 .active {
   /* left: 0; */
@@ -247,7 +260,7 @@
 }
 
 .snip1360:hover figcaption {
-  background-color: rgba(0, 0, 255, 0.226) ;
+  background-color: rgba(0, 0, 255, 0.226);
 }
 
 .snip1360 figcaption:before {

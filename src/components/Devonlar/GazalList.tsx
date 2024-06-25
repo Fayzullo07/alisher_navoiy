@@ -2,7 +2,7 @@ import { devonsGetApi, filtersGetApi } from "@/api/AdminRequest";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import type { PaginationProps } from 'antd';
 
 import {
@@ -11,10 +11,16 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronDownIcon, SearchIcon } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import GazalMobile from "./GazalMobile";
 import Loading from "../Core/Loading";
+
+import React from 'react';
+import { Checkbox, Divider } from 'antd';
+import type { CheckboxProps } from 'antd';
+
+const CheckboxGroup = Checkbox.Group;
+
 
 const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const [agesAll, setAgesAll] = useState(false);
@@ -23,58 +29,59 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const [textTypeAll, setTextTypeAll] = useState(false);
     const [textType, setTextType] = useState<string[]>([]);
 
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["filter_list"],
         queryFn: async () => {
             return await filtersGetApi();
         }
-    });
+    });    
 
-    function getAges(age: string) {
-        if (ages.includes(age)) {
-            let agesFilter = ages.filter((agef) => agef !== age);
-            setAges(agesFilter)
-            setAuditory_age__in(agesFilter.join(','));
-        } else {
-            let copyAges = [...ages, age];
-            setAges(copyAges);
-            setAuditory_age__in(copyAges.join(','));
-        }
-    }
+    // ANT CHECKBOX GROUP
+    const [optionsTextTypes, setOptionsTextTypes] = useState([]);
+    const [checkedListTextTypes, setCheckedListTextTypes] = useState([]);
 
-    function getTextTypes(text_type: string) {
-        if (textType.includes(text_type)) {
-            let textTypeFilter = textType.filter((text_typef) => text_typef !== text_type);
-            setTextType(textTypeFilter)
-            setText_type_id__in(textTypeFilter.join(','));
-        } else {
-            let copyTextTypes = [...textType, text_type];
-            setTextType(copyTextTypes);
-            setText_type_id__in(copyTextTypes.join(','));
-        }
-    }
+    const [optionsAges, setOptionsAges] = useState([]);
+    const [checkedListAges, setCheckedListAges] = useState([]);
 
     useEffect(() => {
-        if (!agesAll) {
-            setAges([]);
-            setAuditory_age__in("");
-        } else {
-            let listAgesAll = data?.data?.auditory_ages.map((age) => age.auditory_age);
-            setAges(listAgesAll);
-            setAuditory_age__in(listAgesAll);
-        }
-    }, [agesAll]);
+        if (data && data.data) {
+            setOptionsTextTypes(data.data.text_types.map((text_type: { name: any; id: any; }) => ({ label: text_type.name, value: text_type.id })));
+            setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
 
-    useEffect(() => {
-        if (!textTypeAll) {
-            setTextType([]);
-            setText_type_id__in("");
-        } else {
-            let listTextTypesAll = data?.data?.text_types.map((text_type) => text_type.id);
-            setTextType(listTextTypesAll);
-            setText_type_id__in(listTextTypesAll);
+            setOptionsAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
         }
-    }, [textTypeAll]);
+    }, [data]);
+
+    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length;
+    const indeterminateTextTypes = checkedListTextTypes.length > 0 && checkedListTextTypes.length < optionsTextTypes.length;
+
+    let checkAllAges = optionsAges.length === checkedListAges.length;
+    const indeterminateAges = checkedListAges.length > 0 && checkedListAges.length < optionsAges.length;
+
+    if (isLoading) {
+        return <Spin size="large" />;
+    }
+
+    const onChangeListTextTypes = (list) => {
+        setCheckedListTextTypes(list);
+        setText_type_id__in(list.join(','));
+    };
+
+    const onChangeListAges = (list) => {
+        setCheckedListAges(list);
+        setAuditory_age__in(list.join(','));
+    };
+
+    const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
+        setCheckedListAges(e.target.checked ? optionsAges : []);
+        setAuditory_age__in(checkedListAges.join(','));
+    };
+
+    const onCheckAllChangeTextTypes: CheckboxProps['onChange'] = (e) => {
+        setCheckedListTextTypes(e.target.checked ? optionsTextTypes.map(option => option.value) : []);
+        setText_type_id__in(checkedListTextTypes.join(','));
+    };
 
     return (
         <>
@@ -88,25 +95,18 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                     </PopoverTrigger>
                     <PopoverContent align="start">
                         <div className="">
-                            <ScrollArea className="h-[30vh] ">
-                                <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer" onClick={() => setTextTypeAll(!textTypeAll)}>
-                                    <Checkbox checked={textTypeAll} />
-                                    <span
-                                        className="text-sm font-medium"
-                                    >
-                                        All
-                                    </span>
-                                </div>
-                                {data?.data?.text_types.map((item: any, i: any) => (
-                                    <div key={i} className={`flex items-center space-x-2 ${textType.includes(item.id) ? " bg-blue-100" : ""}  hover:bg-blue-100 px-2 py-1 mb-1 rounded duration-300 cursor-pointer`} onClick={() => getTextTypes(item.id)}>
-                                        <Checkbox checked={textType.includes(item.id)} />
-                                        <span
-                                            className="text-sm font-medium"
-                                        >
-                                            {item.name}
-                                        </span>
-                                    </div>
-                                ))}
+                            <ScrollArea className="h-[30vh] p-2">
+
+                                <Checkbox indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
+                                    All
+                                </Checkbox>
+                                <Divider className="my-2" />
+                                <CheckboxGroup
+                                    options={optionsTextTypes}
+                                    value={checkedListTextTypes}
+                                    onChange={onChangeListTextTypes}
+                                    className="grid grid-cols-1"
+                                />
                             </ScrollArea>
                         </div>
                     </PopoverContent>
@@ -123,25 +123,17 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                     </PopoverTrigger>
                     <PopoverContent align="start">
                         <div className="">
-                            <ScrollArea className="h-[20vh]">
-                                <div className="flex items-center space-x-2 hover:bg-blue-100 px-2 py-1 rounded-xl duration-300 cursor-pointer" onClick={() => setAgesAll(!agesAll)}>
-                                    <Checkbox checked={agesAll} />
-                                    <span
-                                        className="text-sm font-medium"
-                                    >
-                                        All
-                                    </span>
-                                </div>
-                                {data?.data?.auditory_ages.map((item: any, i: any) => (
-                                    <div key={i} className={`flex items-center space-x-2 ${ages.includes(item.auditory_age) ? " bg-blue-100" : ""}  hover:bg-blue-100 px-2 py-1 mb-1 rounded duration-300 cursor-pointer`} onClick={() => getAges(item.auditory_age)}>
-                                        <Checkbox checked={ages.includes(item.auditory_age)} />
-                                        <span
-                                            className="text-sm font-medium"
-                                        >
-                                            {item.auditory_age}<span>+</span>
-                                        </span>
-                                    </div>
-                                ))}
+                            <ScrollArea className="h-[20vh] p-2">
+                                <Checkbox indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
+                                    All
+                                </Checkbox>
+                                <Divider className="my-2" />
+                                <CheckboxGroup
+                                    options={optionsAges}
+                                    value={checkedListAges}
+                                    onChange={onChangeListAges}
+                                    className="grid grid-cols-1"
+                                />
                             </ScrollArea>
                         </div>
 
@@ -203,7 +195,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
                     <div className="flex items-center gap-2 mb-2 w-full ">
 
-                        <div className="flex items-center  gap-2  p-1 rounded-full bg-gray-50 border w-full">
+                        <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-full">
                             <SearchIcon strokeWidth={1} size={20} />
                             <input value={genre_detail_number} onChange={(e) => {
                                 if (/[a-zA-Z]/.test(e.target.value)) {
@@ -211,7 +203,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 }
                                 setCurrent(1);
                                 setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full md:w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
@@ -236,12 +228,11 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i} >
                                 <div className=" hidden lg:block">
-
                                     <div
                                         className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
                                         onClick={() => setGazal_id(item)}
                                     >
-                                        <div className="flex gap-1 items-center text-xs md:text-sm">
+                                        <div className="flex gap-1 items-center text-xs xl:text-base md:text-sm">
                                             <span>{item.number}.</span>
                                             <div>{item.text}</div>
                                         </div>
@@ -370,7 +361,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 }
                                 setCurrent(1);
                                 setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full md:w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
@@ -467,7 +458,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 }
                                 setCurrent(1);
                                 setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full md:w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
@@ -563,7 +554,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 }
                                 setCurrent(1);
                                 setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full md:w-40  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
