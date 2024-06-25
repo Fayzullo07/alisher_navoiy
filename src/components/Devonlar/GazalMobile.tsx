@@ -9,7 +9,7 @@ import {
 import { XIcon } from "lucide-react";
 import Gazal from "./Gazal";
 
-const GazalMobile = ({ gazal_id, children, setGazal_id, current, setCurrent, firstFilter }) => {
+const GazalMobile = ({ gazal_id, children, setGazal_id, current, setCurrent, firstFilter, genre_detail_number }) => {
 
     return (
         <Drawer>
@@ -28,6 +28,7 @@ const GazalMobile = ({ gazal_id, children, setGazal_id, current, setCurrent, fir
                     current={current}
                     setCurrent={setCurrent}
                     firstFilter={firstFilter}
+                    genre_detail_number={genre_detail_number}
                 />
                 <DrawerFooter>
                 </DrawerFooter>

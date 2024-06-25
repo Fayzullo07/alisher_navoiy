@@ -11,12 +11,12 @@ import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Modal from "@/components/Core/Modal";
 import Loading from "../Core/Loading";
 
-const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter }) => {
+const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_detail_number }) => {
 
     const { data: dataNextPrev } = useQuery({
-        queryKey: ["gazal_next_prev", current],
+        queryKey: ["gazal_next_prev", current, genre_detail_number],
         queryFn: async () => {
-            return await devonsGetApi({ page: current });
+            return await devonsGetApi({ page: current, genre_detail_number });
         }
     });
 
@@ -72,7 +72,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter }) => {
                         </ScrollArea>
                         <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
                             <div>
-                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && (
+                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
                                         <MoveLeftIcon className="w-4 h-4" />
                                     </div>
@@ -114,7 +114,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter }) => {
                                 </div>
                             )}
                             <div>
-                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && (
+                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
@@ -208,7 +208,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter }) => {
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
                                 )}
-                                {isLoading && (
+                                {isLoading && genre_detail_number != "" && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>

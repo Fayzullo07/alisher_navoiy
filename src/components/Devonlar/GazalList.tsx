@@ -23,18 +23,12 @@ const CheckboxGroup = Checkbox.Group;
 
 
 const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
-    const [agesAll, setAgesAll] = useState(false);
-    const [ages, setAges] = useState<string[]>([]);
-
-    const [textTypeAll, setTextTypeAll] = useState(false);
-    const [textType, setTextType] = useState<string[]>([]);
-
     const { data, isLoading } = useQuery({
         queryKey: ["filter_list"],
         queryFn: async () => {
             return await filtersGetApi();
         }
-    });    
+    });
 
     // ANT CHECKBOX GROUP
     const [optionsTextTypes, setOptionsTextTypes] = useState([]);
@@ -97,7 +91,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                         <div className="">
                             <ScrollArea className="h-[30vh] p-2">
 
-                                <Checkbox indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
+                                <Checkbox className="w-full" indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
                                     All
                                 </Checkbox>
                                 <Divider className="my-2" />
@@ -124,7 +118,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                     <PopoverContent align="start">
                         <div className="">
                             <ScrollArea className="h-[20vh] p-2">
-                                <Checkbox indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
+                                <Checkbox className="w-full" indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
                                     All
                                 </Checkbox>
                                 <Divider className="my-2" />
@@ -144,10 +138,9 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     )
 }
 
-const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in }) => {
+const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in, genre_detail_number, setGenre_detail_number }) => {
 
     const [countPage, setCountPage] = useState(1);
-    const [genre_detail_number, setGenre_detail_number] = useState("");
     const [isInitialized, setIsInitialized] = useState(false);
 
     const { data, isLoading } = useQuery({
@@ -239,7 +232,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block lg:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter} genre_detail_number={genre_detail_number}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -405,7 +398,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter} genre_detail_number={genre_detail_number}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
@@ -501,7 +494,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter} genre_detail_number={genre_detail_number}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
@@ -597,7 +590,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} setCurrent={setCurrent} firstFilter={firstFilter} genre_detail_number={genre_detail_number}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
