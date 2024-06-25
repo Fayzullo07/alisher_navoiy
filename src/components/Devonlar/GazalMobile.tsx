@@ -30,8 +30,6 @@ const GazalMobile = ({ gazal_id, children, setGazal_id, current, setCurrent, fir
                     firstFilter={firstFilter}
                     genre_detail_number={genre_detail_number}
                 />
-                <DrawerFooter>
-                </DrawerFooter>
             </DrawerContent>
         </Drawer>
 
