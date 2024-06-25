@@ -29,7 +29,7 @@ const Devonlar = () => {
 
     useEffect(() => {
         setGazal_id({ id: "", name: "" });
-    }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number]);
+    }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number, current]);
 
     return (
         <div className="pb-5 bg-image-flower min-h-screen">
