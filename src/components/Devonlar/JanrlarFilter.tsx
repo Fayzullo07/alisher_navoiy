@@ -117,7 +117,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                     <div className="flex items-center gap-1">
                                         {i == 4 && (
                                             <>
-                                                {firstFilter.id == 5 && <ChevronRightIcon strokeWidth={1} className="w-5 h-5" />}
+                                                {firstFilter.id == 5 && <ChevronRightIcon strokeWidth={1} className="w-5 h-5 pl-2" />}
                                             </>
                                         )}
                                         <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">
