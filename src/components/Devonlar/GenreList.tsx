@@ -64,9 +64,10 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                                                 alt="Image"
                                             />
                                         </div>
-                                        <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0">
+                                        <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0 text-center">
                                             <div className="text-sm 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
-                                            <div className="text-[10px] 2xl:text-base xl:text-xs lg:text-xs md:text-xs font-medium text-gray-400  text-center ">({item.counts})</div>
+                                            <div className="bg-green-100 text-green-600 px-2 py-0.5 rounded-full inline-block text-[10px] 2xl:text-base xl:text-xs lg:text-xs md:text-xs font-medium  text-center ">{item.counts} ta</div>
+                                            
                                         </div>
                                     </div>
                                 </div>

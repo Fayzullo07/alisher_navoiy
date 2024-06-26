@@ -3,6 +3,7 @@ import Title from "@/components/Core/Title";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, CircleIcon, ScrollTextIcon } from "lucide-react";
+import { CheckCircleTwoTone } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild }) => {
@@ -22,7 +23,6 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
             setPoeticArtsData(data.data.poetic_arts);
         }
     }, [data]);
-
 
     useEffect(() => {
         setFirstFilterChild({ id: 0, name: "" })
@@ -74,7 +74,11 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
 
                                 <div key={i} className={`w-[95%] my-1.5 ml-auto flex justify-between items-center ${firstFilterChild.id == itemchild.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(itemchild)}>
                                     <div className="flex gap-2 items-center">
-                                        <CircleIcon strokeWidth={3} className="w-3 h-3 text-green-500" />
+                                        {firstFilterChild.id == itemchild.id ? (
+                                            <CheckCircleTwoTone />
+                                        ) : (
+                                            <CircleIcon strokeWidth={2} className="w-4 h-4 text-blue-500" />
+                                        )}
                                         <div className="text-sm">{itemchild.name}</div>
                                     </div>
                                     <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts} ta</span>
@@ -125,14 +129,18 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                         </span>
                                     </div>
                                 </div>
-                                {4 == i && firstFilter.id == 5 && poetic_artsData.map((itemChild: any, i: any) => (
+                                {4 == i && firstFilter.id == 5 && poetic_artsData.map((itemchild: any, i: any) => (
 
-                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-200" : ""} hover:bg-blue-200 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(itemChild)}>
+                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == itemchild.id ? "bg-blue-200" : ""} hover:bg-blue-200 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(itemchild)}>
                                         <div className="flex gap-2 items-center">
-                                            <CircleIcon strokeWidth={1} className="w-3 h-3 text-green-500" />
-                                            <div className="text-sm">{itemChild.name}</div>
+                                            {firstFilterChild.id == itemchild.id ? (
+                                                <CheckCircleTwoTone />
+                                            ) : (
+                                                <CircleIcon strokeWidth={2} className="w-4 h-4 text-blue-500" />
+                                            )}
+                                            <div className="text-sm">{itemchild.name}</div>
                                         </div>
-                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemChild.counts} ta</span>
+                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts} ta</span>
                                     </div>
                                 ))}
 

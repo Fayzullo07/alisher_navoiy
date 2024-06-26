@@ -54,7 +54,13 @@ const DevonList = ({ devan_id, setDevan_id }) => {
                                         </div>
                                         {/* </Link> */}
                                         <div className="p-1.5 md:p-3">
-                                            <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                            <div className="flex flex-between items-center">
+
+                                                <div className="flex-grow text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className="text-[10px]  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                                    {item.counts} ta
+                                                </div>
+                                            </div>
                                             <p className="min-h-16 md:min-h-16 text-xs md:text-sm  text-gray-500">
                                                 {item.desc}
                                                 <br />

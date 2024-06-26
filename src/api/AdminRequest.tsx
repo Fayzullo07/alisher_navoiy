@@ -8,8 +8,8 @@ export const filtersGetApi = async () => API.get(`/general/filters`);
 
 // -----------------------------------------DEVONS-----------------------------
 // GET
-export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_number = "", genre_id = "", second = "", poetic_art_id = "", auditory_age__in = "", text_type_id__in = "", page = 1, per_page = 10 }) =>
-    API.get(`/general/?search=${search}&devan_id=${devan_id}&genre_detail_number=${genre_detail_number}&genre_id=${genre_id}&poetic_art_id=${poetic_art_id}&auditory_age__in=${auditory_age__in}&text_type_id__in=${text_type_id__in}&second=${second}&page=${page}&per_page=${per_page}`);
+export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_number = "", genre_id = "", second = "", poetic_art_id = "", auditory_age__in = "", text_type_id__in = "", page = 1, page_size = 10 }) =>
+    API.get(`/general/?search=${search}&devan_id=${devan_id}&genre_detail_number=${genre_detail_number}&genre_id=${genre_id}&poetic_art_id=${poetic_art_id}&auditory_age__in=${auditory_age__in}&text_type_id__in=${text_type_id__in}&second=${second}&page=${page}&page_size=${page_size}`);
 
 // -----------------------------------------DEVONS-----------------------------
 // GET
