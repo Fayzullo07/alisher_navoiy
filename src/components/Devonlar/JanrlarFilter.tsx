@@ -36,9 +36,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                 <div className="text-xl py-1 pb-2 font-semibold">Janrlar</div>
                 <div className=" space-y-2">
                     {genre_id.name == "" ? (
-                        <div className="flex h-6 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
-
-                        </div>
+                        null
                     ) : (
                         <div className={`flex justify-between items-center ${firstFilter.id != 0 ? "" : "bg-blue-100"} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter({ id: 0, name: "" })}>
                             <div className="flex gap-2 items-center">

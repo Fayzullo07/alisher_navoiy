@@ -41,9 +41,11 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
         if (data && data.data) {
             setOptionsTextTypes(data.data.text_types.map((text_type: { name: any; id: any; }) => ({ label: text_type.name, value: text_type.id })));
             setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
+            setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
 
             setOptionsAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
             setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
         }
     }, [data]);
 
@@ -162,8 +164,11 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
     useEffect(() => {
         setCurrent(1);
-        setGenre_detail_number("");
     }, [search, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in]);
+
+    useEffect(() => {
+        setGenre_detail_number("");
+    }, [search, firstFilter, firstFilterChild]);
 
     useEffect(() => {
         if (!isInitialized && data && data.data && data.data.main) {

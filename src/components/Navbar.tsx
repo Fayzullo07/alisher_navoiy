@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AlignRightIcon, SearchIcon } from "lucide-react";
 import LocalSwitcher from "./Core/local-switcher";
@@ -18,6 +18,7 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Navbar = () => {
+    const inputRef = useRef(null);
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const searchParam = searchParams.get('search');
@@ -25,7 +26,7 @@ const Navbar = () => {
     const [stickyNav, setStickyNav] = useState(false);
     const [search, setSearch] = useState(searchParam ? searchParam : "");
     const router = useRouter();
-   
+
     const handleScroll = () => {
         window.pageYOffset >= 50 ? setStickyNav(true) : setStickyNav(false);
     };
@@ -40,12 +41,13 @@ const Navbar = () => {
     const enterSearch = (e: any) => {
         if (e.key == "Enter") {
             router.push(`/${locale}/devonlar?search=` + e.target.value);
+            inputRef.current.blur();
         }
     }
     return (
 
         <header className={`flex justify-center items-center max-w-screen-2xl mx-auto sticky ${stickyNav ? "top-0" : ""} z-[10]`}>
-            <nav className={`${stickyNav ? "active  rounded-full" : ""} 2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
+            <nav className={`${stickyNav ? "active  rounded-full border-b" : ""}  2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  top-0 bg-white z-[10] `}>
 
                 <Link href={"/"}>
                     <Image
@@ -59,7 +61,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Devonlar bo'yicha qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Devonlar bo'yicha qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>

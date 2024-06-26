@@ -1,22 +1,40 @@
+"use client"
+import { useEffect, useState } from "react";
 import { devonsGetApi } from "@/api/AdminRequest";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 
-const DevonList = ({ devan_id, setDevan_id }) => {
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["devans_list"],
+const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
+    const [isInitialized, setIsInitialized] = useState(false);
+    const [dataDevons, setDataDevons] = useState([]);
+
+    const { data } = useQuery({
+        queryKey: ["devans_list", genre_id, search],
         queryFn: async () => {
-            return await devonsGetApi({});
+            return await devonsGetApi({ genre_id: genre_id.id, search });
         }
     });
-    // if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+
+    useEffect(() => {
+        if (data && data.data && data.data.devans) {
+            setDataDevons(data.data.devans);
+        }
+    }, [data])
+
+    useEffect(() => {
+        if (!isInitialized && data && data.data && data.data.devans) {
+            // setGenreId(data.data.genres[0]);
+            setDataDevons(data.data.devans);
+            setIsInitialized(true);
+        }
+        return () => { }; // cleanup funksiyasi
+    }, [isInitialized, data]);
 
     return (
         <>
-            {isLoading && (
+            {!isInitialized && (
                 <Carousel
                     className="w-full">
                     <CarouselContent>
@@ -35,7 +53,7 @@ const DevonList = ({ devan_id, setDevan_id }) => {
             <Carousel
                 className={`w-full md:w-[95%] mx-auto `}>
                 <CarouselContent>
-                    {data?.data.devans.map((item: any, index: any) => (
+                    {dataDevons.map((item: any, index: any) => (
                         <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">

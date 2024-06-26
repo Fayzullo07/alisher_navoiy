@@ -37,7 +37,12 @@ const Devonlar = () => {
                 {/* Devonlar */}
                 <div>
                     <Title title="Devonlar" />
-                    <DevonList devan_id={devan_id} setDevan_id={setDevan_id} />
+                    <DevonList
+                        devan_id={devan_id}
+                        setDevan_id={setDevan_id}
+                        genre_id={genre_id}
+                        search={search}
+                    />
                 </div>
 
                 {/* Janrlar */}
@@ -51,6 +56,7 @@ const Devonlar = () => {
                         firstFilter={firstFilter}
                         auditory_age__in={auditory_age__in}
                         text_type_id__in={text_type_id__in}
+                        genre_detail_number={genre_detail_number}
                     />
                 </div>
 
