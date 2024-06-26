@@ -162,6 +162,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
     useEffect(() => {
         setCurrent(1);
+        setGenre_detail_number("");
     }, [search, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in]);
 
     useEffect(() => {
