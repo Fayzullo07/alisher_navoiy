@@ -37,7 +37,7 @@ const Navbar = () => {
     });
 
     useEffect(() => {
-        router.push(`/${locale}/${pathname.split("/")[2]}`);
+        router.push(`/${locale}/${pathname.split("/")[2] ? pathname.split("/")[2] : ""}`);
         setSearch("");
     }, []);
     const t = useTranslations('Navbar');
