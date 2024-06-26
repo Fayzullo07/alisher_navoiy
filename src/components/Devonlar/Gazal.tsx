@@ -79,10 +79,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                                                             <PopoverTrigger>
                                                                 <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </PopoverTrigger>
-                                                            <PopoverContent className="p-2 px-4 w-fit">
+                                                            <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
-                                                                    <p className="text-xs">Semantik izoh:</p>
-                                                                    <span>{getExplanation(item_in)}</span>
+                                                                    <p className="text-sm">Semantik izoh:</p>
+                                                                    <span className="text-xs md:text-sm">{getExplanation(item_in)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>
@@ -186,10 +186,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                                                             <PopoverTrigger>
                                                                 <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </PopoverTrigger>
-                                                            <PopoverContent className="p-2 px-4 w-fit">
+                                                            <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
-                                                                    <p className="text-xs">Semantik izoh:</p>
-                                                                    <span>{getExplanation(item_in)}</span>
+                                                                    <p className="text-sm">Semantik izoh:</p>
+                                                                    <span className="text-xs md:text-sm">{getExplanation(item_in)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>
