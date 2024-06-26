@@ -5,6 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import { CalendarClockIcon, CalendarFoldIcon } from "lucide-react";
 
 const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
     const [isInitialized, setIsInitialized] = useState(false);
@@ -72,18 +73,31 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                         </div>
                                         {/* </Link> */}
                                         <div className="p-1.5 md:p-3">
-                                            <div className="flex flex-between items-center">
+                                            <div className="flex flex-between items-center relative">
 
-                                                <div className="flex-grow text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
-                                                <div className="text-[10px]  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                                <div className="w-[85%] h-10 md:h-14 text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className=" absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
                                                     {item.counts} ta
                                                 </div>
                                             </div>
-                                            <p className="min-h-16 md:min-h-16 text-xs md:text-sm  text-gray-500">
-                                                {item.desc}
-                                                <br />
-                                                {item.from_year}-{item.to_year}-yillar
-                                            </p>
+                                            <div className="h-20 md:h-28 text-xs md:text-sm  text-gray-500 flex flex-col">
+                                                <div className="flex-grow">
+
+                                                    {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
+                                                </div>
+
+                                                <span className="flex items-center">
+
+                                                    <CalendarClockIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                </span>
+                                                <span className="flex items-center mb-1">
+
+                                                    <CalendarFoldIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                </span>
+
+                                            </div>
                                             <Link href={item.pdf_file} target="_blank">
                                                 <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
                                             </Link>

@@ -35,8 +35,14 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
     if (isError) return <div>Xatolik yuz berdi...</div>;
 
     function getExplanation(searchWord) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = searchWord;
+        const cleanedText = tempDiv.textContent || tempDiv.innerText || '';
+
+        // So'zlarni birlashtirish
+        searchWord = cleanedText.replace(/\s+/g, '');
         searchWord = searchWord.replace(/[.,?!"]/g, '');
-        const result = data.data.word_explanations.find(entry => entry.word === searchWord);
+        const result = data.data.word_explanations.find(entry => entry.word === searchWord.toLowerCase());
         return result ? result.explanation : 'Kiritilmagan';
     }
 

@@ -33,7 +33,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
         <>
             {/* Desktop */}
             <div className="bg-white h-fit rounded-2xl text-center py-2 px-4 hidden lg:block" >
-                <div className="text-xl py-1 pb-2 font-semibold">Janrlar</div>
+                <div className="text-xl py-1 pb-2 font-semibold">Devonning tarkibi</div>
                 <div className=" space-y-2">
                     {genre_id.name == "" ? (
                         null
@@ -93,7 +93,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
 
             {/* Mobile */}
             <div className=" rounded-2xl text-start block lg:hidden" >
-                <Title title="Janrlar filter" />
+                <Title title="Devonning tarkibi" />
                 <ScrollArea className="py-2  whitespace-nowrap ">
                     <div className=" flex gap-2 items-center">
                         {genre_id.name == "" ? (
