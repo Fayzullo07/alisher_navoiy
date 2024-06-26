@@ -46,12 +46,12 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     useEffect(() => {
         if (data && data.data) {
             setOptionsTextTypes(data.data.text_types.map((text_type: { name: any; id: any; }) => ({ label: text_type.name, value: text_type.id })));
-            setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
-            setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
+            // setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
+            // setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
 
             setOptionsAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
-            setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
-            setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
+            // setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            // setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
         }
     }, [data]);
 
@@ -73,16 +73,25 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const onChangeListAges = (list) => {
         setCheckedListAges(list);
         setAuditory_age__in(list.join(','));
+        
     };
 
     const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
         setCheckedListAges(e.target.checked ? optionsAges : []);
-        setAuditory_age__in(checkedListAges.join(','));
+        if (e.target.checked) {
+            setAuditory_age__in(optionsAges.join(','));
+        } else {
+            setAuditory_age__in("");
+        }
     };
 
     const onCheckAllChangeTextTypes: CheckboxProps['onChange'] = (e) => {
         setCheckedListTextTypes(e.target.checked ? optionsTextTypes.map(option => option.value) : []);
-        setText_type_id__in(checkedListTextTypes.join(','));
+        if (e.target.checked) {
+            setText_type_id__in(checkedListTextTypes.join(','));
+        } else {
+            setText_type_id__in("");
+        }
     };
 
     return (
@@ -214,11 +223,7 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
                 </tr >
             ))}
 
-            {data?.data?.results.length == 0 && (
-                <tr >
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{""}</td>
-                </tr >
-            )}
+
         </>
     )
 
@@ -260,7 +265,7 @@ const Asarlar = () => {
 
                         <div className="flex items-center gap-2 mb-2 w-full ">
 
-                            <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-full">
+                            <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-[50%]">
                                 <SearchIcon strokeWidth={1} size={20} />
                                 <input value={search} onChange={(e) => {
                                     if (/[a-zA-Z]/.test(e.target.value)) {

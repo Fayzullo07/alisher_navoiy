@@ -64,7 +64,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Devonlar bo'yicha qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>

@@ -57,7 +57,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                 className="w-full">
                 <CarouselContent>
                     {dataGenres.map((item: any, index: any) => (
-                        <CarouselItem key={index} className="px-2 basis-[30%] lg:basis-[11%] md:basis-[20%] 2xl:basis-[10%] " onClick={() => setGenreId(item)}>
+                        <CarouselItem key={index} className="px-2 basis-[30%] lg:basis-[11%] md:basis-[20%] 2xl:basis-[11%] " onClick={() => setGenreId(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">
