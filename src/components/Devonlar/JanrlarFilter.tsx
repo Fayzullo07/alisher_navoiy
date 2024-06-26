@@ -97,9 +97,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                 <ScrollArea className="py-2  whitespace-nowrap ">
                     <div className=" flex gap-2 items-center">
                         {genre_id.name == "" ? (
-                            <div className="flex h-6 justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer">
-
-                            </div>
+                           null
                         ) : (
                             <div className={`flex justify-between gap-2 items-center ${firstFilter.id != 0 ? "" : "bg-blue-100"} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter({ id: 0, name: "" })}>
                                 <div className="flex gap-2 items-center">
