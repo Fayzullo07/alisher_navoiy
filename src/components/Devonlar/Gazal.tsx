@@ -11,6 +11,13 @@ import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Modal from "@/components/Core/Modal";
 import Loading from "../Core/Loading";
 
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+
+
 const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in }) => {
 
     const { data: dataNextPrev } = useQuery({
@@ -53,17 +60,34 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                                     {data?.data?.lines.map((item: any, i: any) =>
                                         <div key={i}>
                                             {item.text.split(" ").map((item_in: any, i: any) => (
-                                                <HoverCard key={i} >
-                                                    <HoverCardTrigger>
-                                                        <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
-                                                    </HoverCardTrigger>
-                                                    <HoverCardContent className="p-2 px-4 w-fit">
-                                                        <div>
-                                                            <p className="text-xs">Semantik izoh:</p>
-                                                            <span>{getExplanation(item_in)}</span>
-                                                        </div>
-                                                    </HoverCardContent>
-                                                </HoverCard>
+                                                <>
+                                                    <span className="hidden md:inline-block">
+                                                        <HoverCard key={i} >
+                                                            <HoverCardTrigger>
+                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                            </HoverCardTrigger>
+                                                            <HoverCardContent className="p-2 px-4 w-fit">
+                                                                <div>
+                                                                    <p className="text-xs">Semantik izoh:</p>
+                                                                    <span>{getExplanation(item_in)}</span>
+                                                                </div>
+                                                            </HoverCardContent>
+                                                        </HoverCard>
+                                                    </span>
+                                                    <span className="inline-block md:hidden">
+                                                        <Popover>
+                                                            <PopoverTrigger>
+                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                            </PopoverTrigger>
+                                                            <PopoverContent className="p-2 px-4 w-fit">
+                                                                <div>
+                                                                    <p className="text-xs">Semantik izoh:</p>
+                                                                    <span>{getExplanation(item_in)}</span>
+                                                                </div>
+                                                            </PopoverContent>
+                                                        </Popover>
+                                                    </span>
+                                                </>
                                             ))}
                                         </div>
                                     )}
@@ -142,17 +166,35 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                                     {data?.data?.lines.map((item: any, i: any) =>
                                         <div key={i} className={`${i + 1 == gazal_id.byte * 2 || i + 1 == gazal_id.byte * 2 - 1 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
                                             {item.text.split(" ").map((item_in: any, i: any) => (
-                                                <HoverCard key={i} >
-                                                    <HoverCardTrigger>
-                                                        <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
-                                                    </HoverCardTrigger>
-                                                    <HoverCardContent className="p-2 px-4 w-fit">
-                                                        <div>
-                                                            <p className="text-xs">Semantik izoh:</p>
-                                                            <span>{getExplanation(item_in)}</span>
-                                                        </div>
-                                                    </HoverCardContent>
-                                                </HoverCard>
+                                                <>
+                                                    <span className="hidden md:inline-block">
+
+                                                        <HoverCard key={i} >
+                                                            <HoverCardTrigger>
+                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                            </HoverCardTrigger>
+                                                            <HoverCardContent className="p-2 px-4 w-fit">
+                                                                <div>
+                                                                    <p className="text-xs">Semantik izoh:</p>
+                                                                    <span>{getExplanation(item_in)}</span>
+                                                                </div>
+                                                            </HoverCardContent>
+                                                        </HoverCard>
+                                                    </span>
+                                                    <span className="inline-block md:hidden">
+                                                        <Popover>
+                                                            <PopoverTrigger>
+                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                            </PopoverTrigger>
+                                                            <PopoverContent className="p-2 px-4 w-fit">
+                                                                <div>
+                                                                    <p className="text-xs">Semantik izoh:</p>
+                                                                    <span>{getExplanation(item_in)}</span>
+                                                                </div>
+                                                            </PopoverContent>
+                                                        </Popover>
+                                                    </span>
+                                                </>
                                             ))}
                                         </div>
                                     )}
