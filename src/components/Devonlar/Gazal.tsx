@@ -133,24 +133,13 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                         <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                                     } >
 
-                                        {Object.entries(data?.data?.metadata).map(([key, value]) => (
-                                            <div key={key}>
-                                                {/* Desktop */}
-                                                <div className="hidden md:block">
 
-                                                    <div className="grid grid-cols-2 gap-2 items-center border-b py-1 text-black">
-                                                        <div className="text-start">{key}</div>
-                                                        <div className="text-end">{value.toString()}</div>
-                                                    </div>
-                                                </div>
-                                                {/* Mobile */}
-                                                <div className="block md:hidden">
-                                                    <div className=" text-start text-black mb-1 ">
-                                                        <span className="text-gray-400">{key}:</span> {value.toString()}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
+                                        <ScrollArea className="h-[400px] md:h-[420px]">
+                                            <div
+                                                style={{ whiteSpace: "pre-line" }}
+                                                dangerouslySetInnerHTML={{ __html: data?.data?.explanation }}
+                                                className="text-start" />
+                                        </ScrollArea>
                                     </Modal>
                                 </div>
                             )}
@@ -257,28 +246,18 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                             </div>
                                         ))}
                                     </Modal>
-                                    <Modal title="Metama’lumot" button={
+                                    <Modal title="Nasri bayoni" button={
                                         <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                                     } >
 
-                                        {Object.entries(data?.data?.metadata).map(([key, value]) => (
-                                            <div key={key}>
-                                                {/* Desktop */}
-                                                <div className="hidden md:block">
+                                        <ScrollArea className="h-[400px] md:h-[420px]">
 
-                                                    <div className="grid grid-cols-2 gap-2 items-center border-b py-1 text-black">
-                                                        <div className="text-start">{key}</div>
-                                                        <div className="text-end">{value.toString()}</div>
-                                                    </div>
-                                                </div>
-                                                {/* Mobile */}
-                                                <div className="block md:hidden">
-                                                    <div className=" text-start text-black mb-1 ">
-                                                        <span className="text-gray-400">{key}:</span> {value.toString()}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
+                                            <div
+                                                style={{ whiteSpace: "pre-line" }}
+                                                dangerouslySetInnerHTML={{ __html: data?.data?.explanation }}
+                                                className="text-start" />
+                                        </ScrollArea>
+
                                     </Modal>
 
                                 </div>

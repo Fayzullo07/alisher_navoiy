@@ -36,8 +36,11 @@ const Navbar = () => {
         return () => window.addEventListener("scroll", handleScroll);
     });
 
+    useEffect(() => {
+        router.push(`/${locale}/${pathname.split("/")[2]}`);
+        setSearch("");
+    }, []);
     const t = useTranslations('Navbar');
-
     const enterSearch = (e: any) => {
         if (e.key == "Enter") {
             router.push(`/${locale}/devonlar?search=` + e.target.value);
