@@ -201,11 +201,11 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                         </ScrollArea>
                         <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
                             <div>
-                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
+                                {/* {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
                                         <MoveLeftIcon className="w-4 h-4" />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                             {!isLoading && (
 
@@ -243,7 +243,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                 </div>
                             )}
                             <div>
-                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
+                                {/* {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
@@ -252,7 +252,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </div>
                     </div>
