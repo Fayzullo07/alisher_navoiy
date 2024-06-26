@@ -2,7 +2,7 @@ import { devonsGetApi } from "@/api/AdminRequest";
 import Title from "@/components/Core/Title";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronDownIcon, ChevronUpIcon, CircleIcon, ScrollTextIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, CircleIcon, ScrollTextIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild }) => {
@@ -84,7 +84,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                         </div>
                     ))}
 
-                    
+
                 </div>
 
             </div>
@@ -107,8 +107,8 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                 <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts} ta</span>
                             </div>
                         )}
-                        {data?.data?.seconds.map((item: any, i: any) => (
-                            <div key={i} className="flex items-center gap-2">
+                        {secondsData.map((item: any, i: any) => (
+                            <div key={i} className={`flex items-center gap-2 ${i == 4 && firstFilter.id == 5 ? "bg-blue-200 rounded-full" : ""} `}>
                                 <div className={`flex justify-between items-center gap-2 ${firstFilter.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter(item)}>
                                     <div className="flex gap-2 items-center">
                                         <ScrollTextIcon strokeWidth={1} className="w-5 h-5" />
@@ -117,11 +117,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                     <div className="flex items-center gap-1">
                                         {i == 4 && (
                                             <>
-                                                {firstFilter.id == 5 ? (
-                                                    <ChevronUpIcon strokeWidth={1} className="w-5 h-5" />
-                                                ) : (
-                                                    <ChevronDownIcon strokeWidth={1} className="w-5 h-5" />
-                                                )}
+                                                {firstFilter.id == 5 && <ChevronRightIcon strokeWidth={1} className="w-5 h-5" />}
                                             </>
                                         )}
                                         <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">
@@ -129,11 +125,11 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                         </span>
                                     </div>
                                 </div>
-                                {4 == i && firstFilter.id == 5 && data?.data?.poetic_arts.map((item: any, i: any) => (
+                                {4 == i && firstFilter.id == 5 && poetic_artsData.map((item: any, i: any) => (
 
                                     <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
                                         <div className="flex gap-2 items-center">
-                                            <CircleIcon strokeWidth={1} className="w-3 h-3" />
+                                            <CircleIcon strokeWidth={1} className="w-3 h-3 text-green-500" />
                                             <div className="text-sm">{item.name}</div>
                                         </div>
                                         <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{item.counts} ta</span>

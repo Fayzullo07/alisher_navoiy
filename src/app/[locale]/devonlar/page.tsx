@@ -29,7 +29,7 @@ const Devonlar = () => {
 
     useEffect(() => {
         setGazal_id({ id: "", name: "" });
-    }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number, current]);
+    }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number, current, auditory_age__in, text_type_id__in]);
 
     return (
         <div className="pb-5 bg-image-flower min-h-screen">
@@ -104,6 +104,8 @@ const Devonlar = () => {
                                     setCurrent={setCurrent}
                                     firstFilter={firstFilter}
                                     genre_detail_number={genre_detail_number}
+                                    auditory_age__in={auditory_age__in}
+                                    text_type_id__in={text_type_id__in}
                                 />}
                             </div>
                         </div>
