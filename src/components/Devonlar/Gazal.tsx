@@ -17,7 +17,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 
-const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in }) => {
+const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in, search }) => {
 
     const { data: dataNextPrev } = useQuery({
         queryKey: ["gazal_next_prev", current, genre_detail_number],
@@ -29,7 +29,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
     const { data, isLoading, isError } = useQuery({
         queryKey: ["genres_id", gazal_id.id],
         queryFn: async () => {
-            return await genresGetOneAPI({ id: gazal_id.id });
+            return await genresGetOneAPI({ id: gazal_id.id, search });
         }
     });
     if (isError) return <div>Xatolik yuz berdi...</div>;

@@ -61,7 +61,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">
-                                        <div className=" h-16 2xl:h-20" >
+                                        <div className=" h-16 lg:h-20 " >
                                             <Image
                                                 src={`${item.name == genre_id?.name ? "/item-active.png" : "/item-disactive.png"}`}
                                                 width={50}
@@ -74,8 +74,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                                         </div>
                                         <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0 text-center">
                                             <div className="text-sm 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
-                                            <div className="bg-green-100 text-green-600 px-2 py-0.5 rounded-full inline-block text-[10px] 2xl:text-base xl:text-xs lg:text-xs md:text-xs font-medium  text-center ">{item.counts} ta</div>
-
+                                            <div className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100 inline-block">{item.counts} ta</div>
                                         </div>
                                     </div>
                                 </div>

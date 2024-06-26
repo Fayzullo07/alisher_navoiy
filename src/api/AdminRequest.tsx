@@ -18,8 +18,8 @@ export const biographyGetApi = async () => API.get(`/general/biography`);
 
 // -----------------------------------------GENRES-----------------------------
 // GET BY ID
-export const genresGetOneAPI = async ({ id = "" }: { id: any }) =>
-    API.get(`/genres/${id}/`);
+export const genresGetOneAPI = async ({ id = "", search = "" }: { id: any, search: string }) =>
+    API.get(`/genres/${id}/?search=${search}`);
 
 // -----------------------------------------NEWS-----------------------------
 // GET
