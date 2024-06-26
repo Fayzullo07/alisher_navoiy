@@ -22,25 +22,41 @@ const NewsList = ({ search }: { search: string }) => {
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <div key={i} className="snip1360 shadow-md duration-300">
-                    <div className="h-48  flex justify-center items-center bg-gray-100">
+                <div key={i} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
+                    <div className=" overflow-hidden h-80 w-full">
                         <Image
                             width={0}
                             height={0}
                             sizes="100vw"
-
-                            style={{ width: 'auto', height: '100%' }}
-                            src={item.main_image} alt="sample88"
+                            className="object-cover object-center w-full h-48 hover:scale-110 duration-300"
+                            style={{ width: '100%', height: '100%' }}
+                            src={item.main_image} alt="News"
                         />
                     </div>
-                    <figcaption>
-                        <h2>{item.title}</h2>
-                        <p>{item.authors}</p>
-                        <p>{item.published_at}</p>
-                        <Link href={`/${locale}/news/${item.id}`} className="read-more">Read More</Link>
-                    </figcaption>
+                    <div className="flex flex-grow">
+                        <div className="triangle"></div>
+                        <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 w-full">
+                            <div>
+                                <p 
+                                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
+                                    {item.published_at}
+                                    </p>
+                                <p
+                                    className="block mb-4 text-xl font-black leading-tight ">
+                                    {item.title}
+                                </p>
+                                <p className="mb-4">
+                                    {item.authors}
+                                </p>
+                            </div>
+                            <div>
+                                <Link href={`/${locale}/news/${item.id}`} 
+                                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
+                                 More -{">"}</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             ))}
         </>
     )
