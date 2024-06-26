@@ -125,14 +125,14 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                         </span>
                                     </div>
                                 </div>
-                                {4 == i && firstFilter.id == 5 && poetic_artsData.map((item: any, i: any) => (
+                                {4 == i && firstFilter.id == 5 && poetic_artsData.map((itemChild: any, i: any) => (
 
-                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-200" : ""} hover:bg-blue-200 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
+                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-200" : ""} hover:bg-blue-200 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(itemChild)}>
                                         <div className="flex gap-2 items-center">
                                             <CircleIcon strokeWidth={1} className="w-3 h-3 text-green-500" />
-                                            <div className="text-sm">{item.name}</div>
+                                            <div className="text-sm">{itemChild.name}</div>
                                         </div>
-                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{item.counts} ta</span>
+                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemChild.counts} ta</span>
                                     </div>
                                 ))}
 
