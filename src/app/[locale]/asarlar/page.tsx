@@ -10,11 +10,147 @@ import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
 import { useLocale } from "next-intl";
 
-const AsarListMobile = ({ search, setCountPage, current }) => {
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ["works", search, current],
+import { filtersGetApi } from "@/api/AdminRequest";
+
+import { Spin } from 'antd';
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { ChevronDownIcon } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+import React from 'react';
+import { Checkbox, Divider } from 'antd';
+import type { CheckboxProps } from 'antd';
+
+const CheckboxGroup = Checkbox.Group;
+
+const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
+    const { data, isLoading } = useQuery({
+        queryKey: ["filter_list"],
         queryFn: async () => {
-            return await worksGetApi({ search, page: current });
+            return await filtersGetApi();
+        }
+    });
+
+    // ANT CHECKBOX GROUP
+    const [optionsTextTypes, setOptionsTextTypes] = useState([]);
+    const [checkedListTextTypes, setCheckedListTextTypes] = useState([]);
+
+    const [optionsAges, setOptionsAges] = useState([]);
+    const [checkedListAges, setCheckedListAges] = useState([]);
+
+    useEffect(() => {
+        if (data && data.data) {
+            setOptionsTextTypes(data.data.text_types.map((text_type: { name: any; id: any; }) => ({ label: text_type.name, value: text_type.id })));
+            setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
+            setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
+
+            setOptionsAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
+        }
+    }, [data]);
+
+    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length;
+    const indeterminateTextTypes = checkedListTextTypes.length > 0 && checkedListTextTypes.length < optionsTextTypes.length;
+
+    let checkAllAges = optionsAges.length === checkedListAges.length;
+    const indeterminateAges = checkedListAges.length > 0 && checkedListAges.length < optionsAges.length;
+
+    if (isLoading) {
+        return <Spin size="large" />;
+    }
+
+    const onChangeListTextTypes = (list) => {
+        setCheckedListTextTypes(list);
+        setText_type_id__in(list.join(','));
+    };
+
+    const onChangeListAges = (list) => {
+        setCheckedListAges(list);
+        setAuditory_age__in(list.join(','));
+    };
+
+    const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
+        setCheckedListAges(e.target.checked ? optionsAges : []);
+        setAuditory_age__in(checkedListAges.join(','));
+    };
+
+    const onCheckAllChangeTextTypes: CheckboxProps['onChange'] = (e) => {
+        setCheckedListTextTypes(e.target.checked ? optionsTextTypes.map(option => option.value) : []);
+        setText_type_id__in(checkedListTextTypes.join(','));
+    };
+
+    return (
+        <>
+            <div className="w-full ">
+                <Popover>
+                    <PopoverTrigger>
+                        <div className="flex w-max items-center gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                            <span className=" text-sm">{"Matn tipi"}</span>
+                            <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                        </div>
+                    </PopoverTrigger>
+                    <PopoverContent align="start">
+                        <div className="">
+                            <ScrollArea className="h-[30vh] p-2">
+
+                                <Checkbox className="w-full" indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
+                                    All
+                                </Checkbox>
+                                <Divider className="my-2" />
+                                <CheckboxGroup
+                                    options={optionsTextTypes}
+                                    value={checkedListTextTypes}
+                                    onChange={onChangeListTextTypes}
+                                    className="grid grid-cols-1"
+                                />
+                            </ScrollArea>
+                        </div>
+                    </PopoverContent>
+                </Popover>
+            </div>
+
+            <div className="w-full ">
+                <Popover>
+                    <PopoverTrigger>
+                        <div className="flex items-center gap-2  w-max  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                            <span className="text-sm">{"Yosh bo'yicha"}</span>
+                            <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
+                        </div>
+                    </PopoverTrigger>
+                    <PopoverContent align="start">
+                        <div className="">
+                            <ScrollArea className="h-[20vh] p-2">
+                                <Checkbox className="w-full" indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
+                                    All
+                                </Checkbox>
+                                <Divider className="my-2" />
+                                <CheckboxGroup
+                                    options={optionsAges}
+                                    value={checkedListAges}
+                                    onChange={onChangeListAges}
+                                    className="grid grid-cols-1"
+                                />
+                            </ScrollArea>
+                        </div>
+
+                    </PopoverContent>
+                </Popover>
+            </div>
+        </>
+    )
+}
+
+const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_type_id__in }) => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["works", search, current, auditory_age__in, text_type_id__in],
+        queryFn: async () => {
+            return await worksGetApi({ search, page: current, auditory_age__in, text_type_id__in });
         }
     });
 
@@ -47,11 +183,11 @@ const AsarListMobile = ({ search, setCountPage, current }) => {
 
 };
 
-const AsarList = ({ search, setCountPage, current }) => {
+const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_id__in }) => {
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["works", search, current],
+        queryKey: ["works", search, current, auditory_age__in, text_type_id__in],
         queryFn: async () => {
-            return await worksGetApi({ search, page: current });
+            return await worksGetApi({ search, page: current, auditory_age__in, text_type_id__in });
         }
     });
 
@@ -95,6 +231,9 @@ const Asarlar = () => {
     const [countPage, setCountPage] = useState(1);
     const [current, setCurrent] = useState(1);
 
+    const [auditory_age__in, setAuditory_age__in] = useState("");
+    const [text_type_id__in, setText_type_id__in] = useState("");
+
     const onChange: PaginationProps['onChange'] = (page) => {
         setCurrent(page);
     };
@@ -111,9 +250,33 @@ const Asarlar = () => {
                 <div className=" hidden md:block bg-white shadow-lg rounded-lg pb-5">
 
                     <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[800px]" : "h-auto"} `}>
-                        <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-80 ">
-                            <SearchIcon strokeWidth={1} size={20} />
-                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                        <div className="flex items-center float-center gap-2  md:hidden mb-2">
+                            {/* Filter mobile */}
+                            <Filter
+                                setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
+                            />
+                        </div>
+
+                        <div className="flex items-center gap-2 mb-2 w-full ">
+
+                            <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-full">
+                                <SearchIcon strokeWidth={1} size={20} />
+                                <input value={search} onChange={(e) => {
+                                    if (/[a-zA-Z]/.test(e.target.value)) {
+                                        return
+                                    }
+                                    setCurrent(1);
+                                    setSearch(e.target.value)
+                                }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            </div>
+                            <div className=" items-center gap-2 hidden md:flex">
+                                {/* Filter Desktop */}
+                                <Filter
+                                    setAuditory_age__in={setAuditory_age__in}
+                                    setText_type_id__in={setText_type_id__in}
+                                />
+                            </div>
                         </div>
                         <table className="w-full table-fixed">
                             <thead className="">
@@ -125,7 +288,7 @@ const Asarlar = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white ">
-                                <AsarList search={search} setCountPage={setCountPage} current={current} />
+                                <AsarList search={search} setCountPage={setCountPage} current={current} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} />
                             </tbody>
                         </table>
                     </div>
@@ -142,12 +305,28 @@ const Asarlar = () => {
 
                         <h2 className="text-xl font-semibold text-center flex-grow">Asarlar</h2>
                     </div>
-                    <div className="flex items-center gap-2 border p-2 rounded-full mb-5 bg-white ">
-                        <SearchIcon strokeWidth={1} size={20} />
-                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" w-full bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <div className="flex items-center gap-2 mb-2 w-full ">
+
+                        <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-full">
+                            <SearchIcon strokeWidth={1} size={20} />
+                            <input value={search} onChange={(e) => {
+                                if (/[a-zA-Z]/.test(e.target.value)) {
+                                    return
+                                }
+                                setCurrent(1);
+                                setSearch(e.target.value)
+                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                        </div>
+                        <div className="flex items-center gap-2">
+                            {/* Filter Desktop */}
+                            <Filter
+                                setAuditory_age__in={setAuditory_age__in}
+                                setText_type_id__in={setText_type_id__in}
+                            />
+                        </div>
                     </div>
                     <div className=" space-y-4">
-                        <AsarListMobile search={search} setCountPage={setCountPage} current={current} />
+                        <AsarListMobile search={search} setCountPage={setCountPage} current={current} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} />
                     </div>
                 </div>
 
