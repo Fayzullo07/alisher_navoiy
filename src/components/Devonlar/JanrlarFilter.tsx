@@ -108,7 +108,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                             </div>
                         )}
                         {secondsData.map((item: any, i: any) => (
-                            <div key={i} className={`flex items-center gap-2 ${i == 4 && firstFilter.id == 5 ? "bg-blue-200 rounded-full" : ""} `}>
+                            <div key={i} className={`flex items-center gap-2 ${i == 4 && firstFilter.id == 5 ? "bg-blue-100 rounded-full" : ""} `}>
                                 <div className={`flex justify-between items-center gap-2 ${firstFilter.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter(item)}>
                                     <div className="flex gap-2 items-center">
                                         <ScrollTextIcon strokeWidth={1} className="w-5 h-5" />
@@ -127,7 +127,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                 </div>
                                 {4 == i && firstFilter.id == 5 && poetic_artsData.map((item: any, i: any) => (
 
-                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-100" : ""} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
+                                    <div key={i} className={`w-[80%] space-x-2  ml-auto flex justify-between items-center ${firstFilterChild.id == item.id ? "bg-blue-200" : ""} hover:bg-blue-200 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilterChild(firstFilterChild.id == 0 && firstFilter.id == 5 ? item : { id: 0, name: "" })}>
                                         <div className="flex gap-2 items-center">
                                             <CircleIcon strokeWidth={1} className="w-3 h-3 text-green-500" />
                                             <div className="text-sm">{item.name}</div>
