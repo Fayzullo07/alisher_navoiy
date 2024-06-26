@@ -17,8 +17,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 
-
-const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in }) => {
+const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in }) => {
 
     const { data: dataNextPrev } = useQuery({
         queryKey: ["gazal_next_prev", current, genre_detail_number],
@@ -28,7 +27,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
     });
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["genres_id", gazal_id.id, setGazal_id],
+        queryKey: ["genres_id", gazal_id.id],
         queryFn: async () => {
             return await genresGetOneAPI({ id: gazal_id.id });
         }
@@ -58,11 +57,11 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                             {!isLoading && (
                                 <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                     {data?.data?.lines.map((item: any, i: any) =>
-                                        <div key={i}>
+                                        <div key={item.id}>
                                             {item.text.split(" ").map((item_in: any, i: any) => (
                                                 <>
                                                     <span className="hidden md:inline-block">
-                                                        <HoverCard key={i} >
+                                                        <HoverCard >
                                                             <HoverCardTrigger>
                                                                 <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </HoverCardTrigger>
@@ -155,7 +154,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
             )}
 
             {/* Ibora and Maqol and She'riy San'at */}
-            {firstFilter.id == 3 || firstFilter.id == 4 || firstFilter.id == 5 && (
+            {firstFilter.id != 0 && (
                 <div className="h-fit bg-white rounded-2xl text-center py-2 " >
                     <div className="text-xl font-semibold py-1 pb-2">{data?.data?.genre_detail_number} - {data?.data?.genre_name}</div>
                     <div>
@@ -164,12 +163,11 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                             {!isLoading && (
                                 <div className="text-sm  leading-7 space-y-1 overflow-auto">
                                     {data?.data?.lines.map((item: any, i: any) =>
-                                        <div key={i} className={`${i + 1 == gazal_id.byte * 2 || i + 1 == gazal_id.byte * 2 - 1 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
+                                        <div key={item.id} className={`${i + 1 == gazal_id.byte * 2 || i + 1 == gazal_id.byte * 2 - 1 ? "bg-yellow-200 w-fit mx-auto rounded-full" : ""} `}>
                                             {item.text.split(" ").map((item_in: any, i: any) => (
                                                 <>
                                                     <span className="hidden md:inline-block">
-
-                                                        <HoverCard key={i} >
+                                                        <HoverCard >
                                                             <HoverCardTrigger>
                                                                 <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </HoverCardTrigger>
@@ -203,7 +201,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                         </ScrollArea>
                         <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
                             <div>
-                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && (
+                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
                                         <MoveLeftIcon className="w-4 h-4" />
                                     </div>
@@ -245,12 +243,12 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                                 </div>
                             )}
                             <div>
-                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && (
+                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && firstFilter.id != 0 && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
                                 )}
-                                {isLoading && genre_detail_number != "" && (
+                                {isLoading && genre_detail_number != "" && firstFilter.id != 0 && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
@@ -260,6 +258,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, setCurrent, firstFilter, genre_
                     </div>
                 </div>
             )}
+
         </>
     )
 }

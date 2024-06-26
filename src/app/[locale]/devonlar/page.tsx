@@ -101,7 +101,6 @@ const Devonlar = () => {
                                     gazal_id={gazal_id}
                                     setGazal_id={setGazal_id}
                                     current={current}
-                                    setCurrent={setCurrent}
                                     firstFilter={firstFilter}
                                     genre_detail_number={genre_detail_number}
                                     auditory_age__in={auditory_age__in}
