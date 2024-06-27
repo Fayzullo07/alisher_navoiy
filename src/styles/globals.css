@@ -182,7 +182,7 @@ input[type=number] {
 
 /*  */
 .img-background-horizontal {
-  background-image: url("../../public/Header-bg.gif");
+  background-image: url("../../public/hero.png");
   object-fit: 100%;
   background-repeat: no-repeat;
   background-size: 105vw auto;
@@ -190,7 +190,7 @@ input[type=number] {
   height: 90vh;
   width: 99.5vw;
   border: 2px solid black;
-  /* animation: horizontalMove 30s infinite; */
+  animation: horizontalMove 30s infinite;
   animation-timing-function: ease;
 }
 
@@ -202,7 +202,7 @@ input[type=number] {
   background-position: 0% 0%;
   width: 99.5vw;
   /* height: 100%; */
-  animation: horizontalMove 30s infinite;
+  animation: horizontalMove 3s infinite;
   animation-timing-function: ease;
 }
 
@@ -218,99 +218,4 @@ input[type=number] {
   100% {
     background-position: 0% 0%;
   }
-}
-
-
-/* News */
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Quattrocento);
-
-.snip1360 {
-  font-family: 'Quattrocento', Arial, sans-serif;
-  position: relative;
-  overflow: hidden;
-  /* margin: 10px; */
-  min-width: 100%;
-  max-width: 100%;
-  width: 100%;
-  color: #141414;
-  text-align: left;
-  line-height: 1.4em;
-  font-size: 16px;
-  background-color: #ffffff;
-}
-
-.snip1360 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-}
-
-.snip1360 img {
-  max-width: 100%;
-  vertical-align: top;
-}
-
-.snip1360 figcaption {
-  width: 100%;
-  background-color: #ffffff;
-  padding: 10px 25px 55px;
-  position: relative;
-}
-
-.snip1360:hover figcaption {
-  background-color: rgba(0, 0, 255, 0.226);
-}
-
-.snip1360 figcaption:before {
-  position: absolute;
-  content: '';
-  z-index: 2;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
-  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
-}
-
-.snip1360:hover figcaption:before {
-  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 255, 0.226) 100%);
-}
-
-.snip1360 figcaption a {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  background-color: #cccccc;
-  color: #000000;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-
-.snip1360 figcaption a:hover {
-  opacity: 1;
-}
-
-.snip1360 h2 {
-  margin: 0 0 10px;
-  font-weight: 300;
-  font-size: 1.5em;
-  line-height: 1.2em;
-  font-family: 'Oswald', Arial, sans-serif;
-  text-transform: uppercase;
-}
-
-.snip1360 p {
-  margin: 0 0 10px;
-  font-size: 0.9em;
-  letter-spacing: 1px;
-  opacity: 0.9;
 }
