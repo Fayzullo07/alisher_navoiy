@@ -1,5 +1,5 @@
 "use client"
-import { ArrowUpRightIcon } from "lucide-react";
+import { ArrowUpRightIcon, CalendarClockIcon, CalendarFoldIcon } from "lucide-react";
 
 import Container from "./Core/Container";
 import Title from "./Core/Title";
@@ -13,6 +13,7 @@ import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 import AutoScroll from "embla-carousel-auto-scroll"
 import { useRef } from "react";
+import { NewsList } from "@/app/[locale]/news/page";
 
 const AboutPage = () => {
     const locale = useLocale();
@@ -102,12 +103,31 @@ const Devons = () => {
                                             </div>
                                         </Link>
                                         <div className="p-1.5 md:p-3">
-                                            <div className="text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
-                                            <p className="min-h-12 md:min-h-16 text-xs md:text-sm  text-gray-500">
-                                                {item.desc}
-                                                <br />
-                                                {item.from_year}-{item.to_year}-yillar
-                                            </p>
+                                            <div className="flex flex-between items-center relative">
+
+                                                <div className="w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className=" absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                                    {item.counts} ta
+                                                </div>
+                                            </div>
+                                            <div className="h-20 md:h-28 text-xs md:text-sm  text-gray-500 flex flex-col">
+                                                <div className="flex-grow">
+
+                                                    {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
+                                                </div>
+
+                                                <span className="flex items-center">
+
+                                                    <CalendarClockIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                </span>
+                                                <span className="flex items-center mb-1">
+
+                                                    <CalendarFoldIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                </span>
+
+                                            </div>
                                             <Link href={item.pdf_file} target="_blank">
                                                 <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
                                             </Link>
@@ -135,6 +155,13 @@ const Home = () => {
             <div className="bg-image-flower">
 
                 <Container>
+                    <div className="">
+
+                        <Title title="Yangiliklar" />
+                        <div>
+                            <NewsList search="" />
+                        </div>
+                    </div>
                     <div className="">
 
                         <Title title="Devonlar" />
