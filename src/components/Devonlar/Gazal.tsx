@@ -71,7 +71,8 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <HoverCardTrigger>
                                                                 <span
                                                                     style={{ whiteSpace: "pre-line" }}
-                                                                    dangerouslySetInnerHTML={{ __html: item_in }} className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
+                                                                    dangerouslySetInnerHTML={{ __html: item_in }}
+                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
                                                             </HoverCardTrigger>
                                                             <HoverCardContent className="p-2 px-4 w-fit">
                                                                 <div>
@@ -84,7 +85,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                     <span className="inline-block md:hidden">
                                                         <Popover>
                                                             <PopoverTrigger>
-                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                                <span
+                                                                    style={{ whiteSpace: "pre-line" }}
+                                                                    dangerouslySetInnerHTML={{ __html: item_in }}
+                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </PopoverTrigger>
                                                             <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
@@ -190,7 +194,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                     <span className="hidden md:inline-block">
                                                         <HoverCard >
                                                             <HoverCardTrigger>
-                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                                <span
+                                                                    style={{ whiteSpace: "pre-line" }}
+                                                                    dangerouslySetInnerHTML={{ __html: item_in }}
+                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </HoverCardTrigger>
                                                             <HoverCardContent className="p-2 px-4 w-fit">
                                                                 <div>
@@ -203,7 +210,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                     <span className="inline-block md:hidden">
                                                         <Popover>
                                                             <PopoverTrigger>
-                                                                <span className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
+                                                                <span
+                                                                    style={{ whiteSpace: "pre-line" }}
+                                                                    dangerouslySetInnerHTML={{ __html: item_in }}
+                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer">{item_in}</span>
                                                             </PopoverTrigger>
                                                             <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
