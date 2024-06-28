@@ -38,7 +38,8 @@ const nextConfig = {
       "nojhanco.ir",
       "cdn.filestackcontent.com",
       "source.unsplash.com",
-      "biryuzikki.uz"
+      "biryuzikki.uz",
+      "api.biryuzikki.uz"
     ],
   },
 };

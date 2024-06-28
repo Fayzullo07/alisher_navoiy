@@ -141,14 +141,21 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
 }
 
 const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in, genre_detail_number, setGenre_detail_number }) => {
-
     const [countPage, setCountPage] = useState(1);
     const [isInitialized, setIsInitialized] = useState(false);
 
     const { data, isLoading } = useQuery({
         queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in, firstFilterChild.id],
         queryFn: async () => {
-            return await devonsGetApi({ genre_detail_number, page: current, devan_id: devan_id.id, genre_id: genre_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in, text_type_id__in, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id });
+            return await devonsGetApi({
+                genre_detail_number, page: current,
+                devan_id: devan_id.id,
+                genre_id: genre_id.id,
+                search, second: firstFilter.id == 0 ? "" : firstFilter.id,
+                auditory_age__in, text_type_id__in,
+                poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id,
+                page_size: firstFilter.id == 3 || firstFilter.id == 4 || firstFilter.id == 5 ? 5 : 10
+            });
         }
     });
 
@@ -370,7 +377,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[560px] md:h-[580px]">
+                    <div className="h-[400px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -384,17 +391,16 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i}>
                                 <div className=" hidden md:block">
-
                                     <div
-                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
-                                        onClick={() => setGazal_id(item)}
+                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-28 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                        onClick={() => { setGazal_id({ ...item, index: i }) }}
                                     >
                                         <div className="w-full">
 
                                             <div className="flex gap-1 items-start text-xs md:text-sm">
                                                 <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
                                                 <div className="flex flex-wrap">
-                                                    {item.text}{""}
+                                                    {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                 </div>
                                             </div>
                                             <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -405,7 +411,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className=" block md:hidden">
                                     <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
                                         <div
-                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
                                         >
                                             <div className="w-full">
@@ -413,7 +419,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                                 <div className="flex gap-1 items-start text-xs md:text-sm">
                                                     <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
                                                     <div className="flex flex-wrap">
-                                                        {item.text}{""}
+                                                        {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                     </div>
                                                 </div>
                                                 <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -427,7 +433,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     </div>
 
                     <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
-                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} defaultPageSize={5} />
                     </div>
                 </div>
             )}
@@ -464,7 +470,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[620px] md:h-[650px]">
+                    <div className="h-[400px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -478,17 +484,15 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i}>
                                 <div className=" hidden md:block">
-
                                     <div
-                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
-                                        onClick={() => setGazal_id({ ...item, index: i })}
+                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-28 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                        onClick={() => { setGazal_id({ ...item, index: i }) }}
                                     >
                                         <div className="w-full">
-
                                             <div className="flex gap-1 items-start text-xs md:text-sm">
-                                                <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
+                                                <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 5}.</span>
                                                 <div className="flex flex-wrap">
-                                                    {item.text}{""}
+                                                    {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                 </div>
                                             </div>
                                             <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -499,15 +503,15 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className=" block md:hidden">
                                     <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
                                         <div
-                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
                                         >
                                             <div className="w-full">
 
                                                 <div className="flex gap-1 items-start text-xs md:text-sm">
-                                                    <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
+                                                    <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 5}.</span>
                                                     <div className="flex flex-wrap">
-                                                        {item.text}{""}
+                                                        {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                     </div>
                                                 </div>
                                                 <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -521,10 +525,8 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                     </div>
 
                     <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
-                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} defaultPageSize={5} />
                     </div>
-
-
                 </div>
             )}
 
@@ -560,7 +562,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[560px] md:h-[580px]">
+                    <div className="h-[400px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -574,22 +576,16 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         {data?.data?.main?.results.map((item: any, i: any) => (
                             <div key={i}>
                                 <div className=" hidden md:block">
-
                                     <div
-                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
-                                        onClick={() => {
-                                            console.log(item);
-
-                                            setGazal_id({ ...item, index: i })
-
-                                        }}
+                                        className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-28 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                        onClick={() => { setGazal_id({ ...item, index: i }) }}
                                     >
                                         <div className="w-full">
 
                                             <div className="flex gap-1 items-start text-xs md:text-sm">
-                                                <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
+                                                <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 5}.</span>
                                                 <div className="flex flex-wrap">
-                                                    {item.text}{""}
+                                                    {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                 </div>
                                             </div>
                                             <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -600,7 +596,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className=" block md:hidden">
                                     <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
                                         <div
-                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
                                         >
                                             <div className="w-full">
@@ -608,7 +604,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                                 <div className="flex gap-1 items-start text-xs md:text-sm">
                                                     <span>{current <= 1 ? i + 1 : i + 1 + (current - 1) * 10}.</span>
                                                     <div className="flex flex-wrap">
-                                                        {item.text}{""}
+                                                        {item.text.length > 255 ? item.text.substring(0, 255) + "..." : item.text}{""}
                                                     </div>
                                                 </div>
                                                 <div className=" text-end text-sm text-gray-400 ml-1 ">({item.number} - {item.genre_name}, {item.byte} - bayt)</div>
@@ -621,8 +617,8 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                         ))}
                     </div>
 
-                    <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
-                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
+                    <div className={` text-center mt-3 my-2 ${countPage > 4 ? "" : "hidden"} `}>
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} defaultPageSize={5} />
                     </div>
                 </div>
             )}

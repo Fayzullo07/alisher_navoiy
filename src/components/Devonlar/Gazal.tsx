@@ -140,7 +140,6 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                         ))}
                                     </Modal>
 
-
                                     <Modal title="Nasri bayoni" button={
                                         <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Nasriy bayoni"}</div>
                                     } >

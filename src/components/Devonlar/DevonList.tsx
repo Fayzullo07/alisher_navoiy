@@ -75,7 +75,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                         <div className="p-1.5 md:p-3">
                                             <div className="flex flex-between items-center relative">
 
-                                                <div className="w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className="w-[85%]  text-xs md:text-base font-semibold text-gray-700">{item.name}</div>
                                                 <div className=" absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
                                                     {item.counts} ta
                                                 </div>

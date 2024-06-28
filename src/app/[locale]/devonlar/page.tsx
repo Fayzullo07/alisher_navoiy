@@ -103,7 +103,7 @@ const Devonlar = () => {
 
                             {/* Deteil */}
                             <div className="hidden lg:block">
-                                {gazal_id.id && <Gazal
+                                {/* {gazal_id.id && <Gazal
                                     gazal_id={gazal_id}
                                     setGazal_id={setGazal_id}
                                     current={current}
@@ -112,7 +112,7 @@ const Devonlar = () => {
                                     auditory_age__in={auditory_age__in}
                                     text_type_id__in={text_type_id__in}
                                     search={search}
-                                />}
+                                />} */}
                             </div>
                         </div>
                     </div>
