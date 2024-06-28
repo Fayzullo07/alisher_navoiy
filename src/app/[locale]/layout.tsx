@@ -12,6 +12,18 @@ import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+// Default theme
+import '@splidejs/react-splide/css';
+
+
+// or other themes
+import '@splidejs/react-splide/css/skyblue';
+import '@splidejs/react-splide/css/sea-green';
+
+
+// or only core styles
+import '@splidejs/react-splide/css/core';
+
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 import Provider from "@/utils/Provider";

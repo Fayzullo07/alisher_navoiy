@@ -52,10 +52,11 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                 </Carousel>
             )}
             <Carousel
+                
                 className={`w-full md:w-[95%] mx-auto `}>
                 <CarouselContent>
                     {dataDevons.map((item: any, index: any) => (
-                        <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
+                        <CarouselItem key={index} className="px-2  md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
@@ -90,11 +91,11 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                                 </div>
 
                                                 <span className="flex items-center text-[10px] md:text-xs">
-                                                    <CalendarClockIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    <CalendarClockIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                     {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
                                                 </span>
                                                 <span className="flex items-center mb-1 text-[10px] md:text-xs">
-                                                    <CalendarFoldIcon className="w-4 h-4 text-gray-400 mr-1" />
+                                                    <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                     {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
                                                 </span>
 

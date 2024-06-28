@@ -6,12 +6,21 @@ const Hero = () => {
     return (
         <div>
             {/* Desktop */}
-            <div className={`hidden md:block h-screen img-background-horizontal`}>
+            <div className={`hidden md:block h-screen img-background-horizontal pt-20`}>
                 <Container>
-                    <div className="flex justify-center items-center h-screen">
-                        <div className="font-bold text-9xl text-white font-serif">
-                            <h1>Alisher</h1>
-                            <h1>Navoiy</h1>
+                    <div className="flex justify-center items-center pt-20">
+                        <div className="font-bold  text-white font-serif">
+                            <h1 className="text-9xl">Alisher Navoiy</h1>
+                            <p className=" text-center text-xl">Mualliflik korpusi</p>
+                        </div>
+                        <div className="absolute bottom-0   flex justify-center items-center w-[40%]">
+                            <Image
+                                src={"/hero_png_1.png"}
+                                width={0}
+                                height={0}
+                                sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                                alt="Image"
+                            />
                         </div>
                     </div>
                 </Container>

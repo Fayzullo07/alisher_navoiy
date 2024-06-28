@@ -244,7 +244,7 @@ const Asarlar = () => {
     };
 
     return (
-        <div className="bg-image-flower min-h-screen ">
+        <div className="bg-image-flower min-h-screen pt-20 ">
 
 
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">

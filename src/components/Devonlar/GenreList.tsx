@@ -3,6 +3,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, auditory_age__in, text_type_id__in, genre_detail_number }) => {
     const [isInitialized, setIsInitialized] = useState(false);
@@ -49,7 +50,38 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                     </CarouselContent>
                 </Carousel>
             )}
-            <Carousel
+            <ScrollArea className="w-full whitespace-nowrap rounded-md">
+                <div className="flex w-max gap-1 md:gap-2 space-x-4 p-4">
+                    {dataGenres.map((item: any, index: any) => (
+                        <div key={index} className="w-auto md:w-40" onClick={() => setGenreId(item)}>
+                            <div className="py-2">
+                                <div className=" cursor-pointer hover:scale-105 duration-300">
+                                    <div className="relative">
+                                        <div className="h-16 lg:h-20" >
+                                            <Image
+                                                src={`${item.id == genre_id?.id ? "/item-active.png" : "/item-disactive.png"}`}
+                                                width={50}
+                                                height={50}
+                                                className={`${item.id == genre_id?.id && "scale-105"}`}
+                                                sizes="100vw"
+                                                style={{ width: '100%', height: '100%' }} // optional
+                                                alt="Image"
+                                            />
+                                        </div>
+                                        <div className="absolute top-2.5 lg:top-2.5 right-0 left-0 text-center">
+                                            <div className="text-sm 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
+                                            <div className="text-[8px] md:text-xs text-green-600 px-1 py-0.5 md:px-2 md:py-1 rounded-full bg-green-100 inline-block">{item.counts} ta</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+
+            {/* <Carousel
                 className="w-full">
                 <CarouselContent>
                     {dataGenres.map((item: any, index: any) => (
@@ -78,7 +110,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-            </Carousel>
+            </Carousel> */}
         </>
     )
 }

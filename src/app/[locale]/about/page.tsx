@@ -46,7 +46,7 @@ const AboutPage = () => {
 const About = () => {
     const locale = useLocale();
     return (
-        <div className="pb-5 min-h-screen bg-image-flower">
+        <div className="pb-5 min-h-screen bg-image-flower pt-20">
             <Container>
                 <div className="flex items-center justify-center">
                     <Title title="Korpus haqida" />

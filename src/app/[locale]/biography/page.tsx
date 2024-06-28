@@ -12,7 +12,7 @@ const Biography = () => {
         }
     });
     return (
-        <div className=" bg-image-flower">
+        <div className=" bg-image-flower min-h-screen">
             <div className=" h-[20vh] md:h-[34vh] lg:h-[70vh] relative border" style={{
                 backgroundImage: `url(/biography.png)`,
                 backgroundRepeat: 'no-repeat',

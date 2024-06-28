@@ -32,7 +32,7 @@ const Devonlar = () => {
     }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number, current, auditory_age__in, text_type_id__in]);
 
     return (
-        <div className="pb-5 bg-image-flower min-h-screen">
+        <div className="pb-5 bg-image-flower min-h-screen pt-20">
             <Container>
                 {/* Devonlar */}
                 <div>

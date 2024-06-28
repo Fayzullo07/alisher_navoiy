@@ -13,6 +13,9 @@ import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 import AutoScroll from "embla-carousel-auto-scroll"
 import { useRef } from "react";
+import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 const NewsList = () => {
     const locale = useLocale();
@@ -26,46 +29,56 @@ const NewsList = () => {
     if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-            {data?.data?.results.map((item: any, i: any) => (
-                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
-                    <div className=" overflow-hidden h-80 w-full">
-                        <Image
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover object-center w-full h-48 hover:scale-110 duration-300"
-                            style={{ width: '100%', height: '100%' }}
-                            src={item.main_image} alt="News"
-                        />
-                    </div>
-                    <div className="flex flex-grow">
-                        <div className="triangle"></div>
-                        <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 w-full">
-                            <div>
-                                <p
-                                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
-                                    {item.published_at}
-                                </p>
-                                <p
-                                    className="block mb-4 text-xl font-black leading-tight ">
-                                    {item.title}
-                                </p>
-                                <p className="mb-4">
-                                    {item.authors}
-                                </p>
-                            </div>
-                            <div>
-                                <Link href={`/${locale}/news/${item.id}`}
-                                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
-                                    More -{">"}
+        <>
+            {data.data.results.length != 0 && (
+                <>
+                    <Title title="Yangiliklar" />
+                    <div>
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+                            {data?.data?.results.map((item: any, i: any) => (
+                                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
+                                    <div className=" overflow-hidden h-80 w-full">
+                                        <Image
+                                            width={0}
+                                            height={0}
+                                            sizes="100vw"
+                                            className="object-cover object-center w-full h-48 hover:scale-110 duration-300"
+                                            style={{ width: '100%', height: '100%' }}
+                                            src={item.main_image} alt="News"
+                                        />
+                                    </div>
+                                    <div className="flex flex-grow">
+                                        <div className="triangle"></div>
+                                        <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 w-full">
+                                            <div>
+                                                <p
+                                                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
+                                                    {item.published_at}
+                                                </p>
+                                                <p
+                                                    className="block mb-4 text-xl font-black leading-tight ">
+                                                    {item.title}
+                                                </p>
+                                                <p className="mb-4">
+                                                    {item.authors}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <Link href={`/${locale}/news/${item.id}`}
+                                                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
+                                                    More -{">"}
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </Link>
-                            </div>
+                            ))}
                         </div>
                     </div>
-                </Link>
-            ))}
-        </div>
+                </>
+            )}
+        </>
+
     )
 
 };
@@ -84,21 +97,28 @@ const AboutPage = () => {
 
     return (
         <>
-            {data?.data?.results.map((item: any, i: number) => (
-                <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300">
-                    <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
-                        <div className="flex justify-between items-center pb-1.5">
-                            <div className="text-lg font-semibold">{item.question}?</div>
-                            <div className="text-base rounded-full p-1 text-center bg-white">
-                                <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
-                            </div>
-                        </div>
-                        <div className="text-sm font-normal text-gray-500 ">
-                            {item.short_answer.length > 100 ? item.short_answer.substring(0, 100) + "..." : item.short_answer}
-                        </div>
+            {data?.data?.results.length != 0 && (
+                <>
+                    <Title title="Korpus haqida" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {data?.data?.results.map((item: any, i: number) => (
+                            <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300">
+                                <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
+                                    <div className="flex justify-between items-center pb-1.5">
+                                        <div className="text-lg font-semibold">{item.question}?</div>
+                                        <div className="text-base rounded-full p-1 text-center bg-white">
+                                            <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
+                                        </div>
+                                    </div>
+                                    <div className="text-sm font-normal text-gray-500 ">
+                                        {item.short_answer.length > 100 ? item.short_answer.substring(0, 100) + "..." : item.short_answer}
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
-                </Link>
-            ))}
+                </>
+            )}
         </>
     )
 }
@@ -133,7 +153,67 @@ const Devons = () => {
                     </CarouselContent>
                 </Carousel>
             )}
-            <Carousel
+            <ScrollArea className="w-full whitespace-nowrap rounded-md">
+                <div className="flex w-max gap-2 md:gap-4 space-x-4 p-4">
+                    {data?.data.devans.map((item: any, index: any) => (
+                        <div key={index} className=" w-56 md:w-64">
+                            <div className="py-2">
+                                <div className=" cursor-pointer hover:scale-105 duration-300">
+                                    <div className={`bg-white rounded-2xl overflow-hidden`}>
+                                        <Link href={item.image} target="_blank">
+                                            <div className="w-full h-28 md:h-40 bg-gray-200 relative">
+                                                <Image
+                                                    src={item.image}
+                                                    width={0}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }} // optional
+                                                    alt="Image"
+                                                />
+                                                <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
+                                                    {item.counts} ta
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        <div className="p-1.5 md:p-3">
+                                            <div className="flex flex-between items-center relative">
+
+                                                <div className="w-full md:w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className=" hidden md:block absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                                    {item.counts} ta
+                                                </div>
+                                            </div>
+                                            <div className="h-20 md:h-28 text-gray-500 flex flex-col">
+                                                <div className="flex-grow text-[10px] md:text-sm  text-wrap">
+                                                    {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
+                                                </div>
+
+                                                <span className="flex items-center text-[10px] md:text-xs">
+                                                    <CalendarClockIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                </span>
+                                                <span className="flex items-center mb-1 text-[10px] md:text-xs">
+                                                    <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                </span>
+
+                                            </div>
+                                            <Link href={item.pdf_file} target="_blank">
+                                                <button className={`bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+
+
+            {/* <Carousel
                 plugins={[plugin2.current]}
                 onMouseEnter={plugin2.current.stop}
                 onMouseLeave={plugin2.current.play}
@@ -194,7 +274,7 @@ const Devons = () => {
                     ))}
                 </CarouselContent>
 
-            </Carousel>
+            </Carousel> */}
 
         </>
     )
@@ -211,11 +291,7 @@ const Home = () => {
 
                 <Container>
                     <div className="">
-
-                        <Title title="Yangiliklar" />
-                        <div>
-                            <NewsList />
-                        </div>
+                        <NewsList />
                     </div>
                     <div className="">
 
@@ -226,10 +302,7 @@ const Home = () => {
                     </div>
 
                     <div>
-                        <Title title="Korpus haqida" />
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <AboutPage />
-                        </div>
+                        <AboutPage />
                     </div>
 
                     <div className="py-5 pb-10">
