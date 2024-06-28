@@ -1,7 +1,6 @@
 import { devonsGetApi } from "@/api/AdminRequest";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useQuery } from "@tanstack/react-query";
-import { set } from "date-fns";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -28,8 +27,6 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
         }
     }, [data])
 
-
-
     useEffect(() => {
         if (!isInitialized && data && data.data && data.data.genres) {
             setDataGenres(data.data.genres);
@@ -41,7 +38,6 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
     return (
         <>
             {!isInitialized && (
-
                 <Carousel
                     className="w-full">
                     <CarouselContent>
@@ -61,18 +57,18 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">
-                                        <div className=" h-16 lg:h-20 " >
+                                        <div className="h-16 lg:h-20" >
                                             <Image
-                                                src={`${item.name == genre_id?.name ? "/item-active.png" : "/item-disactive.png"}`}
+                                                src={`${item.id == genre_id?.id ? "/item-active.png" : "/item-disactive.png"}`}
                                                 width={50}
                                                 height={50}
-                                                className={`${item.name == genre_id?.name && "scale-105"}`}
+                                                className={`${item.id == genre_id?.id && "scale-105"}`}
                                                 sizes="100vw"
                                                 style={{ width: '100%', height: '100%' }} // optional
                                                 alt="Image"
                                             />
                                         </div>
-                                        <div className=" absolute top-2.5 lg:top-2.5 right-0 left-0 text-center">
+                                        <div className="absolute top-2.5 lg:top-2.5 right-0 left-0 text-center">
                                             <div className="text-sm 2xl:text-lg xl:text-base lg:text-sm md:text-base font-medium text-gray-700  text-center capitalize">{item.name}</div>
                                             <div className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100 inline-block">{item.counts} ta</div>
                                         </div>

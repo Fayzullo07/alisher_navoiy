@@ -41,7 +41,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                         <div className={`flex justify-between items-center ${firstFilter.id != 0 ? "" : "bg-blue-100"} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter({ id: 0, name: "" })}>
                             <div className="flex gap-2 items-center">
                                 <ScrollTextIcon strokeWidth={1} className="w-5 h-5" />
-                                <div className="text-base">{genre_id?.name}</div>
+                                <div className="text-base capitalize">{genre_id?.name}</div>
                             </div>
                             <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts} ta</span>
                         </div>

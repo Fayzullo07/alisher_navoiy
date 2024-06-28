@@ -59,40 +59,41 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
-                                        {/* <Link href={item.image} target="_blank"> */}
-                                        <div className="w-full h-32 md:h-40 bg-gray-200">
-                                            <Image
-                                                src={item.image}
-                                                width={0}
-                                                height={0}
-                                                // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                sizes="100vw"
-                                                style={{ width: '100%', height: '100%' }} // optional
-                                                alt="Image"
-                                            />
-                                        </div>
-                                        {/* </Link> */}
-                                        <div className="p-1.5 md:p-3">
-                                            <div className="flex flex-between items-center relative">
-
-                                                <div className="w-[85%]  text-xs md:text-base font-semibold text-gray-700">{item.name}</div>
-                                                <div className=" absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                        <Link href={item.image} target="_blank">
+                                            <div className="w-full h-28 md:h-40 bg-gray-200 relative">
+                                                <Image
+                                                    src={item.image}
+                                                    width={0}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }} // optional
+                                                    alt="Image"
+                                                />
+                                                <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
                                                     {item.counts} ta
                                                 </div>
                                             </div>
-                                            <div className="h-20 md:h-28 text-xs md:text-sm  text-gray-500 flex flex-col">
-                                                <div className="flex-grow">
+                                        </Link>
+                                        <div className="p-1.5 md:p-3">
+                                            <div className="flex flex-between items-center relative">
+
+                                                <div className="w-full md:w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
+                                                <div className=" hidden md:block absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
+                                                    {item.counts} ta
+                                                </div>
+                                            </div>
+                                            <div className="h-20 md:h-28 text-gray-500 flex flex-col">
+                                                <div className="flex-grow text-[10px] md:text-sm">
 
                                                     {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
                                                 </div>
 
-                                                <span className="flex items-center">
-
+                                                <span className="flex items-center text-[10px] md:text-xs">
                                                     <CalendarClockIcon className="w-4 h-4 text-gray-400 mr-1" />
                                                     {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
                                                 </span>
-                                                <span className="flex items-center mb-1">
-
+                                                <span className="flex items-center mb-1 text-[10px] md:text-xs">
                                                     <CalendarFoldIcon className="w-4 h-4 text-gray-400 mr-1" />
                                                     {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
                                                 </span>
