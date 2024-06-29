@@ -2,9 +2,14 @@ import axios from "axios";
 const URL = process.env.NEXT_PUBLIC_BACKEND_API;
 const API = axios.create({ baseURL: URL });
 
+// -----------------------------------------WORKERS-----------------------------
+// GET
+export const workersGetApi = async () => API.get(`/general/workers`);
+
 // -----------------------------------------FILTERS-----------------------------
 // GET
 export const filtersGetApi = async () => API.get(`/general/filters`);
+
 
 // -----------------------------------------DEVONS-----------------------------
 // GET
@@ -23,7 +28,7 @@ export const genresGetOneAPI = async ({ id = "", search = "" }: { id: any, searc
 
 // -----------------------------------------NEWS-----------------------------
 // GET
-export const newsGetApi = async ({ search = "" }) => API.get(`/news/?search=${search}`);
+export const newsGetApi = async ({ search = "", page_size = 1, page = 1 }) => API.get(`/news/?search=${search}&page=${page}&page_size=${page_size}`);
 
 // GET BY ID
 export const newsGetOneAPI = async ({ id = "" }: { id: any }) =>

@@ -268,12 +268,10 @@ const Asarlar = () => {
                             <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-[50%]">
                                 <SearchIcon strokeWidth={1} size={20} />
                                 <input value={search} onChange={(e) => {
-                                    if (/[a-zA-Z]/.test(e.target.value)) {
-                                        return
-                                    }
+                                    
                                     setCurrent(1);
                                     setSearch(e.target.value)
-                                }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                                }} type="text" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                             </div>
                             <div className=" items-center gap-2 hidden md:flex">
                                 {/* Filter Desktop */}

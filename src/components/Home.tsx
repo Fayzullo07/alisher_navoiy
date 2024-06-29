@@ -156,7 +156,7 @@ const Devons = () => {
             <ScrollArea className="w-full whitespace-nowrap rounded-md">
                 <div className="flex w-max gap-2 md:gap-4 space-x-4 p-4">
                     {data?.data.devans.map((item: any, index: any) => (
-                        <div key={index} className=" w-56 md:w-64">
+                        <div key={index} className=" w-44 md:w-64">
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`bg-white rounded-2xl overflow-hidden`}>

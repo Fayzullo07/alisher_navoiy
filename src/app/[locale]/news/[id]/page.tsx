@@ -21,7 +21,7 @@ const New = () => {
     if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
-        <div className="bg-image-flower min-h-screen py-5">
+        <div className="bg-image-flower min-h-screen py-5 pt-20">
             <div className="mx-auto xl:w-[65vw] lg:w-[85vw] md:w-[95vw]  max-w-full px-4 sm:px-6 lg:px-8">
                 <div className=" bg-white rounded overflow-hidden flex flex-col mx-auto">
                     <div className="flex items-center justify-start p-5  ">
