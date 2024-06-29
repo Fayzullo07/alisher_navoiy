@@ -108,7 +108,7 @@ const Navbar = () => {
                                                     </SheetClose>
                                                 </li>
                                             ))}
-                                            <div className="block md:hidden w-full">
+                                            <div className="block md:hidden text-end w-full">
 
                                                 <LocalSwitcher />
                                             </div>

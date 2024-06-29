@@ -30,7 +30,7 @@ const LocalSwitcher = () => {
     return (
         <DropdownMenu >
             <DropdownMenuTrigger asChild className=" z-[99999]">
-                <Button variant="ghost" size="icon" disabled={isPending} className="w-full px-1 md:px-2 shadow md:shadow-none" >
+                <Button variant="ghost" size="icon" disabled={isPending} className=" px-1 md:px-2 shadow md:shadow-none" >
                     <div className=" hidden md:block">
 
                         <Image
@@ -41,7 +41,7 @@ const LocalSwitcher = () => {
                         />
                     </div>
 
-                    <div className=" block md:hidden w-full">
+                    <div className=" block md:hidden ">
                         <div className="flex justify-between items-center ">
 
                             <Image
@@ -51,7 +51,7 @@ const LocalSwitcher = () => {
                                 alt="Image"
                             />
 
-                            <ChevronRightIcon className="w-5 h-5 text-gray-400" />
+                            {/* <ChevronRightIcon className="w-5 h-5 text-gray-400" /> */}
                         </div>
                     </div>
 
