@@ -34,23 +34,39 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
     });
     if (isError) return <div>Xatolik yuz berdi...</div>;
 
-    function getExplanation(searchWord) {
+    function filterString(input, allowedChars) {
+        // Create a regex pattern to match any character not in the allowed characters
+        let regexPattern = new RegExp(
+            `[^a-zA-Z${allowedChars.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&")}]`,
+            "g"
+        );
+
+        // Replace all characters not in the allowed characters with an empty string
+        return input.replace(regexPattern, "");
+    }
+
+    function getExplanation(searchWord, id) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = searchWord;
         const cleanedText = tempDiv.textContent || tempDiv.innerText || '';
 
         // So'zlarni birlashtirish
         searchWord = cleanedText.replace(/\s+/g, '');
-        searchWord = searchWord.replace(/[.,?!"]/g, '');
-        const result = data.data.word_explanations.find(entry => entry.word === searchWord.toLowerCase());
+
+        // Example usage
+        let allowedChars = "’‘"; // Characters you want to keep (in this case, just the apostrophe)
+        searchWord = filterString(searchWord, allowedChars);
+
+        // searchWord = searchWord.replace(/[.,?!"]/g, '');
+        const result = data.data.word_explanations.find(entry => entry.word.toLowerCase() === searchWord.toLowerCase() && entry.genre_detail_line == id);
         return result ? result.explanation : 'Kiritilmagan';
     }
 
     function getNextPrev(number) {
         const result = dataNextPrev.data.main.results.find(entry => entry.number == number);
         setGazal_id(result);
-
     }
+
     return (
         <>
             {/* G'azallar */}
@@ -77,7 +93,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <HoverCardContent className="p-2 px-4 w-fit">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span>{getExplanation(item_in)}</span>
+                                                                    <span>{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </HoverCardContent>
                                                         </HoverCard>
@@ -93,7 +109,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span className="text-sm">{getExplanation(item_in)}</span>
+                                                                    <span className="text-sm">{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>
@@ -201,7 +217,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <HoverCardContent className="p-2 px-4 w-fit">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span>{getExplanation(item_in)}</span>
+                                                                    <span>{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </HoverCardContent>
                                                         </HoverCard>
@@ -217,7 +233,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <PopoverContent className="p-1 px-2 w-fit">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span className="text-sm">{getExplanation(item_in)}</span>
+                                                                    <span className="text-sm">{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>

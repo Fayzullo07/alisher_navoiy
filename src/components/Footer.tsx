@@ -1,8 +1,11 @@
 "use client"
+import Link from "next/link";
 import Container from "./Core/Container";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 
 const Footer = () => {
+    const locale = useLocale();
 
     return (
         <div className={`bg-white py-6`}>
@@ -22,11 +25,24 @@ const Footer = () => {
                         <div>
                             <h2 className="text-base md:text-xl font-semibold py-2">Runklar</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
-                                <div>Tarjimayi hol</div>
-                                <div>Devonlar</div>
-                                <div>Asarlar</div>
-                                <div>Ilmiy tadqiqotlar</div>
-                                <div>Korpus haqida</div>
+                                <div>
+                                    <Link href={`/${locale}/biography`} className="text-maincolor">Tarjimayi hol</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/devonlar`} className="text-maincolor">Devonlar</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/asarlar`} className="text-maincolor">Asarlar</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/tadqiqotlar`} className="text-maincolor">Ilmiy tadqiqotlar</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/news`} className="text-maincolor">Yangiliklar</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">Korpus haqida</Link>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -42,11 +58,10 @@ const Footer = () => {
                         <div>
                             <h2 className=" text-base md:text-xl font-semibold py-2">Murojaat uchun</h2>
                             <div className="text-xs md:text-base text-gray-400 space-y-2">
-                                <div>+998 91 333 86 55</div>
-                                <div>+998 93 159 11 01</div>
-                                <div>+998 91 254 50 10</div>
-                                <div>sadullayevashahrizoda@gmail.com</div>
-                                <div>Telegram: @programmer</div>
+                                <div>
+                                    <Link href={"tel:+998 91 333 86 55"} target="_blank" className="text-maincolor">+998 91 333 86 55</Link>
+                                </div>
+                                <div>Telegram: <Link href="https://t.me/Manzura_Abdurashetovna" target="_blank" className="text-maincolor">https://t.me/alishernavi</Link></div>
                             </div>
                         </div>
                         <div className="block md:hidden mx-auto">
@@ -59,10 +74,9 @@ const Footer = () => {
                             />
                         </div>
                     </div>
-
                 </footer>
                 <div className="text-xs md:text-base text-black pt-5">
-                    Copyright © 2023 Alisher Navoiy Korpusi. All rights reserved.
+                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">http://v1.alishernavoicorpus.uz/</Link>
                 </div>
 
             </Container>

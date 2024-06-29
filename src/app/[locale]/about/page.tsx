@@ -39,7 +39,7 @@ const Workers = () => {
 
     return (
         <div>
-            {data?.data.length != 0 && (
+            {data?.data?.results.length != 0 && (
 
                 <Container>
                     <Carousel
@@ -48,7 +48,7 @@ const Workers = () => {
                         onMouseLeave={plugin2.current.play}
                         className="w-full">
                         <CarouselContent>
-                            {data?.data.map((item: any, index: any) => (
+                            {data?.data?.results.map((item: any, index: any) => (
                                 <CarouselItem key={index} className="pr-5 basis-full lg:basis-2/6 cursor-pointer">
                                     <div
                                         className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
@@ -141,7 +141,7 @@ const AboutPage = () => {
 
 const About = () => {
     return (
-        <div className="pb-5 min-h-screen bg-image-flower pt-20">
+        <div className="pb-5 min-h-screen bg-image-flower md:pt-20 pt-14">
             <Container>
                 <div className="flex items-center justify-center">
                     <Title title="Xodimlar haqida" />
