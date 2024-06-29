@@ -49,20 +49,20 @@ const Workers = () => {
                         className="w-full">
                         <CarouselContent>
                             {data?.data.map((item: any, index: any) => (
-                                <CarouselItem key={index} className="pr-5 basis-4/5 lg:basis-2/6 cursor-pointer">
+                                <CarouselItem key={index} className="pr-5 basis-full lg:basis-2/6 cursor-pointer">
                                     <div
                                         className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
                                         <div className="flex items-center gap-4">
                                             {item.image == null ? (
                                                 <UserIcon
                                                     strokeWidth={1}
-                                                    className="border w-24 group-hover:w-28 group-hover:h-28 h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                    className="border w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                                                 />
                                             ) : (
 
                                                 <Image
                                                     src={item.image}
-                                                    className=" w-24 group-hover:w-28 group-hover:h-28 h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                    className=" w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                                                     width={0}
                                                     height={0}
                                                     sizes="100vw"
@@ -91,8 +91,7 @@ const Workers = () => {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                      
                     </Carousel>
                 </Container>
             )}
