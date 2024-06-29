@@ -26,7 +26,7 @@ const ImagesCarusel = ({ images }: { images: any }) => {
             <CarouselContent className="p-0 m-0">
                 {images.map((item: any, index: number) => (
                     <CarouselItem key={index} className="p-0 m-0 ">
-                        <div className="  w-full h-96  border">
+                        <div className="  w-full h-60 md:h-96  border">
                             <Link href={item} target="_blank">
                                 <Image
                                     src={item}

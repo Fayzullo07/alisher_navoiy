@@ -10,6 +10,7 @@ import Image from "next/image";
 
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const NewsList = ({ search, setCountPage, current }: { search: string, setCountPage: any, current: number }) => {
     const locale = useLocale();
@@ -85,24 +86,22 @@ const News = () => {
     };
 
     return (
-        <div className="bg-image-flower min-h-screen pt-20">
+        <div className="bg-image-flower min-h-screen pt-14 md:pt-20">
 
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
-
-
                 <div>
                     <div className="flex items-center justify-center  ">
                         <Title title="Yangiliklar" />
                     </div>
-                    <div className=" rounded-lg overflow-auto px-4 py-2 md:py-6 h-[80vh] md:h-[90vh]">
+                    <ScrollArea className=" rounded-lg overflow-auto px-4 py-2 md:py-6 h-[80vh] md:h-[95vh]">
                         <div className="flex items-center gap-2 border w-full bg-white p-2 rounded-full mb-5 md:w-[50%] ">
                             <SearchIcon strokeWidth={1} size={20} />
                             <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <NewsList search={search} setCountPage={setCountPage} current={current} />
-                    </div>
-                    <div className={` text-center mt-3 my-2 ${countPage > 1 ? "" : "hidden"} `}>
-                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} defaultPageSize={2} />
+                    </ScrollArea>
+                    <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true}  />
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ const New = () => {
     if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
-        <div className="bg-image-flower min-h-screen py-5 pt-20">
+        <div className="bg-image-flower min-h-screen py-5 pt-14 md:pt-20">
             <div className="mx-auto xl:w-[65vw] lg:w-[85vw] md:w-[95vw]  max-w-full px-4 sm:px-6 lg:px-8">
                 <div className=" bg-white rounded overflow-hidden flex flex-col mx-auto">
                     <div className="flex items-center justify-start p-5  ">
@@ -34,20 +34,20 @@ const New = () => {
                     <div className="">
                         <ImagesCarusel images={[data?.data?.main_image, ...data?.data?.images]} />
                     </div>
-                    <h2 className="text-xl font-semibold text-center flex-grow">{data?.data?.title}</h2>
+                    <h2 className=" text-lg md:text-xl font-semibold text-center flex-grow">{data?.data?.title}</h2>
                     <div
-                        className="px-5 text-gray-700 py-5 text-base leading-8"
+                        className=" px-2 md:px-5 text-gray-700 py-5 text-base leading-8 text-justify"
                         style={{ whiteSpace: "pre-line" }}
                         dangerouslySetInnerHTML={{ __html: data?.data?.content }}></div>
 
-                    <div className="py-5 text-sm font-regular text-gray-900 flex">
+                    <div className=" px-2 py-2 md:px-5 font-regular text-gray-900 flex">
                         <span className="mr-3 flex flex-row items-center">
                             <ClockIcon strokeWidth={1} size={18} className=" mx-auto text-indigo-600" />
-                            <span className="ml-1">{data?.data?.published_at}</span>
+                            <span className=" text-xs md:text-sm ml-1">{data?.data?.published_at}</span>
                         </span>
-                        <div className=" flex justify-between items-center hover:text-indigo-600">
+                        <div className="flex justify-between items-center hover:text-indigo-600">
                             <UserIcon strokeWidth={1} size={18} className=" mx-auto text-indigo-600" />
-                            <span className="ml-1">{data?.data?.authors}</span>
+                            <span className="ml-1 text-xs md:text-sm">{data?.data?.authors}</span>
                         </div>
                     </div>
                     <hr />

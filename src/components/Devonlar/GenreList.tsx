@@ -30,6 +30,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
 
     useEffect(() => {
         if (!isInitialized && data && data.data && data.data.genres) {
+            setGenreId(data.data.genres[0]);
             setDataGenres(data.data.genres);
             setIsInitialized(true);
         }

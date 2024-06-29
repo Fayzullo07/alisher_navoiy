@@ -28,7 +28,7 @@ export const genresGetOneAPI = async ({ id = "", search = "" }: { id: any, searc
 
 // -----------------------------------------NEWS-----------------------------
 // GET
-export const newsGetApi = async ({ search = "", page_size = 1, page = 1 }) => API.get(`/news/?search=${search}&page=${page}&page_size=${page_size}`);
+export const newsGetApi = async ({ search = "", page_size = 10, page = 1 }) => API.get(`/news/?search=${search}&page=${page}&page_size=${page_size}`);
 
 // GET BY ID
 export const newsGetOneAPI = async ({ id = "" }: { id: any }) =>

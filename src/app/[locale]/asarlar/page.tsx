@@ -20,7 +20,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronDownIcon } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import React from 'react';
 import { Checkbox, Divider } from 'antd';
@@ -73,7 +73,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const onChangeListAges = (list) => {
         setCheckedListAges(list);
         setAuditory_age__in(list.join(','));
-        
+
     };
 
     const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
@@ -174,16 +174,16 @@ const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border">
-                    <div className="pb-2 text-sm font-semibold">{item.title}</div>
-                    <div className="text-sm">
-                        <div><span className="text-blue-300">Muallifi: </span> Alisher Navoiy</div>
-                        <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> {item.from_year}-{item.to_year} yil</div>
-                    </div>
-                    <Link href={item.pdf_file} target="_blank">
+                <Link key={i} href={item.pdf_file} target="_blank">
+                    <div className="py-4 px-3 bg-white rounded-2xl space-y-2 border mb-3">
+                        <div className="pb-2 text-sm font-medium">{item.title}</div>
+                        <div className="text-sm">
+                            <div><span className="text-blue-300">Muallifi: </span> Alisher Navoiy</div>
+                            <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}</div>
+                        </div>
                         <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             ))}
 
 
@@ -214,7 +214,7 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
                 <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-xs">{item.title}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm ">{"Alisher Navoiy"}</td>
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.from_year}-{item.to_year} yil</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">
                         <Link href={item.pdf_file} target="_blank">
                             <EyeIcon strokeWidth={1} size={20} className=" mx-auto" />
@@ -244,9 +244,7 @@ const Asarlar = () => {
     };
 
     return (
-        <div className="bg-image-flower min-h-screen pt-20 ">
-
-
+        <div className="bg-image-flower min-h-screen md:pt-20 pt-14">
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
                     <Title title="Asarlar" />
@@ -268,10 +266,10 @@ const Asarlar = () => {
                             <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-[50%]">
                                 <SearchIcon strokeWidth={1} size={20} />
                                 <input value={search} onChange={(e) => {
-                                    
+
                                     setCurrent(1);
                                     setSearch(e.target.value)
-                                }} type="text" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                                }} type="text" placeholder="Qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                             </div>
                             <div className=" items-center gap-2 hidden md:flex">
                                 {/* Filter Desktop */}
@@ -302,34 +300,41 @@ const Asarlar = () => {
 
                 <div className="block md:hidden ">
                     <div className="flex items-center justify-center py-5 ">
-                        <Link href={`/${locale}/asarlar`} className=" hover:scale-105 duration-300 cursor-pointer text-gray-500 text-base">
-                            <MoveLeftIcon className="w-6 h-6" />
-                        </Link>
-
                         <h2 className="text-xl font-semibold text-center flex-grow">Asarlar</h2>
                     </div>
-                    <div className="flex items-center gap-2 mb-2 w-full ">
+                    <div className="flex flex-col justify-center items-center gap-2 mb-2 w-full ">
 
-                        <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-full">
-                            <SearchIcon strokeWidth={1} size={20} />
-                            <input value={search} onChange={(e) => {
-                                if (/[a-zA-Z]/.test(e.target.value)) {
-                                    return
-                                }
-                                setCurrent(1);
-                                setSearch(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
-                        </div>
-                        <div className="flex items-center gap-2">
-                            {/* Filter Desktop */}
+                        <div className="flex items-center float-center gap-2  md:hidden mb-2">
+                            {/* Filter mobile */}
                             <Filter
                                 setAuditory_age__in={setAuditory_age__in}
                                 setText_type_id__in={setText_type_id__in}
                             />
                         </div>
+
+                        <div className="flex items-center gap-2 mb-2 w-full ">
+
+                            <div className="flex items-center gap-2 p-1 rounded-full bg-white border w-full">
+                                <SearchIcon strokeWidth={1} size={20} />
+                                <input value={search} onChange={(e) => {
+                                    setCurrent(1);
+                                    setSearch(e.target.value)
+                                }} type="search" placeholder="Qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            </div>
+                            <div className=" items-center gap-2 hidden md:flex">
+                                {/* Filter Desktop */}
+                                <Filter
+                                    setAuditory_age__in={setAuditory_age__in}
+                                    setText_type_id__in={setText_type_id__in}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className=" space-y-4">
+                    <ScrollArea className="h-[80vh] md:h-[95vh]">
                         <AsarListMobile search={search} setCountPage={setCountPage} current={current} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} />
+                    </ScrollArea>
+                    <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
                     </div>
                 </div>
 

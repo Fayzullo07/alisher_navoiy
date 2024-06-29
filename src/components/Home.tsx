@@ -15,7 +15,6 @@ import AutoScroll from "embla-carousel-auto-scroll"
 import { useRef } from "react";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
-import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 const NewsList = () => {
     const locale = useLocale();
@@ -37,7 +36,7 @@ const NewsList = () => {
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             {data?.data?.results.map((item: any, i: any) => (
                                 <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
-                                    <div className=" overflow-hidden h-80 w-full">
+                                    <div className=" overflow-hidden h-40 md:h-80 w-full">
                                         <Image
                                             width={0}
                                             height={0}
@@ -56,16 +55,16 @@ const NewsList = () => {
                                                     {item.published_at}
                                                 </p>
                                                 <p
-                                                    className="block mb-4 text-xl font-black leading-tight ">
+                                                    className="block mb-4 text-base md:text-xl font-black leading-tight ">
                                                     {item.title}
                                                 </p>
-                                                <p className="mb-4">
+                                                <p className="mb-4 text-sm md:text-base">
                                                     {item.authors}
                                                 </p>
                                             </div>
                                             <div>
                                                 <Link href={`/${locale}/news/${item.id}`}
-                                                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
+                                                    className="inline-block pb-1 mt-2 text-sm md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
                                                     More -{">"}
                                                 </Link>
                                             </div>
