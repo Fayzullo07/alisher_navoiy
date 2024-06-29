@@ -48,7 +48,7 @@ const TadqiqotListMobile = ({ search, setCountPage, current }) => {
 
 
 const TadqiqotList = ({ search, setCountPage, current }) => {
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["researches", search, current],
         queryFn: async () => {
             return await researchGetApi({ search });
@@ -62,7 +62,7 @@ const TadqiqotList = ({ search, setCountPage, current }) => {
     }, [data])
 
     // if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
@@ -99,8 +99,6 @@ const Tadqiqotlar = () => {
     };
     return (
         <div className="bg-image-flower min-h-screen pt-14 md:pt-20">
-
-
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
                     <Title title="Ilmiy tadqiqotlar" />

@@ -3,7 +3,7 @@ import { questionsGetApi, workersGetApi } from "@/api/AdminRequest";
 import Container from "@/components/Core/Container";
 import Title from "@/components/Core/Title";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowUpRightIcon, ImageIcon, UserIcon } from "lucide-react";
+import { ArrowUpRightIcon, UserIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 
@@ -14,8 +14,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel"
 
 import Image from "next/image";
@@ -27,7 +25,7 @@ const Workers = () => {
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
     )
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["workers"],
         queryFn: async () => {
             return await workersGetApi();
@@ -35,7 +33,7 @@ const Workers = () => {
     });
 
     // if (isLoading) return <Loading />;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
 
     return (
         <div>
@@ -86,12 +84,12 @@ const Workers = () => {
                                         <div className="">
                                             {item.telegram_link && <Link href={item.telegram_link} target="_blank" className="text-base text-maincolor">Telegram: <span className="text-gray-700">{item.telegram_link}</span></Link>}
                                         </div>
-                                       
+
                                     </div>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                      
+
                     </Carousel>
                 </Container>
             )}
@@ -102,7 +100,7 @@ const Workers = () => {
 
 const AboutPage = () => {
     const locale = useLocale();
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["about"],
         queryFn: async () => {
             return await questionsGetApi();
@@ -110,7 +108,7 @@ const AboutPage = () => {
     });
 
     // if (isLoading) return <Loading />;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
 
     return (
         <>

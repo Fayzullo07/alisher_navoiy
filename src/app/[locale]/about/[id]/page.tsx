@@ -10,7 +10,7 @@ const About = ({ params }: { params: { id: string } }) => {
     const { id } = params;
     const locale = useLocale();
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["question_id", id],
         queryFn: async () => {
             return await questionGetOneAPI({ id });
@@ -18,7 +18,7 @@ const About = ({ params }: { params: { id: string } }) => {
     });
 
     if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
 
     return (
         <div className="bg-image-flower min-h-screen py-10 ">

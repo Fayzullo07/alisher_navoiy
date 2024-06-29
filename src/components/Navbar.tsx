@@ -103,16 +103,13 @@ const Navbar = () => {
                                                             <p>
                                                                 {t(`${i}`)}
                                                             </p>
-
                                                         </a>
                                                     </SheetClose>
                                                 </li>
                                             ))}
                                             <div className="block md:hidden text-end w-full">
-
                                                 <LocalSwitcher />
                                             </div>
-
                                         </ul>
                                     </SheetDescription>
                                 </SheetHeader>

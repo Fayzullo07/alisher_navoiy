@@ -1,14 +1,13 @@
 "use client"
 import { useQuery } from "@tanstack/react-query";
 import Title from "@/components/Core/Title";
-import { EyeIcon, MoveLeftIcon, SearchIcon } from "lucide-react";
+import { EyeIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { worksGetApi } from "@/api/AdminRequest";
 import { useEffect, useState } from "react";
 
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
-import { useLocale } from "next-intl";
 
 import { filtersGetApi } from "@/api/AdminRequest";
 
@@ -20,7 +19,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronDownIcon } from "lucide-react";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import React from 'react';
 import { Checkbox, Divider } from 'antd';
@@ -156,7 +155,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
 }
 
 const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_type_id__in }) => {
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["works", search, current, auditory_age__in, text_type_id__in],
         queryFn: async () => {
             return await worksGetApi({ search, page: current, auditory_age__in, text_type_id__in });
@@ -170,7 +169,7 @@ const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_
     }, [data])
 
     // if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
@@ -193,7 +192,7 @@ const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_
 };
 
 const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_id__in }) => {
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["works", search, current, auditory_age__in, text_type_id__in],
         queryFn: async () => {
             return await worksGetApi({ search, page: current, auditory_age__in, text_type_id__in });
@@ -207,7 +206,7 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
     }, [data])
 
     // if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
@@ -231,7 +230,6 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
 
 
 const Asarlar = () => {
-    const locale = useLocale();
     const [search, setSearch] = useState("");
     const [countPage, setCountPage] = useState(1);
     const [current, setCurrent] = useState(1);

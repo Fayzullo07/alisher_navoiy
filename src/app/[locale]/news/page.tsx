@@ -14,7 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const NewsList = ({ search, setCountPage, current }: { search: string, setCountPage: any, current: number }) => {
     const locale = useLocale();
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news", search, current],
         queryFn: async () => {
             return await newsGetApi({ search, page: current, page_size: 2 });
@@ -27,7 +27,7 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
     }, [data]);
 
     if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
             {data?.data?.results.map((item: any, i: any) => (

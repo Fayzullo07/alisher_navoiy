@@ -1,6 +1,5 @@
 "use client"
 import { newsGetOneAPI } from "@/api/AdminRequest";
-import Container from "@/components/Core/Container";
 import ImagesCarusel from "@/components/Core/ImagesCarusel";
 import { useQuery } from "@tanstack/react-query";
 import { ClockIcon, MoveLeftIcon, UserIcon } from "lucide-react";
@@ -11,7 +10,7 @@ import { useParams } from "next/navigation";
 const New = () => {
     const locale = useLocale();
     const { id } = useParams();
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news_id", id],
         queryFn: async () => {
             return await newsGetOneAPI({ id });
@@ -19,7 +18,7 @@ const New = () => {
     });
 
     if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <div className="bg-image-flower min-h-screen py-5 pt-14 md:pt-20">
             <div className="mx-auto xl:w-[65vw] lg:w-[85vw] md:w-[95vw]  max-w-full px-4 sm:px-6 lg:px-8">

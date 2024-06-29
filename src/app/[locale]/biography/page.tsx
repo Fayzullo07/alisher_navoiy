@@ -5,12 +5,13 @@ import { biographyGetApi } from "@/api/AdminRequest";
 import Loading from "@/components/Core/Loading";
 
 const Biography = () => {
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["biography"],
         queryFn: async () => {
             return await biographyGetApi();
         }
     });
+    if (isError) return <div>{error?.message}</div>;
     return (
         <div className=" bg-image-flower min-h-screen md:pt-0 pt-12">
             <div className=" h-[20vh] md:h-[34vh] lg:h-[70vh] relative border" style={{

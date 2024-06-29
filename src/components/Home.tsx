@@ -18,7 +18,7 @@ import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 const NewsList = () => {
     const locale = useLocale();
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news_home"],
         queryFn: async () => {
             return await newsGetApi({});
@@ -26,7 +26,7 @@ const NewsList = () => {
     });
 
     if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {data.data.results.length != 0 && (
@@ -84,7 +84,7 @@ const NewsList = () => {
 
 const AboutPage = () => {
     const locale = useLocale();
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["about_home"],
         queryFn: async () => {
             return await questionsGetApi();
@@ -92,7 +92,7 @@ const AboutPage = () => {
     });
 
     if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
 
     return (
         <>
@@ -128,7 +128,7 @@ const Devons = () => {
         AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
     )
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["devans_home"],
         queryFn: async () => {
             return await devonsGetApi({});
@@ -137,7 +137,7 @@ const Devons = () => {
 
 
     // if (isLoading) return <h1>Loading...</h1>;
-    if (isError) return <div>Xatolik yuz berdi...</div>;
+    if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {isLoading && (
