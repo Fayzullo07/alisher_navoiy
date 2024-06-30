@@ -6,15 +6,15 @@ const Hero = () => {
     return (
         <div>
             {/* Desktop */}
-            <div className={` img-background-horizontal h-[30vh] md:mt-0 mt-10 md:h-screen pt-20 border-2 overflow-hidden`}>
+            <div className={` img-background-horizontal h-[30vh] md:h-screen md:mt-0 mt-10  pt-20 border-2 overflow-hidden`}>
                 <Container>
                     <div className=" flex justify-center items-center">
-                        <div className="flex flex-col justify-between  items-center pt-20 absolute bottom-0 ">
-                            <div className="font-bold  text-white font-serif  md:pt-20">
+                        <div className="flex flex-col justify-between h-full  items-center pt-20 absolute bottom-0 ">
+                            <div className="font-bold  text-white font-serif md:pt-20">
                                 <h1 className="md:text-9xl text-4xl">Alisher Navoiy</h1>
                                 <p className=" text-center md:text-xl text-base font-semibold">Mualliflik korpusi</p>
                             </div>
-                            <div className="hidden md:flex justify-center items-center w-[50%]">
+                            <div className=" hidden md:flex justify-center items-center w-[50%]">
                                 <Image
                                     src={"/hero_png_1.png"}
                                     width={0}
