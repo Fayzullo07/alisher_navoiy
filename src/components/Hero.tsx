@@ -9,23 +9,23 @@ const Hero = () => {
             <div className={` img-background-horizontal h-[30vh] md:mt-0 mt-10 md:h-screen pt-20`}>
                 <Container>
                     <div className=" flex justify-center items-center">
+                        <div className="flex flex-col justify-between h-full items-center pt-20 absolute bottom-0">
+                            <div className="font-bold  text-white font-serif  md:pt-20">
+                                <h1 className="md:text-9xl text-4xl">Alisher Navoiy</h1>
+                                <p className=" text-center md:text-xl text-base font-semibold">Mualliflik korpusi</p>
+                            </div>
+                            <div className="hidden md:flex justify-center items-center w-[50%]">
+                                <Image
+                                    src={"/hero_png_1.png"}
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                                    alt="Image"
+                                />
+                            </div>
+                        </div>
                         <div className="hidden md:block">
 
-                            <div className="flex flex-col justify-between h-full items-center pt-20 absolute bottom-0">
-                                <div className="font-bold  text-white font-serif pt-20">
-                                    <h1 className="text-9xl">Alisher Navoiy</h1>
-                                    <p className=" text-center text-xl">Mualliflik korpusi</p>
-                                </div>
-                                <div className="flex justify-center items-center w-[50%]">
-                                    <Image
-                                        src={"/hero_png_1.png"}
-                                        width={0}
-                                        height={0}
-                                        sizes="100vw" style={{ width: '100%', height: 'auto' }}
-                                        alt="Image"
-                                    />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </Container>
