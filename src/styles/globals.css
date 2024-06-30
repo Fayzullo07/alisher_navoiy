@@ -188,7 +188,7 @@ input[type=number] {
   background-size: 105vw auto;
   background-position: 0% 0%;
   width: 99.5vw; 
-  border: 2px solid black;
+  /* border: 2px solid black; */
   animation: horizontalMove 30s infinite;
   animation-timing-function: ease;
 }
