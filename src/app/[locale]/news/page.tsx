@@ -44,23 +44,23 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
                     </div>
                     <div className="flex flex-grow">
                         <div className="triangle"></div>
-                        <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 w-full">
+                        <div className="flex flex-col justify-between px-2 py-2 md:px-4 md:py-6 bg-white w-full">
                             <div>
                                 <p
-                                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
+                                    className="inline-block mb-1 md:mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
                                     {item.published_at}
                                 </p>
                                 <p
-                                    className="block mb-4 text-base md:text-xl font-black leading-tight ">
+                                    className="block mb-1 md:mb-4 text-xs md:text-xl font-black leading-tight ">
                                     {item.title}
                                 </p>
-                                <p className="mb-4 text-sm md:text-base">
+                                <p className=" mb-1 md:mb-4 text-xs md:text-base">
                                     {item.authors}
                                 </p>
                             </div>
                             <div>
                                 <Link href={`/${locale}/news/${item.id}`}
-                                    className="inline-block pb-1 mt-2 text-sm md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
+                                    className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
                                     More -{">"}
                                 </Link>
                             </div>
@@ -93,15 +93,15 @@ const News = () => {
                     <div className="flex items-center justify-center  ">
                         <Title title="Yangiliklar" />
                     </div>
+                    <div className="flex items-center gap-2 border w-full bg-white p-2 rounded-full mb-5 md:w-[50%] ">
+                        <SearchIcon strokeWidth={1} size={20} />
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                    </div>
                     <ScrollArea className=" rounded-lg overflow-auto px-4 py-2 md:py-6 h-[80vh] md:h-[95vh]">
-                        <div className="flex items-center gap-2 border w-full bg-white p-2 rounded-full mb-5 md:w-[50%] ">
-                            <SearchIcon strokeWidth={1} size={20} />
-                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
-                        </div>
                         <NewsList search={search} setCountPage={setCountPage} current={current} />
                     </ScrollArea>
                     <div className={` text-center mt-3 my-2 ${countPage > 9 ? "" : "hidden"} `}>
-                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true}  />
+                        <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} />
                     </div>
                 </div>
             </div>
