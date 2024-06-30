@@ -31,7 +31,6 @@ const NewsList = () => {
         <>
             {data?.data?.results.length != 0 && (
                 <>
-                    <Title title="Yangiliklar" />
                     <div>
                         <div className="grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             {data?.data?.results.map((item: any, i: any) => (
@@ -225,6 +224,10 @@ const Home = () => {
 
                 <Container>
                     <div className="">
+                        <div className="pt-5 md:pt-0 pb-2 md:pb-0">
+
+                            <Title title="Yangiliklar" />
+                        </div>
                         <NewsList />
                     </div>
                     <div className="">
