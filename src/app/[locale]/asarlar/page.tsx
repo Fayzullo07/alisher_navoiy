@@ -54,10 +54,10 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
         }
     }, [data]);
 
-    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length;
+    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length || checkedListTextTypes.length == 0;
     const indeterminateTextTypes = checkedListTextTypes.length > 0 && checkedListTextTypes.length < optionsTextTypes.length;
 
-    let checkAllAges = optionsAges.length === checkedListAges.length;
+    let checkAllAges = optionsAges.length === checkedListAges.length || checkedListAges.length == 0;
     const indeterminateAges = checkedListAges.length > 0 && checkedListAges.length < optionsAges.length;
 
     if (isLoading) {
