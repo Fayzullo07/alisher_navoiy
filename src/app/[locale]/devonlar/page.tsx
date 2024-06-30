@@ -61,7 +61,7 @@ const Devonlar = () => {
                 </div>
 
                 {/* Filter */}
-                <div className="py-5">
+                <div className="py-1 md:py-5">
                     <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-5 gap-3">
 
                         {/* Filter 1 */}

@@ -55,27 +55,27 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
             <div className="block md:hidden">
                 <ScrollArea className="w-full whitespace-nowrap rounded-md">
                     <div className="flex w-max gap-2 md:gap-4 space-x-2 p-2 md:p-4 ">
-                        {data?.data.devans.map((item: any, index: any) => (
+                        {dataDevons.map((item: any, index: any) => (
                             <div key={index} className=" w-40 md:w-64" onClick={() => setDevan_id(item)}>
                                 <div className="py-2">
                                     <div className=" cursor-pointer hover:scale-105 duration-300">
                                         <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
-                                            <Link href={item.image} target="_blank">
-                                                <div className="w-full h-28 md:h-40 bg-gray-200 relative">
-                                                    <Image
-                                                        src={item.image}
-                                                        width={0}
-                                                        height={0}
-                                                        // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                        sizes="100vw"
-                                                        style={{ width: '100%', height: '100%' }} // optional
-                                                        alt="Image"
-                                                    />
-                                                    <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                        {item.counts} ta
-                                                    </div>
+                                            {/* <Link href={item.image} target="_blank"> */}
+                                            <div className="w-full h-28 md:h-40 bg-gray-200 relative">
+                                                <Image
+                                                    src={item.image}
+                                                    width={0}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }} // optional
+                                                    alt="Image"
+                                                />
+                                                <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
+                                                    {item.counts} ta
                                                 </div>
-                                            </Link>
+                                            </div>
+                                            {/* </Link> */}
                                             <div className="p-1.5 md:p-3">
                                                 <div className="flex flex-between items-center relative">
 
@@ -122,22 +122,22 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                 <div className="py-2">
                                     <div className=" cursor-pointer hover:scale-105 duration-300">
                                         <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
-                                            <Link href={item.image} target="_blank">
-                                                <div className="w-full h-28 md:h-40 bg-gray-200 relative">
-                                                    <Image
-                                                        src={item.image}
-                                                        width={0}
-                                                        height={0}
-                                                        // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                        sizes="100vw"
-                                                        style={{ width: '100%', height: '100%' }} // optional
-                                                        alt="Image"
-                                                    />
-                                                    <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                        {item.counts} ta
-                                                    </div>
+                                            {/* <Link href={item.image} target="_blank"> */}
+                                            <div className="w-full h-28 md:h-40 bg-gray-200 relative">
+                                                <Image
+                                                    src={item.image}
+                                                    width={0}
+                                                    height={0}
+                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                    sizes="100vw"
+                                                    style={{ width: '100%', height: '100%' }} // optional
+                                                    alt="Image"
+                                                />
+                                                <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
+                                                    {item.counts} ta
                                                 </div>
-                                            </Link>
+                                            </div>
+                                            {/* </Link> */}
                                             <div className="p-1.5 md:p-3">
                                                 <div className="flex flex-between items-center relative">
 
