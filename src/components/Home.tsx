@@ -63,10 +63,10 @@ const NewsList = () => {
                                                 </p>
                                             </div>
                                             <div>
-                                                <Link href={`/${locale}/news/${item.id}`}
+                                                <div
                                                     className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
                                                     More -{">"}
-                                                </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
