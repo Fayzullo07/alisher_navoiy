@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <div>
             {/* Desktop */}
-            <div className={` img-background-horizontal h-[35vh] md:mt-0 mt-10 md:h-screen pt-20`}>
+            <div className={` img-background-horizontal h-[30vh] md:mt-0 mt-10 md:h-screen pt-20`}>
                 <Container>
                     <div className=" flex justify-center items-center">
                         <div className="hidden md:block">
