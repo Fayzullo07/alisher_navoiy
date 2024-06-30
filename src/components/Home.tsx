@@ -29,7 +29,7 @@ const NewsList = () => {
     if (isError) return <div>{error?.message}</div>;
     return (
         <>
-            {data.data.results.length != 0 && (
+            {data?.data?.results.length != 0 && (
                 <>
                     <Title title="Yangiliklar" />
                     <div>
@@ -210,71 +210,6 @@ const Devons = () => {
                 </div>
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
-
-
-            {/* <Carousel
-                plugins={[plugin2.current]}
-                onMouseEnter={plugin2.current.stop}
-                onMouseLeave={plugin2.current.play}
-                className={`w-full  mx-auto`}>
-                <CarouselContent>
-                    {data?.data.devans.map((item: any, index: any) => (
-                        <CarouselItem key={index} className="px-2 md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]">
-                            <div className="py-2">
-                                <div className=" cursor-pointer hover:scale-105 duration-300">
-                                    <div className={`bg-white rounded-2xl overflow-hidden`}>
-                                        <Link href={item.image} target="_blank">
-                                            <div className="w-full h-36 bg-gray-200">
-                                                <Image
-                                                    src={item.image}
-                                                    width={0}
-                                                    height={0}
-                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                    sizes="100vw"
-                                                    style={{ width: '100%', height: '100%' }} // optional
-                                                    alt="Image"
-                                                />
-                                            </div>
-                                        </Link>
-                                        <div className="p-1.5 md:p-3">
-                                            <div className="flex flex-between items-center relative">
-
-                                                <div className="w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
-                                                <div className=" absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                                    {item.counts} ta
-                                                </div>
-                                            </div>
-                                            <div className="h-20 md:h-28 text-xs md:text-sm  text-gray-500 flex flex-col">
-                                                <div className="flex-grow">
-
-                                                    {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
-                                                </div>
-
-                                                <span className="flex items-center">
-
-                                                    <CalendarClockIcon className="w-4 h-4 text-gray-400 mr-1" />
-                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
-                                                </span>
-                                                <span className="flex items-center mb-1">
-
-                                                    <CalendarFoldIcon className="w-4 h-4 text-gray-400 mr-1" />
-                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
-                                                </span>
-
-                                            </div>
-                                            <Link href={item.pdf_file} target="_blank">
-                                                <button className="bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1">Batafsil</button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-
-            </Carousel> */}
-
         </>
     )
 }
