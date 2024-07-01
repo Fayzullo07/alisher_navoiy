@@ -5,7 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarClockIcon, CalendarFoldIcon } from "lucide-react";
+import { CalendarFoldIcon, UsersIcon } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
@@ -89,12 +89,12 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                                         {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
                                                     </div>
 
-                                                    <span className="flex items-center text-[10px] md:text-xs">
-                                                        <CalendarClockIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    <span className="flex items-center text-xs md:text-sm">
+                                                        <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                         {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
                                                     </span>
-                                                    <span className="flex items-center mb-1 text-[10px] md:text-xs">
-                                                        <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    <span className="flex items-center mb-1 text-xs md:text-sm">
+                                                        <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                         {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
                                                     </span>
 
@@ -151,12 +151,12 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                                         {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
                                                     </div>
 
-                                                    <span className="flex items-center text-[10px] md:text-xs">
-                                                        <CalendarClockIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    <span className="flex items-center text-xs md:text-sm">
+                                                        <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                         {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
                                                     </span>
-                                                    <span className="flex items-center mb-1 text-[10px] md:text-xs">
-                                                        <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                    <span className="flex items-center mb-1 text-xs md:text-sm">
+                                                        <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                         {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
                                                     </span>
 

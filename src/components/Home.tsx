@@ -1,5 +1,5 @@
 "use client"
-import { ArrowUpRightIcon, CalendarClockIcon, CalendarFoldIcon } from "lucide-react";
+import { ArrowUpRightIcon, CalendarFoldIcon, UsersIcon } from "lucide-react";
 
 import Container from "./Core/Container";
 import Title from "./Core/Title";
@@ -31,6 +31,7 @@ const NewsList = () => {
         <>
             {data?.data?.results.length != 0 && (
                 <>
+                    <Title title="Yangiliklar" />
                     <div>
                         <div className="grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             {data?.data?.results.map((item: any, i: any) => (
@@ -123,6 +124,7 @@ const AboutPage = () => {
 
 
 const Devons = () => {
+    const locale = useLocale();
     const plugin2 = useRef(
         AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
@@ -154,26 +156,26 @@ const Devons = () => {
             <ScrollArea className="w-full whitespace-nowrap rounded-md">
                 <div className="flex w-max gap-2 md:gap-4 space-x-4 p-4">
                     {data?.data.devans.map((item: any, index: any) => (
-                        <div key={index} className=" w-44 md:w-64" data-aos="fade-up" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100} >
+                        <Link href={`/${locale}/devonlar`} key={index} className=" w-44 md:w-64" data-aos="fade-up" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100} >
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`bg-white rounded-2xl overflow-hidden`}>
-                                        <Link href={item.image} target="_blank">
-                                            <div className="w-full h-28 md:h-40 bg-gray-200 relative">
-                                                <Image
-                                                    src={item.image}
-                                                    width={0}
-                                                    height={0}
-                                                    // className="transition hover:scale-110 duration-300 shadow-xl"
-                                                    sizes="100vw"
-                                                    style={{ width: '100%', height: '100%' }} // optional
-                                                    alt="Image"
-                                                />
-                                                <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                    {item.counts} ta
-                                                </div>
+
+                                        <div className="w-full h-28 md:h-40 bg-gray-200 relative">
+                                            <Image
+                                                src={item.image}
+                                                width={0}
+                                                height={0}
+                                                // className="transition hover:scale-110 duration-300 shadow-xl"
+                                                sizes="100vw"
+                                                style={{ width: '100%', height: '100%' }} // optional
+                                                alt="Image"
+                                            />
+                                            <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
+                                                {item.counts} ta
                                             </div>
-                                        </Link>
+                                        </div>
+
                                         <div className="p-1.5 md:p-3">
                                             <div className="flex flex-between items-center relative">
 
@@ -187,24 +189,26 @@ const Devons = () => {
                                                     {item.desc.length > 100 ? item.desc.substring(0, 100) + "..." : item.desc}
                                                 </div>
 
-                                                <span className="flex items-center text-[10px] md:text-xs">
-                                                    <CalendarClockIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                <span className="flex items-center text-xs md:text-sm">
+                                                    <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                     {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
                                                 </span>
-                                                <span className="flex items-center mb-1 text-[10px] md:text-xs">
-                                                    <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
+                                                <span className="flex items-center mb-1 text-xs md:text-sm">
+                                                    <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
                                                     {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
                                                 </span>
 
                                             </div>
                                             <Link href={item.pdf_file} target="_blank">
-                                                <button className={`bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                                <button onClick={(e) => {
+                                                    e.stopPropagation();
+                                                }} className={`bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
                                             </Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <ScrollBar orientation="horizontal" />
@@ -231,10 +235,6 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="">
-                        <div className="pt-5  pb-2 ">
-
-                            <Title title="Yangiliklar" />
-                        </div>
                         <NewsList />
                     </div>
 
@@ -245,7 +245,7 @@ const Home = () => {
 
                     <div className="py-5 pb-10">
                         <Title title="Alisher Navoiy biografiyasi" />
-                        <div className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
+                        <Link href={`/${locale}/biography`} className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                             <div className=" overflow-hidden rounded-xl col-span-2">
                                 <Image
                                     src={"/home_alisher_navoiy.png"}
@@ -264,8 +264,8 @@ const Home = () => {
                                 Lutfiy (1369-1465) keksaygan chog‘larida yosh Alisher bilan
                                 ko‘rishadi va uning she’riy iqtidorini yuqori baholaydi.`}
                             </div>
-                            <Link href={`/${locale}/biography`} className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{"Ko‘proq o‘qish..."}</Link>
-                        </div>
+                            <div className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{"Ko‘proq o‘qish..."}</div>
+                        </Link>
                     </div>
                 </Container>
             </div>

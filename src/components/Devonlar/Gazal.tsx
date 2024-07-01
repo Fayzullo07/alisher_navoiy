@@ -71,7 +71,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
         <>
             {/* G'azallar */}
             {firstFilter.id == 0 && (
-                <div className="h-fit bg-white rounded-2xl text-center py-2 " data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                <div className="h-fit bg-white rounded-2xl text-center py-2 " data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
                     <div className="text-xl font-semibold py-1 pb-2">{data?.data?.genre_detail_number} - {data?.data?.genre_name}</div>
                     <div>
                         <ScrollArea className="h-[400px] md:h-[420px]">
@@ -195,7 +195,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
 
             {/* Ibora and Maqol and She'riy San'at */}
             {firstFilter.id != 0 && (
-                <div className="h-fit bg-white rounded-2xl text-center py-2 " data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <div className="h-fit bg-white rounded-2xl text-center py-2 " data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
                     <div className="text-xl font-semibold py-1 pb-2">{data?.data?.genre_detail_number} - {data?.data?.genre_name}</div>
                     <div>
                         <ScrollArea className="h-[400px] md:h-[420px]">
