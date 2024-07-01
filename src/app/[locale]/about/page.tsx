@@ -60,7 +60,7 @@ const Workers = () => {
 
                                                 <Image
                                                     src={item.image}
-                                                    className=" w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                    className="w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                                                     width={0}
                                                     height={0}
                                                     sizes="100vw"
@@ -119,7 +119,7 @@ const AboutPage = () => {
                             <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
 
                                 <div className="flex justify-between items-center pb-1.5">
-                                    <div className="text-lg font-semibold">{item.question}?</div>
+                                    <div className="text-lg font-semibold">{item.question.length > 50 ? item.question.substring(0, 50) + "..." : item.question}?</div>
                                     <div className="text-base rounded-full p-1 text-center bg-white">
                                         <ArrowUpRightIcon strokeWidth={1} className="w-5 h-5" />
                                     </div>
