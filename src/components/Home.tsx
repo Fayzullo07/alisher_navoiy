@@ -100,7 +100,7 @@ const AboutPage = () => {
                     <Title title="Korpus haqida" />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {data?.data?.results.map((item: any, i: number) => (
-                            <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300">
+                            <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300" data-aos="fade-up" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100}>
                                 <div className="p-5 bg-blue-100 rounded-3xl shadow-lg">
                                     <div className="flex justify-between items-center pb-1.5">
                                         <div className="text-lg font-semibold">{item.question}?</div>
@@ -244,7 +244,7 @@ const Home = () => {
 
                     <div className="py-5 pb-10">
                         <Title title="Alisher Navoiy biografiyasi" />
-                        <div className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative">
+                        <div className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
                             <div className=" overflow-hidden rounded-xl col-span-2">
                                 <Image
                                     src={"/home_alisher_navoiy.png"}

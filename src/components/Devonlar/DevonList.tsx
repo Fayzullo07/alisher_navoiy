@@ -56,7 +56,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                 <ScrollArea className="w-full whitespace-nowrap rounded-md">
                     <div className="flex w-max gap-2 md:gap-4 space-x-2 p-2 md:p-4 ">
                         {dataDevons.map((item: any, index: any) => (
-                            <div key={index} className=" w-40 md:w-64" onClick={() => setDevan_id(item)}>
+                            <div key={index} className=" w-40 md:w-64" onClick={() => setDevan_id(item)} data-aos="fade-up" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100}>
                                 <div className="py-2">
                                     <div className=" cursor-pointer hover:scale-105 duration-300">
                                         <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
@@ -118,7 +118,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                     className={`w-full md:w-[95%] mx-auto `}>
                     <CarouselContent>
                         {dataDevons.map((item: any, index: any) => (
-                            <CarouselItem key={index} className="px-2  md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)}>
+                            <CarouselItem key={index} className="px-2  md:p-3 basis-[48%] md:basis-1/3 lg:basis-[24%] 2xl:basis-[21%]" onClick={() => setDevan_id(item)} data-aos="fade-up" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100}>
                                 <div className="py-2">
                                     <div className=" cursor-pointer hover:scale-105 duration-300">
                                         <div className={`${item.id == devan_id.id ? " bg-blue-100 shadow-lg border shadow-gray-500 " : "bg-white"} rounded-2xl overflow-hidden`}>
