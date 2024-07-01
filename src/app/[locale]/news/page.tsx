@@ -17,7 +17,7 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news", search, current],
         queryFn: async () => {
-            return await newsGetApi({ search, page: current });
+            return await newsGetApi({ search, page: current, page_size: 15 });
         }
     });
     useEffect(() => {

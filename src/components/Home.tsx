@@ -87,7 +87,7 @@ const AboutPage = () => {
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["about_home"],
         queryFn: async () => {
-            return await questionsGetApi();
+            return await questionsGetApi({ page: 1, page_size: 9 });
         }
     });
 
