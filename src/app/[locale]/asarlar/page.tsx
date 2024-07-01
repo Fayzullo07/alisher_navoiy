@@ -54,10 +54,10 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
         }
     }, [data]);
 
-    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length || checkedListTextTypes.length == 0;
+    let checkAllTextTypes = checkedListTextTypes.length == 0;
     const indeterminateTextTypes = checkedListTextTypes.length > 0 && checkedListTextTypes.length < optionsTextTypes.length;
 
-    let checkAllAges = optionsAges.length === checkedListAges.length || checkedListAges.length == 0;
+    let checkAllAges = checkedListAges.length == 0;
     const indeterminateAges = checkedListAges.length > 0 && checkedListAges.length < optionsAges.length;
 
     if (isLoading) {
@@ -76,21 +76,13 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     };
 
     const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
-        setCheckedListAges(e.target.checked ? optionsAges : []);
-        if (e.target.checked) {
-            setAuditory_age__in(optionsAges.join(','));
-        } else {
-            setAuditory_age__in("");
-        }
+        setCheckedListAges([]);
+        setAuditory_age__in("");
     };
 
     const onCheckAllChangeTextTypes: CheckboxProps['onChange'] = (e) => {
-        setCheckedListTextTypes(e.target.checked ? optionsTextTypes.map(option => option.value) : []);
-        if (e.target.checked) {
-            setText_type_id__in(checkedListTextTypes.join(','));
-        } else {
-            setText_type_id__in("");
-        }
+        setCheckedListTextTypes([]);
+        setText_type_id__in("");
     };
 
     return (

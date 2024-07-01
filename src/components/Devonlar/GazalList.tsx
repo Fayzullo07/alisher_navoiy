@@ -40,19 +40,19 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     useEffect(() => {
         if (data && data.data) {
             setOptionsTextTypes(data.data.text_types.map((text_type: { name: any; id: any; }) => ({ label: text_type.name, value: text_type.id })));
-            setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
-            setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
+            // setCheckedListTextTypes(data.data.text_types.map(text_type => text_type.id));
+            // setText_type_id__in(data.data.text_types.map(text_type => text_type.id).join(','));
 
             setOptionsAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
-            setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
-            setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
+            // setCheckedListAges(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age));
+            // setAuditory_age__in(data.data.auditory_ages.map((age: { auditory_age: any; }) => age.auditory_age).join(','));
         }
     }, [data]);
 
-    let checkAllTextTypes = optionsTextTypes.length === checkedListTextTypes.length || checkedListTextTypes.length == 0;
+    let checkAllTextTypes = checkedListTextTypes.length == 0;
     const indeterminateTextTypes = checkedListTextTypes.length > 0 && checkedListTextTypes.length < optionsTextTypes.length;
 
-    let checkAllAges = optionsAges.length === checkedListAges.length || checkedListAges.length == 0;
+    let checkAllAges = checkedListAges.length == 0;
     const indeterminateAges = checkedListAges.length > 0 && checkedListAges.length < optionsAges.length;
 
     if (isLoading) {
@@ -70,13 +70,13 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     };
 
     const onCheckAllChangeAges: CheckboxProps['onChange'] = (e) => {
-        setCheckedListAges(e.target.checked ? optionsAges : []);
-        setAuditory_age__in(checkedListAges.join(','));
+        setCheckedListAges([]);
+        setAuditory_age__in("");
     };
 
     const onCheckAllChangeTextTypes: CheckboxProps['onChange'] = (e) => {
-        setCheckedListTextTypes(e.target.checked ? optionsTextTypes.map(option => option.value) : []);
-        setText_type_id__in(checkedListTextTypes.join(','));
+        setCheckedListTextTypes([]);
+        setText_type_id__in("");
     };
 
     return (
