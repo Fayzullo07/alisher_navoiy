@@ -54,7 +54,7 @@ const Workers = () => {
                                         <div
                                             className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
                                             <div className="flex items-center gap-4">
-                                                {!item.image ? (
+                                                {item.photo == null || item.photo == "" ? (
                                                     <UserIcon
                                                         strokeWidth={1}
                                                         className="border w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
@@ -62,7 +62,7 @@ const Workers = () => {
                                                 ) : (
 
                                                     <Image
-                                                        src={item.image}
+                                                        src={item.photo}
                                                         className="w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                                                         width={0}
                                                         height={0}
@@ -104,10 +104,10 @@ const Workers = () => {
 
 const AboutPage = () => {
     const locale = useLocale();
-    const { data, isLoading, isError, error } = useQuery({
+    const { data, isError, error } = useQuery({
         queryKey: ["about"],
         queryFn: async () => {
-            return await questionsGetApi({ page: 1, page_size: 10 });
+            return await questionsGetApi({ page: 1, page_size: 100 });
         }
     });
 
