@@ -35,7 +35,7 @@ const New = () => {
                     </div>
                     <h2 className=" text-lg md:text-xl font-semibold text-center flex-grow">{data?.data?.title}</h2>
                     <div
-                        className=" px-2 md:px-5 text-gray-700 py-5 text-sm md:text-base leading-8 text-justify"
+                        className=" px-2 md:px-5 text-gray-700 py-5 text-base md:text-lg leading-8 text-justify"
                         style={{ whiteSpace: "pre-line" }}
                         dangerouslySetInnerHTML={{ __html: data?.data?.content }}></div>
 

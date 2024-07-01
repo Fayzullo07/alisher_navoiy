@@ -36,7 +36,7 @@ export const newsGetOneAPI = async ({ id = "" }: { id: any }) =>
 
 // -----------------------------------------QUESTIONS-----------------------------
 // GET
-export const questionsGetApi = async () => API.get(`/questions`);
+export const questionsGetApi = async ({ page = 1, page_size = 100 }) => API.get(`/questions/?page=${page}&page_size=${page_size}`);
 
 // GET BY ID
 export const questionGetOneAPI = async ({ id = "" }: { id: any }) =>
