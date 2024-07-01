@@ -98,12 +98,12 @@ const Navbar = () => {
                                             {navbar.map((item, i) => (
                                                 <li key={item.name} data-aos="fade-left" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100} >
                                                     <SheetClose asChild>
-                                                        <a href={`/${locale}${item.slug}`} className="md:p-3 py-2 flex gap-2 items-center hover:text-maincolor duration-300">
+                                                        <Link href={`/${locale}${item.slug}`} className={`md:p-3 py-2 flex gap-2 ${item.slug == '/' + pathname.split("/")[2] ? "text-maincolor" : "text-black"} items-center hover:text-maincolor duration-300`}>
                                                             {item.icon}
                                                             <p>
                                                                 {t(`${i}`)}
                                                             </p>
-                                                        </a>
+                                                        </Link>
                                                     </SheetClose>
                                                 </li>
                                             ))}

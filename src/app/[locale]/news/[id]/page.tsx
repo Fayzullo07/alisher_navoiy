@@ -44,9 +44,13 @@ const New = () => {
                             <ClockIcon strokeWidth={1} size={18} className=" mx-auto text-indigo-600" />
                             <span className=" text-xs md:text-sm ml-1">{data?.data?.published_at}</span>
                         </span>
-                        <div className="flex justify-between items-center hover:text-indigo-600">
-                            <UserIcon strokeWidth={1} size={18} className=" mx-auto text-indigo-600" />
-                            <span className="ml-1 text-xs md:text-sm">{data?.data?.authors}</span>
+                        <div className="flex flex-wrap justify-between items-center hover:text-indigo-600">
+                            <UserIcon strokeWidth={1} size={18} className="mx-auto text-indigo-600" />
+                            {
+                                data?.data?.authors.split(" ").map((item: any, i: any) => (
+                                    <span key={i} className="ml-1 text-xs md:text-sm">{item}</span>
+                                ))
+                            }
                         </div>
                     </div>
                     <hr />

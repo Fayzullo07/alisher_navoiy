@@ -90,7 +90,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
             <div className="w-full ">
                 <Popover>
                     <PopoverTrigger>
-                        <div className="flex w-max items-center gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                        <div className="flex w-max items-center bg-white gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
                             <span className=" text-sm">{"Matn tipi"}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
@@ -118,7 +118,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
             <div className="w-full ">
                 <Popover>
                     <PopoverTrigger>
-                        <div className="flex items-center gap-2  w-max  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
+                        <div className="flex items-center gap-2  w-max bg-white  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
                             <span className="text-sm">{"Yosh bo'yicha"}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
