@@ -35,11 +35,11 @@ const New = () => {
                     </div>
                     <h2 className=" text-lg md:text-xl font-semibold text-center flex-grow">{data?.data?.title}</h2>
                     <div
-                        className=" px-2 md:px-5 text-gray-700 py-5 text-base leading-8 text-justify"
+                        className=" px-2 md:px-5 text-gray-700 py-5 text-sm md:text-base leading-8 text-justify"
                         style={{ whiteSpace: "pre-line" }}
                         dangerouslySetInnerHTML={{ __html: data?.data?.content }}></div>
 
-                    <div className=" px-2 py-2 md:px-5 font-regular text-gray-900 flex">
+                    <div className="px-2 py-2 md:px-5 font-regular gap-2 text-gray-900 flex flex-wrap">
                         <span className="mr-3 flex flex-row items-center">
                             <ClockIcon strokeWidth={1} size={18} className=" mx-auto text-indigo-600" />
                             <span className=" text-xs md:text-sm ml-1">{data?.data?.published_at}</span>

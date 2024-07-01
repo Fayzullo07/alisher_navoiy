@@ -122,6 +122,18 @@ input[type=number] {
   /* Firefox */
 }
 
+h1 {
+  @apply text-2xl font-semibold;
+}
+
+h2 {
+  @apply text-xl font-semibold;
+}
+
+h3 {
+  @apply text-lg font-semibold;
+}
+
 /* Navbar */
 .activ {
   /* left: 0; */
@@ -187,7 +199,7 @@ input[type=number] {
   background-repeat: no-repeat;
   background-size: 105vw auto;
   background-position: 0% 0%;
-  width: 99.5vw; 
+  width: 99.5vw;
   /* border: 2px solid black; */
   animation: horizontalMove 30s infinite;
   animation-timing-function: ease;
@@ -201,7 +213,7 @@ input[type=number] {
   background-position: 0% 0%;
   width: 99.5vw;
   /* height: 100%; */
-  animation: horizontalMove 20s infinite;
+  animation: horizontalMove 25s infinite;
   animation-timing-function: ease;
 }
 

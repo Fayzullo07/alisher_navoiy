@@ -177,13 +177,13 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
         setGenre_detail_number("");
     }, [search, firstFilter, firstFilterChild]);
 
-    useEffect(() => {
-        if (!isInitialized && data && data.data && data.data.main) {
-            setGazal_id(data.data.main.results[0]);
-            setIsInitialized(true);
-        }
-        return () => { }; // cleanup funksiyasi
-    }, [isInitialized, data]);
+    // useEffect(() => {
+    //     if (!isInitialized && data && data.data && data.data.main) {
+    //         setGazal_id(data.data.main.results[0]);
+    //         setIsInitialized(true);
+    //     }
+    //     return () => { }; // cleanup funksiyasi
+    // }, [isInitialized, data]);
 
     return (
         <>

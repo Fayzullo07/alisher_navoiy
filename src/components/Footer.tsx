@@ -8,7 +8,7 @@ const Footer = () => {
     const locale = useLocale();
 
     return (
-        <div className={`bg-white py-6 px-2`}>
+        <div className={`bg-white py-6 px-4`}>
             <Container>
                 {/* <!-- Footer --> */}
                 <footer className=" border-b pb-6">
@@ -76,7 +76,7 @@ const Footer = () => {
                     </div>
                 </footer>
                 <div className="text-xs md:text-base text-black pt-5">
-                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">alishernavoicorpus.uz/</Link>
+                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">alishernavoicorpus.uz</Link>
                 </div>
             </Container>
 

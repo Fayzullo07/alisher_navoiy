@@ -37,7 +37,7 @@ const Workers = () => {
 
     return (
         <div>
-            {data?.data?.results.length != 0 && (
+            {data?.data?.length != 0 && (
 
                 <Container>
                     <Carousel
@@ -46,7 +46,7 @@ const Workers = () => {
                         onMouseLeave={plugin2.current.play}
                         className="w-full">
                         <CarouselContent>
-                            {data?.data?.results.map((item: any, index: any) => (
+                            {data?.data?.map((item: any, index: any) => (
                                 <CarouselItem key={index} className="pr-5 basis-full lg:basis-2/6 cursor-pointer">
                                     <div
                                         className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
