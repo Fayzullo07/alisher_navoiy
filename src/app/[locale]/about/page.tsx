@@ -54,38 +54,41 @@ const Workers = () => {
                                         <div
                                             className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
                                             <div className="flex items-center gap-4">
-                                                {item.photo == null || item.photo == "" ? (
-                                                    <UserIcon
-                                                        strokeWidth={1}
-                                                        className="border w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
-                                                    />
-                                                ) : (
+                                                <div className="h-14 w-14 md:h-24 md:w-24">
 
-                                                    <Image
-                                                        src={item.photo}
-                                                        className="w-18 md:w-24 group-hover:w-28 group-hover:h-28 h-18 md:h-24 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
-                                                        width={0}
-                                                        height={0}
-                                                        sizes="100vw"
-                                                        style={{ width: '100px', height: '100px' }} // optional
-                                                        alt="Image"
-                                                    />
-                                                )}
+                                                    {item.photo == null ? (
+                                                        <UserIcon
+                                                            strokeWidth={1}
+                                                            className="border w-full h-full object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                        />
+                                                    ) : (
+
+                                                        <Image
+                                                            src={item.photo}
+                                                            className=" object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                            width={0}
+                                                            height={0}
+                                                            sizes="100vw"
+                                                            style={{ width: '100%', height: '100%' }} // optional
+                                                            alt="Image"
+                                                        />
+                                                    )}
+                                                </div>
 
                                                 <div className="w-fit transition-all transform duration-500">
-                                                    <h1 className="text-gray-600 font-bold text-base">
+                                                    <h1 className="text-gray-600 font-bold text-sm md:text-base">
                                                         {item.fullname}
                                                     </h1>
 
                                                     <p
-                                                        className="text-base text-gray-500 transform transition-all delay-300 duration-500">
+                                                        className="text-sm md:text-base text-gray-500 transform transition-all delay-300 duration-500">
                                                         {item.role && <span className="text-maincolor inline-block">Lavozim: <span className="text-gray-700">{item.role}</span></span>}
                                                         {item.phone_number && <span className="text-maincolor inline-block">Phone: <span className="text-gray-700">{item.phone_number}</span></span>}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="">
-                                                {item.telegram_link && <Link href={item.telegram_link} target="_blank" className="text-base text-maincolor">Telegram: <span className="text-gray-700">{item.telegram_link}</span></Link>}
+                                                {item.telegram_link && <Link href={item.telegram_link} target="_blank" className="text-sm md:text-base text-maincolor">Telegram: <span className="text-gray-700">{item.telegram_link}</span></Link>}
                                             </div>
 
                                         </div>

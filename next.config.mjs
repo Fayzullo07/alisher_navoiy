@@ -26,9 +26,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: [
-      process.env.NEXT_PUBLIC_BACKEND_DOMAIN,
-    ],
+    domains: ["cdn.pixabay.com", process.env.NEXT_PUBLIC_BACKEND_DOMAIN],
   },
 };
 

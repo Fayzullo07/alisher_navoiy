@@ -2,14 +2,13 @@
 import { researchGetApi } from "@/api/AdminRequest";
 import Title from "@/components/Core/Title";
 import { useQuery } from "@tanstack/react-query";
-import { EyeIcon, MoveLeftIcon, SearchIcon } from "lucide-react";
+import { EyeIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useLocale } from "next-intl";
 
 const TadqiqotListMobile = ({ search, setCountPage, current }) => {
     const { data, isLoading, isError } = useQuery({
@@ -43,9 +42,7 @@ const TadqiqotListMobile = ({ search, setCountPage, current }) => {
             ))}
         </>
     )
-
 };
-
 
 const TadqiqotList = ({ search, setCountPage, current }) => {
     const { data, isLoading, isError, error } = useQuery({
@@ -66,7 +63,7 @@ const TadqiqotList = ({ search, setCountPage, current }) => {
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
+                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer h-20" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm rounded-tl-full rounded-bl-full">{item.title}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.authors}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.published_at}</td>
@@ -81,7 +78,7 @@ const TadqiqotList = ({ search, setCountPage, current }) => {
             {data?.data?.results.length == 0 && (
 
                 <tr >
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{""}</td>
+                    <td className="py-3 px-6 text-sm">{""}</td>
                 </tr >
             )}
         </>
@@ -104,9 +101,9 @@ const Tadqiqotlar = () => {
                     <Title title="Ilmiy tadqiqotlar" />
                 </div>
 
-                <div className=" hidden md:block bg-white shadow-lg rounded-lg pb-5 ">
+                <div className=" hidden lg:block bg-white shadow-lg rounded-lg pb-5 ">
 
-                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[700px]" : "h-auto"} `}>
+                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[850px]" : "h-auto"} `}>
                         <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-full md:w-[50%] ">
                             <SearchIcon strokeWidth={1} size={20} />
                             <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
@@ -130,7 +127,7 @@ const Tadqiqotlar = () => {
                     </div>
                 </div>
 
-                <div className="block md:hidden">
+                <div className="block lg:hidden">
                     <div className="flex items-center justify-center py-5 ">
                         <h2 className="text-xl font-semibold text-center flex-grow">Ilmiy tadqiqotlar</h2>
                     </div>

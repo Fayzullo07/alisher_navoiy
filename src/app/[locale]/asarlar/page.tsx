@@ -10,7 +10,6 @@ import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
 
 import { filtersGetApi } from "@/api/AdminRequest";
-
 import { Spin } from 'antd';
 
 import {
@@ -202,7 +201,7 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
+                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer h-[70px]" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-xs">{item.title}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm ">{"Alisher Navoiy"}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}</td>
@@ -213,11 +212,8 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
                     </td>
                 </tr >
             ))}
-
-
         </>
     )
-
 };
 
 
@@ -240,9 +236,8 @@ const Asarlar = () => {
                     <Title title="Asarlar" />
                 </div>
 
-                <div className=" hidden md:block bg-white shadow-lg rounded-lg pb-5">
-
-                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[800px]" : "h-auto"} `}>
+                <div className="hidden lg:block bg-white shadow-lg rounded-lg pb-5">
+                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[850px]" : "h-auto"} `}>
                         <div className="flex items-center float-center gap-2  md:hidden mb-2">
                             {/* Filter mobile */}
                             <Filter
@@ -251,7 +246,7 @@ const Asarlar = () => {
                             />
                         </div>
 
-                        <div className="flex items-center gap-2 mb-2 w-full ">
+                        <div className="flex items-center gap-2 mb-2 w-full">
 
                             <div className="flex items-center gap-2 p-1 rounded-full bg-gray-50 border w-[50%]">
                                 <SearchIcon strokeWidth={1} size={20} />
@@ -288,7 +283,7 @@ const Asarlar = () => {
                     </div>
                 </div>
 
-                <div className="block md:hidden ">
+                <div className="block lg:hidden ">
                     <div className="flex items-center justify-center py-5 ">
                         <h2 className="text-xl font-semibold text-center flex-grow">Asarlar</h2>
                     </div>
