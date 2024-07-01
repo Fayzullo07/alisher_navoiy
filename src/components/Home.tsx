@@ -224,19 +224,20 @@ const Home = () => {
 
                 <Container>
                     <div className="">
-                        <div className="pt-5  pb-2 ">
-
-                            <Title title="Yangiliklar" />
-                        </div>
-                        <NewsList />
-                    </div>
-                    <div className="">
 
                         <Title title="Devonlar" />
                         <div>
                             <Devons />
                         </div>
                     </div>
+                    <div className="">
+                        <div className="pt-5  pb-2 ">
+
+                            <Title title="Yangiliklar" />
+                        </div>
+                        <NewsList />
+                    </div>
+
 
                     <div>
                         <AboutPage />
