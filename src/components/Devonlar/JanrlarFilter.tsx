@@ -6,13 +6,13 @@ import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, CircleIcon, ScrollTex
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
-const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild }) => {
+const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild, text_type_id__in, auditory_age__in }) => {
     const [secondsData, setSecondsData] = useState([]);
     const [poetic_artsData, setPoeticArtsData] = useState([]);
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["janrlar_filter", search, devan_id.id, firstFilter.id, firstFilterChild.id],
+        queryKey: ["janrlar_filter", search, devan_id.id, firstFilter.id, firstFilterChild.id, genre_id.id, text_type_id__in, auditory_age__in],
         queryFn: async () => {
-            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id });
+            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id, text_type_id__in, auditory_age__in });
         }
     });
 
@@ -97,7 +97,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                 <ScrollArea className="py-2  whitespace-nowrap ">
                     <div className=" flex gap-2 items-center">
                         {genre_id.name == "" ? (
-                           null
+                            null
                         ) : (
                             <div className={`flex justify-between gap-2 items-center ${firstFilter.id != 0 ? "" : "bg-blue-100"} hover:bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`} onClick={() => setFirstFilter({ id: 0, name: "" })}>
                                 <div className="flex gap-2 items-center">

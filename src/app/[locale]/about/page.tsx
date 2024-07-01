@@ -82,7 +82,7 @@ const Workers = () => {
 
                                                     <p
                                                         className="text-sm md:text-base text-gray-500 transform transition-all delay-300 duration-500">
-                                                        {item.role && <span className="text-maincolor inline-block">Lavozim: <span className="text-gray-700">{item.role}</span></span>}
+                                                        {item.role && <span className="text-maincolor inline-block">Lavozim: <span className="text-gray-700">{item.role.length > 20 ? item.role.substring(0, 20) + "..." : item.role}</span></span>}
                                                         {item.phone_number && <span className="text-maincolor inline-block">Phone: <span className="text-gray-700">{item.phone_number}</span></span>}
                                                     </p>
                                                 </div>

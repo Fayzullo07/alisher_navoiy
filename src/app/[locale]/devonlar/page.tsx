@@ -74,6 +74,9 @@ const Devonlar = () => {
                             setFirstFilter={setFirstFilter}
                             firstFilterChild={firstFilterChild}
                             setFirstFilterChild={setFirstFilterChild}
+
+                            text_type_id__in={text_type_id__in}
+                            auditory_age__in={auditory_age__in}
                         />
 
                         {/* Filter 2 */}

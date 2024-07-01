@@ -201,7 +201,7 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer h-[70px]" onClick={() => window.open(item.pdf_file, '_blank')}>
+                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
                     <td className="py-3 px-6 border-b border-gray-200 text-xs">{item.title}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm ">{"Alisher Navoiy"}</td>
                     <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}</td>
@@ -237,7 +237,7 @@ const Asarlar = () => {
                 </div>
 
                 <div className="hidden lg:block bg-white shadow-lg rounded-lg pb-5">
-                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 ? "h-[850px]" : "h-auto"} `}>
+                    <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 && "h-auto"} `}>
                         <div className="flex items-center float-center gap-2  md:hidden mb-2">
                             {/* Filter mobile */}
                             <Filter

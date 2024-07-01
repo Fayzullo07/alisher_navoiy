@@ -35,7 +35,7 @@ const NewsList = () => {
                     <div>
                         <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             {data?.data?.results.map((item: any, i: any) => (
-                                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
+                                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full mb-8 flex flex-col cursor-pointer hover:shadow-2xl duration-300" data-aos="fade-up" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100}>
                                     <div className=" overflow-hidden h-40 md:h-80 w-full">
                                         <Image
                                             width={0}
@@ -156,7 +156,7 @@ const Devons = () => {
             <ScrollArea className="w-full whitespace-nowrap rounded-md">
                 <div className="flex w-max gap-2 md:gap-4 space-x-4 p-4">
                     {data?.data.devans.map((item: any, index: any) => (
-                        <Link href={`/${locale}/devonlar`} key={index} className=" w-44 md:w-64" data-aos="fade-up" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100} >
+                        <Link href={`/${locale}/devonlar`} key={index} className=" w-44 md:w-64" data-aos="fade-left" data-aos-delay={(index + 1) * 100} data-aos-duration={(index + 1) * 100} >
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className={`bg-white rounded-2xl overflow-hidden`}>

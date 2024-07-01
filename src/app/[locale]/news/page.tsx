@@ -35,7 +35,7 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
             {data?.data?.results.map((item: any, i: any) => (
-                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300">
+                <Link key={i} href={`/${locale}/news/${item.id}`} className="w-full  mb-8  flex flex-col cursor-pointer hover:shadow-2xl duration-300" data-aos="fade-up" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100}>
                     <div className=" overflow-hidden h-40 md:h-80 w-full">
                         <Image
                             width={0}
