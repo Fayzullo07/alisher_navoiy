@@ -8,7 +8,7 @@ const Footer = () => {
     const locale = useLocale();
 
     return (
-        <div className={`bg-white py-6`}>
+        <div className={`bg-white py-6 px-2`}>
             <Container>
                 {/* <!-- Footer --> */}
                 <footer className=" border-b pb-6">
@@ -23,7 +23,7 @@ const Footer = () => {
                             />
                         </div>
                         <div>
-                            <h2 className="text-base md:text-xl font-semibold py-2">Runklar</h2>
+                            <h2 className="text-base md:text-xl font-semibold py-2">Ruknlar</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
                                 <div>
                                     <Link href={`/${locale}/biography`} className="text-maincolor">Tarjimayi hol</Link>
@@ -61,7 +61,7 @@ const Footer = () => {
                                 <div>
                                     <Link href={"tel:+998 91 333 86 55"} target="_blank" className="text-maincolor">+998 91 333 86 55</Link>
                                 </div>
-                                <div>Telegram: <Link href="https://t.me/Manzura_Abdurashetovna" target="_blank" className="text-maincolor">https://t.me/alishernavi</Link></div>
+                                <div>Telegram: <Link href="https://t.me/Manzura_Abdurashetovna" target="_blank" className="text-maincolor">Manzura Abdurashidova</Link></div>
                             </div>
                         </div>
                         <div className="block md:hidden mx-auto">
@@ -76,9 +76,8 @@ const Footer = () => {
                     </div>
                 </footer>
                 <div className="text-xs md:text-base text-black pt-5">
-                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">http://v1.alishernavoicorpus.uz/</Link>
+                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">alishernavoicorpus.uz/</Link>
                 </div>
-
             </Container>
 
         </div>

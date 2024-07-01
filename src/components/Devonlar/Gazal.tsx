@@ -90,7 +90,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                                     dangerouslySetInnerHTML={{ __html: item_in }}
                                                                     className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
                                                             </HoverCardTrigger>
-                                                            <HoverCardContent className="p-2 px-4 w-fit">
+                                                            <HoverCardContent className="p-2 px-4">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
                                                                     <span>{getExplanation(item_in, item.id)}</span>
@@ -106,10 +106,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                                     dangerouslySetInnerHTML={{ __html: item_in }}
                                                                     className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
                                                             </PopoverTrigger>
-                                                            <PopoverContent className="p-1 px-2 w-fit">
+                                                            <PopoverContent className="p-1 px-2">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span className="text-sm">{getExplanation(item_in, item.id)}</span>
+                                                                    <span className="text-sm w-[70vw]">{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>
@@ -207,14 +207,14 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                             {item.text.split(" ").map((item_in: any, i: any) => (
                                                 <>
                                                     <span className="hidden md:inline-block">
-                                                        <HoverCard >
+                                                        <HoverCard>
                                                             <HoverCardTrigger>
                                                                 <span
                                                                     style={{ whiteSpace: "pre-line" }}
                                                                     dangerouslySetInnerHTML={{ __html: item_in }}
                                                                     className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
                                                             </HoverCardTrigger>
-                                                            <HoverCardContent className="p-2 px-4 w-fit">
+                                                            <HoverCardContent className="p-2 px-4">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
                                                                     <span>{getExplanation(item_in, item.id)}</span>
@@ -228,9 +228,9 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                                 <span
                                                                     style={{ whiteSpace: "pre-line" }}
                                                                     dangerouslySetInnerHTML={{ __html: item_in }}
-                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5  duration-300 py-1 rounded-full cursor-pointer" />
+                                                                    className="text-xs md:text-sm hover:bg-yellow-300 px-[1px] md:px-0.5 duration-300 py-1 rounded-full cursor-pointer" />
                                                             </PopoverTrigger>
-                                                            <PopoverContent className="p-1 px-2 w-fit">
+                                                            <PopoverContent className="p-1 px-2">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
                                                                     <span className="text-sm">{getExplanation(item_in, item.id)}</span>

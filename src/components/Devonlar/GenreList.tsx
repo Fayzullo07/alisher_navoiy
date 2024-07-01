@@ -54,7 +54,7 @@ const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, audito
             <ScrollArea className="w-full whitespace-nowrap rounded-md">
                 <div className="flex w-max gap-1 md:gap-2 space-x-4 p-2 md:p-4">
                     {dataGenres.map((item: any, index: any) => (
-                        <div key={index} className="w-auto md:w-40" onClick={() => setGenreId(item)}>
+                        <div key={index} className=" w-28 md:w-40" onClick={() => setGenreId(item)}>
                             <div className="py-2">
                                 <div className=" cursor-pointer hover:scale-105 duration-300">
                                     <div className="relative">

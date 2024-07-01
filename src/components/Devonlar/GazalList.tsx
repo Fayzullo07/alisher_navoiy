@@ -377,7 +377,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[400px] md:h-[560px]">
+                    <div className="h-[440px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -470,7 +470,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[400px] md:h-[560px]">
+                    <div className="h-[440px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -562,7 +562,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[400px] md:h-[560px]">
+                    <div className="h-[440px] md:h-[560px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
