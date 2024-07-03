@@ -2,11 +2,14 @@ import axios from "axios";
 const URL = process.env.NEXT_PUBLIC_BACKEND_API;
 const API = axios.create({ baseURL: URL });
 
+// -----------------------------------------PROVERBS-----------------------------
+// GET
+export const provebsGetApi = async () => API.get(`/general/proverbs`);
+
 
 // -----------------------------------------WORKERS-----------------------------
 // GET
 export const workersGetApi = async () => API.get(`/general/workers`);
-export const testApi = async () => API.get(`/solar-info/11/?user_id=1`);
 
 // -----------------------------------------FILTERS-----------------------------
 // GET

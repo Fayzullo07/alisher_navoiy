@@ -223,7 +223,7 @@ const Home = () => {
 
                         <Title title={n("1")} />
                         <div>
-                            <Devons  h={h} />
+                            <Devons h={h} />
                         </div>
                     </div>
                     <div className="">

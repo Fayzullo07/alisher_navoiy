@@ -103,7 +103,7 @@ const News = () => {
                         <SearchIcon strokeWidth={1} size={20} />
                         <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder={s("search")} className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                     </div>
-                    <div className="rounded-lg overflow-auto px-4 py-2 md:py-6 h-[100vh]">
+                    <div className=" rounded-lg px-4 py-2 md:py-6">
                         <NewsList search={search} setCountPage={setCountPage} current={current} />
                     </div>
                     <div className={` text-center mt-3 my-2 ${countPage > 14 ? "" : "hidden"} `}>
