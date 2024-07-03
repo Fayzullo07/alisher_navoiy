@@ -148,6 +148,16 @@ h3 {
   /* border: 1px solid black; */
 }
 
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../../data/hidayatullah.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hero_title {
+  font-family: 'MyCustomFont', sans-serif;
+}
 
 
 
