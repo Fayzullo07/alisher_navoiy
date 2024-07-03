@@ -78,7 +78,7 @@ const Hero = ({ h }) => {
                                                     {data?.data?.map((item: any, index: any) => (
                                                         <CarouselItem key={index} className="basis-full  cursor-pointer my-auto">
                                                             <div
-                                                                className=" whitespace-pre-line text-sm md:text-lg   "
+                                                                className=" whitespace-pre-line text-sm md:text-lg hero_title"
                                                                 style={{ whiteSpace: "pre-line" }}
                                                                 dangerouslySetInnerHTML={{ __html: item.text.substring(0, 200) }} />
                                                         </CarouselItem>
