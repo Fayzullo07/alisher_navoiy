@@ -45,13 +45,13 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-white font-serif md:pt-20">
+                                <div className="font-bold text-white font-serif md:pt-20 space-y-4">
                                     <h1 className="md:text-9xl text-4xl hero_title" data-aos="fade-up" data-aos-delay="100">Alisher Navoiy</h1>
-                                    <p className=" text-center md:text-xl text-base font-semibold" data-aos="fade-up" data-aos-delay="200">{h("hero_desc")}</p>
+                                    <p className=" text-center md:text-3xl  text-base font-semibold hero_title" data-aos="fade-up" data-aos-delay="200">{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-[80%] mx-auto absolute top-0 bottom-0 left-0 right-0">
 
-                                    <div className="hidden w-[46vw]  md:block absolute  bottom-0 -left-10 ">
+                                    <div className="hidden w-[46vw] h-[33vw]  md:block absolute  bottom-0 -left-10 ">
                                         <Image
                                             src={"/alisher_navoiy_book.png"}
                                             width={0}
