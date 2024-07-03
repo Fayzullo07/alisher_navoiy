@@ -6,17 +6,15 @@ import Title from "./Core/Title";
 import Hero from "./Hero";
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 import { devonsGetApi, newsGetApi, questionsGetApi } from "@/api/AdminRequest";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
-import AutoScroll from "embla-carousel-auto-scroll"
-import { useRef } from "react";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 
-const NewsList = () => {
+const NewsList = ({ n, h }) => {
     const locale = useLocale();
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news_home"],
@@ -31,7 +29,7 @@ const NewsList = () => {
         <>
             {data?.data?.results.length != 0 && (
                 <>
-                    <Title title="Yangiliklar" />
+                    <Title title={n("4")} />
                     <div>
                         <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             {data?.data?.results.map((item: any, i: any) => (
@@ -64,8 +62,7 @@ const NewsList = () => {
                                             </div>
                                             <div>
                                                 <Link href={`/${locale}/news/${item.id}`}
-                                                    className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
-                                                    More -{">"}
+                                                    className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">{h('button_more')} -{">"}
                                                 </Link>
                                             </div>
                                         </div>
@@ -82,23 +79,22 @@ const NewsList = () => {
 
 };
 
-const AboutPage = () => {
+const AboutPage = ({ n }) => {
     const locale = useLocale();
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["about_home"],
         queryFn: async () => {
-            return await questionsGetApi({ page: 1, page_size: 9 });
+            return await questionsGetApi({ page: 1, page_size: 8 });
         }
     });
 
     if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>{error?.message}</div>;
-
     return (
         <>
             {data?.data?.results.length != 0 && (
                 <>
-                    <Title title="Korpus haqida" />
+                    <Title title={n("5")} />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {data?.data?.results.map((item: any, i: number) => (
                             <Link key={i} href={`/${locale}/about/${item.id}`} className="hover:scale-105 duration-300" data-aos="fade-up" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100}>
@@ -123,12 +119,8 @@ const AboutPage = () => {
 }
 
 
-const Devons = () => {
+const Devons = ({ h }) => {
     const locale = useLocale();
-    const plugin2 = useRef(
-        AutoScroll({ loop: true, speed: 0.2, autoScroll: true }),
-        // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
-    )
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["devans_home"],
         queryFn: async () => {
@@ -136,8 +128,6 @@ const Devons = () => {
         }
     });
 
-
-    // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>{error?.message}</div>;
     return (
         <>
@@ -172,7 +162,7 @@ const Devons = () => {
                                                 alt="Image"
                                             />
                                             <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                {item.counts} ta
+                                                {item.counts}
                                             </div>
                                         </div>
 
@@ -181,7 +171,7 @@ const Devons = () => {
 
                                                 <div className="w-full md:w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
                                                 <div className=" hidden md:block absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                                    {item.counts} ta
+                                                    {item.counts}
                                                 </div>
                                             </div>
                                             <div className="h-20 md:h-28 text-gray-500 flex flex-col">
@@ -191,18 +181,18 @@ const Devons = () => {
 
                                                 <span className="flex items-center text-xs md:text-sm">
                                                     <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                    {item.to_year ? item.from_year + "-" + item.to_year + "-" + h('years') : item.from_year + "-" + h('year')}
                                                 </span>
                                                 <span className="flex items-center mb-1 text-xs md:text-sm">
                                                     <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                    {item.to_age ? item.from_age + "-" + item.to_age + "-" + h("ages") : item.from_age + "-" + h("age")}
                                                 </span>
 
                                             </div>
                                             <Link href={item.pdf_file} target="_blank">
                                                 <button onClick={(e) => {
                                                     e.stopPropagation();
-                                                }} className={`bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                                }} className={`bg-blue-100 w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>{h("button_more")}</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -220,31 +210,33 @@ const Devons = () => {
 
 const Home = () => {
     const locale = useLocale();
+    const n = useTranslations('Navbar');
+    const h = useTranslations('Home');
 
     return (
         <>
-            <Hero />
+            <Hero h={h} />
             <div className="bg-image-flower">
 
                 <Container>
                     <div className="">
 
-                        <Title title="Devonlar" />
+                        <Title title={n("1")} />
                         <div>
-                            <Devons />
+                            <Devons  h={h} />
                         </div>
                     </div>
                     <div className="">
-                        <NewsList />
+                        <NewsList n={n} h={h} />
                     </div>
 
 
                     <div>
-                        <AboutPage />
+                        <AboutPage n={n} />
                     </div>
 
                     <div className="py-5 pb-10">
-                        <Title title="Alisher Navoiy biografiyasi" />
+                        <Title title={h("bio")} />
                         <Link href={`/${locale}/biography`} className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                             <div className=" overflow-hidden rounded-xl col-span-2">
                                 <Image
@@ -264,7 +256,7 @@ const Home = () => {
                                 Lutfiy (1369-1465) keksaygan chog‘larida yosh Alisher bilan
                                 ko‘rishadi va uning she’riy iqtidorini yuqori baholaydi.`}
                             </div>
-                            <div className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{"Ko‘proq o‘qish..."}</div>
+                            <div className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{h("button_more")}...</div>
                         </Link>
                     </div>
                 </Container>

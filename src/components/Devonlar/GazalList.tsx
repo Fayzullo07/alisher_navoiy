@@ -18,11 +18,13 @@ import Loading from "../Core/Loading";
 import React from 'react';
 import { Checkbox, Divider } from 'antd';
 import type { CheckboxProps } from 'antd';
+import { useTranslations } from "next-intl";
 
 const CheckboxGroup = Checkbox.Group;
 
 
 const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
+    const d = useTranslations("Devonlar");
     const { data, isLoading } = useQuery({
         queryKey: ["filter_list"],
         queryFn: async () => {
@@ -85,7 +87,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                 <Popover>
                     <PopoverTrigger>
                         <div className="flex w-max items-center gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                            <span className=" text-sm">{"Matn tipi"}</span>
+                            <span className=" text-sm">{d("text_type")}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
                     </PopoverTrigger>
@@ -94,7 +96,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                             <ScrollArea className="h-[30vh] p-2">
 
                                 <Checkbox className="w-full" indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
-                                    All
+                                    {d("all_button")}
                                 </Checkbox>
                                 <Divider className="my-2" />
                                 <CheckboxGroup
@@ -113,7 +115,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                 <Popover>
                     <PopoverTrigger>
                         <div className="flex items-center gap-2  w-max  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                            <span className="text-sm">{"Yosh bo'yicha"}</span>
+                            <span className="text-sm">{d("age_type")}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
                     </PopoverTrigger>
@@ -121,7 +123,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                         <div className="">
                             <ScrollArea className="h-[20vh] p-2">
                                 <Checkbox className="w-full" indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
-                                    All
+                                    {d("all_button")}
                                 </Checkbox>
                                 <Divider className="my-2" />
                                 <CheckboxGroup
@@ -140,9 +142,8 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     )
 }
 
-const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in, genre_detail_number, setGenre_detail_number }) => {
+const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFilter, firstFilterChild, current, setCurrent, auditory_age__in, setAuditory_age__in, text_type_id__in, setText_type_id__in, genre_detail_number, setGenre_detail_number, d }) => {
     const [countPage, setCountPage] = useState(1);
-    const [isInitialized, setIsInitialized] = useState(false);
 
     const { data, isLoading } = useQuery({
         queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in, firstFilterChild.id],
@@ -171,7 +172,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
 
     useEffect(() => {
         setCurrent(1);
-    }, [search, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in]);
+    }, [search, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in, devan_id]);
 
     useEffect(() => {
         setGenre_detail_number("");
@@ -190,7 +191,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* G'azallar */}
             {firstFilter.id == 0 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{"G'azallar"}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{genre_id.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter
@@ -209,7 +210,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 }
                                 setCurrent(1);
                                 setGenre_detail_number(e.target.value)
-                            }} type="number" placeholder="Raqam bo‘yicha qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                            }} type="number" placeholder={d("search_number")} className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <div className=" items-center gap-2 hidden md:flex">
                             {/* Filter Desktop */}
@@ -377,7 +378,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                             />
                         </div>
                     </div>
-                    <div className="h-[440px] md:h-[560px]">
+                    <div className="h-[500px] md:h-[580px]">
                         {data?.data?.main?.count == 0 && (
                             <div
                                 className={` flex justify-between items-center bg-blue-100 rounded-full duration-300 py-1 px-2 cursor-pointer`}
@@ -411,7 +412,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                 <div className=" block md:hidden">
                                     <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
                                         <div
-                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
+                                            className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-24 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
                                         >
                                             <div className="w-full">

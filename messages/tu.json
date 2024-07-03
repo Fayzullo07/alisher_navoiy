@@ -1,0 +1,36 @@
+{
+    "Navbar": [
+        "Navoi'nin Biyografisi",
+        "Devonları",
+        "Eserleri",
+        "Bilimsel araştırma",
+        "Haberler",
+        "Derlem hakkında"
+    ],
+    "Home": {
+        "bio": "Alisher Navoi'nin biyografisi, hayatı ve yaratıcılığı",
+        "button_more": "Daha",
+        "hero_desc": "Yazar külliyatı",
+        "year": "yıl",
+        "years": "yıllar",
+        "age": "yaş",
+        "ages": "yaşlar",
+        "author": "Yazar",
+        "created": "Yaratılış zamanı",
+        "name": "İsim"
+    },
+    "Devonlar": {
+        "text_type": "Metin türü",
+        "age_type": "Yaşa göre",
+        "search_number": "Numaraya göre ara",
+        "genres": "Türler",
+        "content_of_devans": "Devanların içeriği",
+        "all_button": "Tümü"
+    },
+    "search": "Aramak",
+    "employee": "Çalışanlar hakkında",
+    "Footer": {
+        "version": "Korpusun 1. Versiyonu",
+        "contact": "Referans için"
+    }
+}

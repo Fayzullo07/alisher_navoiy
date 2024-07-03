@@ -5,7 +5,7 @@ import { SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { newsGetApi } from "@/api/AdminRequest";
 import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 import { Pagination } from 'antd';
@@ -13,6 +13,7 @@ import type { PaginationProps } from 'antd'
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const NewsList = ({ search, setCountPage, current }: { search: string, setCountPage: any, current: number }) => {
+    const h = useTranslations('Home');
     const locale = useLocale();
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["news", search, current],
@@ -64,8 +65,7 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
                             </div>
                             <div>
                                 <Link href={`/${locale}/news/${item.id}`}
-                                    className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read
-                                    More -{">"}
+                                    className="inline-block pb-1 mt-2 text-xs md:text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">{h('button_more')}-{">"}
                                 </Link>
                             </div>
                         </div>
@@ -79,6 +79,8 @@ const NewsList = ({ search, setCountPage, current }: { search: string, setCountP
 
 
 const News = () => {
+    const n = useTranslations('Navbar');
+    const s = useTranslations();
     const [search, setSearch] = useState("");
 
     const [countPage, setCountPage] = useState(1);
@@ -95,15 +97,15 @@ const News = () => {
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div>
                     <div className="flex items-center justify-center  ">
-                        <Title title="Yangiliklar" />
+                        <Title title={n("4")} />
                     </div>
                     <div className="flex items-center gap-2 border w-full bg-white p-2 rounded-full mb-5 md:w-[50%] ">
                         <SearchIcon strokeWidth={1} size={20} />
-                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder={s("search")} className="w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                     </div>
-                    <ScrollArea className=" rounded-lg overflow-auto px-4 py-2 md:py-6 h-[100vh]">
+                    <div className="rounded-lg overflow-auto px-4 py-2 md:py-6 h-[100vh]">
                         <NewsList search={search} setCountPage={setCountPage} current={current} />
-                    </ScrollArea>
+                    </div>
                     <div className={` text-center mt-3 my-2 ${countPage > 14 ? "" : "hidden"} `}>
                         <Pagination current={current} onChange={onChange} showSizeChanger={false} total={countPage} responsive={true} defaultPageSize={15} />
                     </div>

@@ -7,7 +7,6 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Modal from "@/components/Core/Modal";
 import Loading from "../Core/Loading";
 
@@ -16,9 +15,11 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
+import { useTranslations } from "next-intl";
 
 const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in, search }) => {
-
+    const h = useTranslations("Home");
+    const d = useTranslations("Devonlar");
     const { data: dataNextPrev } = useQuery({
         queryKey: ["gazal_next_prev", current, genre_detail_number],
         queryFn: async () => {
@@ -123,17 +124,17 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                         </ScrollArea>
                         <div className="flex justify-between items-center gap-2 p-4 w-full  md:w-[80%] mx-auto">
                             <div>
-                                {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && (
+                                {/* {data?.data?.genre_detail_number - ((current - 1) * 10) != 1 && 1 != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number > 1 ? data?.data?.genre_detail_number - 1 : 1)}>
                                         <MoveLeftIcon className="w-4 h-4" />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                             {!isLoading && (
 
                                 <div className="flex items-center gap-2 ">
                                     <Modal title="Metama’lumot" button={
-                                        <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{"Batafsil"}</div>
+                                        <div className="px-3 py-1 hover:scale-110 duration-300 border rounded-full cursor-pointer">{h("button_more")}</div>
                                     } >
 
                                         {Object.entries(data?.data?.metadata).map(([key, value]) => (
@@ -162,6 +163,9 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
 
 
                                         <ScrollArea className="h-[400px] md:h-[420px]">
+                                            {data?.data?.explanation == "" && (
+                                                <h1>Kiritilmagan</h1>
+                                            )}
                                             <div
                                                 style={{ whiteSpace: "pre-line" }}
                                                 dangerouslySetInnerHTML={{ __html: data?.data?.explanation }}
@@ -177,7 +181,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                 </div>
                             )}
                             <div>
-                                {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && (
+                                {/* {data?.data?.genre_detail_number < current * 10 && data?.data?.genre_detail_number != dataNextPrev?.data?.main?.count && genre_detail_number == "" && auditory_age__in == "" && text_type_id__in == "" && (
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300" onClick={() => getNextPrev(data?.data?.genre_detail_number + 1)}>
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
@@ -186,7 +190,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                     <div className="p-1.5 border rounded-full cursor-pointer hover:scale-110 duration-300">
                                         <MoveRightIcon className="w-4 h-4" />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </div>
                     </div>
@@ -284,7 +288,9 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                     } >
 
                                         <ScrollArea className="h-[400px] md:h-[420px]">
-
+                                            {data?.data?.explanation == "" && (
+                                                <h1>Kiritilmagan</h1>
+                                            )}
                                             <div
                                                 style={{ whiteSpace: "pre-line" }}
                                                 dangerouslySetInnerHTML={{ __html: data?.data?.explanation }}
@@ -292,7 +298,6 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                         </ScrollArea>
 
                                     </Modal>
-
                                 </div>
                             )}
                             {isLoading && (

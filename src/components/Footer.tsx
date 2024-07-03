@@ -2,10 +2,12 @@
 import Link from "next/link";
 import Container from "./Core/Container";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Footer = () => {
     const locale = useLocale();
+    const n = useTranslations('Navbar');
+    const f = useTranslations("Footer");
 
     return (
         <div className={`bg-white py-6 px-4`}>
@@ -26,22 +28,22 @@ const Footer = () => {
                             <h2 className="text-base md:text-xl font-semibold py-2">Ruknlar</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
                                 <div>
-                                    <Link href={`/${locale}/biography`} className="text-maincolor">Tarjimayi hol</Link>
+                                    <Link href={`/${locale}/biography`} className="text-maincolor">{n("0")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/devonlar`} className="text-maincolor">Devonlar</Link>
+                                    <Link href={`/${locale}/devonlar`} className="text-maincolor">{n("1")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/asarlar`} className="text-maincolor">Asarlar</Link>
+                                    <Link href={`/${locale}/asarlar`} className="text-maincolor">{n("2")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/tadqiqotlar`} className="text-maincolor">Ilmiy tadqiqotlar</Link>
+                                    <Link href={`/${locale}/tadqiqotlar`} className="text-maincolor">{n("3")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/news`} className="text-maincolor">Yangiliklar</Link>
+                                    <Link href={`/${locale}/news`} className="text-maincolor">{n("4")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/about`} className="text-maincolor">Korpus haqida</Link>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{n("5")}</Link>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +58,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div>
-                            <h2 className=" text-base md:text-xl font-semibold py-2">Murojaat uchun</h2>
+                            <h2 className=" text-base md:text-xl font-semibold py-2">{f("contact")}</h2>
                             <div className="text-xs md:text-base text-gray-400 space-y-2">
                                 <div>
                                     <Link href={"tel:+998 91 333 86 55"} target="_blank" className="text-maincolor">+998 91 333 86 55</Link>
@@ -76,7 +78,7 @@ const Footer = () => {
                     </div>
                 </footer>
                 <div className="text-xs md:text-base text-black pt-5">
-                    Version 1.0.0 <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">alishernavoicorpus.uz</Link>
+                    {f("version")} <Link href="http://v1.alishernavoicorpus.uz/" target="_blank" className="text-maincolor">v1.alishernavoicorpus.uz</Link>
                 </div>
             </Container>
 

@@ -148,10 +148,7 @@ h3 {
   /* border: 1px solid black; */
 }
 
-.image_anm {
-  animation: image 2s;
-  animation-duration: 5s;
-}
+
 
 
 @keyframes image {
@@ -213,7 +210,7 @@ h3 {
   background-position: 0% 0%;
   width: 99.5vw;
   /* height: 100%; */
-  animation: horizontalMove 25s infinite;
+  animation: horizontalMove 100s infinite;
   animation-timing-function: ease;
 }
 

@@ -23,10 +23,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import React from 'react';
 import { Checkbox, Divider } from 'antd';
 import type { CheckboxProps } from 'antd';
+import { useTranslations } from "next-intl";
 
 const CheckboxGroup = Checkbox.Group;
 
 const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
+    const d = useTranslations("Devonlar");
     const { data, isLoading } = useQuery({
         queryKey: ["filter_list"],
         queryFn: async () => {
@@ -90,7 +92,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                 <Popover>
                     <PopoverTrigger>
                         <div className="flex w-max items-center bg-white gap-2 px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                            <span className=" text-sm">{"Matn tipi"}</span>
+                            <span className=" text-sm">{d("text_type")}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
                     </PopoverTrigger>
@@ -99,7 +101,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                             <ScrollArea className="h-[30vh] p-2">
 
                                 <Checkbox className="w-full" indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
-                                    All
+                                    {d("all_button")}
                                 </Checkbox>
                                 <Divider className="my-2" />
                                 <CheckboxGroup
@@ -118,7 +120,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                 <Popover>
                     <PopoverTrigger>
                         <div className="flex items-center gap-2  w-max bg-white  px-2 py-1 hover:bg-gray-50 duration-300  cursor-pointer border rounded-full">
-                            <span className="text-sm">{"Yosh bo'yicha"}</span>
+                            <span className="text-sm">{d("age_type")}</span>
                             <ChevronDownIcon strokeWidth={1} className="w-4 h-4 hover:scale-110 duration-300" />
                         </div>
                     </PopoverTrigger>
@@ -126,7 +128,7 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                         <div className="">
                             <ScrollArea className="h-[20vh] p-2">
                                 <Checkbox className="w-full" indeterminate={indeterminateAges} onChange={onCheckAllChangeAges} checked={checkAllAges}>
-                                    All
+                                    {d("all_button")}
                                 </Checkbox>
                                 <Divider className="my-2" />
                                 <CheckboxGroup
@@ -175,8 +177,6 @@ const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_
                     </div>
                 </Link>
             ))}
-
-
         </>
     )
 
@@ -218,6 +218,9 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
 
 
 const Asarlar = () => {
+    const h = useTranslations('Home');
+    const n = useTranslations('Navbar');
+    const s = useTranslations();
     const [search, setSearch] = useState("");
     const [countPage, setCountPage] = useState(1);
     const [current, setCurrent] = useState(1);
@@ -233,7 +236,7 @@ const Asarlar = () => {
         <div className="bg-image-flower min-h-screen md:pt-20 pt-14">
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
-                    <Title title="Asarlar" />
+                    <Title title={n("2")} />
                 </div>
 
                 <div className="hidden lg:block bg-white shadow-lg rounded-lg pb-5">
@@ -254,7 +257,7 @@ const Asarlar = () => {
 
                                     setCurrent(1);
                                     setSearch(e.target.value)
-                                }} type="text" placeholder="Qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                                }} type="text" placeholder={s("search")} className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                             </div>
                             <div className=" items-center gap-2 hidden md:flex">
                                 {/* Filter Desktop */}
@@ -267,9 +270,9 @@ const Asarlar = () => {
                         <table className="w-full table-fixed">
                             <thead className="">
                                 <tr className="bg-gray-100 overflow-hidden text-sm mb-5">
-                                    <th className="w-3/5 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">Nomi</th>
-                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">Muallifi</th>
-                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">Sanasi</th>
+                                    <th className="w-3/5 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">{h("name")}</th>
+                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">{h("author")}</th>
+                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">{h("created")}</th>
                                     <th className="w-1/5 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{"Ko‘rish"}</th>
                                 </tr>
                             </thead>
@@ -285,7 +288,7 @@ const Asarlar = () => {
 
                 <div className="block lg:hidden ">
                     <div className="flex items-center justify-center py-5 ">
-                        <h2 className="text-xl font-semibold text-center flex-grow">Asarlar</h2>
+                        <h2 className="text-xl font-semibold text-center flex-grow">{n("2")}</h2>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-2 mb-2 w-full ">
 
@@ -304,7 +307,7 @@ const Asarlar = () => {
                                 <input value={search} onChange={(e) => {
                                     setCurrent(1);
                                     setSearch(e.target.value)
-                                }} type="search" placeholder="Qidiruv" className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
+                                }} type="search" placeholder={s("search")} className="w-full  placeholder:text-xs  bg-transparent focus:outline-none text-sm text-gray-500" />
                             </div>
                             <div className=" items-center gap-2 hidden md:flex">
                                 {/* Filter Desktop */}

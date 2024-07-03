@@ -6,13 +6,13 @@ import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, CircleIcon, ScrollTex
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
-const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild, text_type_id__in, auditory_age__in }) => {
+const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter, firstFilterChild, setFirstFilterChild, text_type_id__in, auditory_age__in, d, genre_detail_number }) => {
     const [secondsData, setSecondsData] = useState([]);
     const [poetic_artsData, setPoeticArtsData] = useState([]);
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["janrlar_filter", search, devan_id.id, firstFilter.id, firstFilterChild.id, genre_id.id, text_type_id__in, auditory_age__in],
+        queryKey: ["janrlar_filter", search, devan_id.id, firstFilter.id, firstFilterChild.id, genre_id.id, text_type_id__in, auditory_age__in, genre_detail_number],
         queryFn: async () => {
-            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id, text_type_id__in, auditory_age__in });
+            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id, text_type_id__in, auditory_age__in, genre_detail_number });
         }
     });
 
@@ -33,7 +33,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
         <>
             {/* Desktop */}
             <div className="bg-white h-fit rounded-2xl text-center py-2 px-4 hidden lg:block" >
-                <div className="text-xl py-1 pb-2 font-semibold">Devonning tarkibi</div>
+                <div className="text-xl py-1 pb-2 font-semibold">{d("content_of_devans")}</div>
                 <div className=" space-y-2">
                     {genre_id.name == "" ? (
                         null
@@ -43,7 +43,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                 <ScrollTextIcon strokeWidth={1} className="w-5 h-5" />
                                 <div className="text-base capitalize">{genre_id?.name}</div>
                             </div>
-                            <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts} ta</span>
+                            <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts}</span>
                         </div>
                     )}
                     {secondsData.map((item: any, i: any) => (
@@ -64,7 +64,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                         </>
                                     )}
                                     <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                        {item.counts} ta
+                                        {item.counts}
                                     </span>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                         )}
                                         <div className="text-sm">{itemchild.name}</div>
                                     </div>
-                                    <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts} ta</span>
+                                    <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts}</span>
                                 </div>
                             ))}
 
@@ -93,8 +93,8 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
 
             {/* Mobile */}
             <div className=" rounded-2xl text-start block lg:hidden" >
-                <Title title="Devonning tarkibi" />
-                <ScrollArea className="py-2  whitespace-nowrap ">
+                <Title title={d("content_of_devans")} />
+                <ScrollArea className="py-2 whitespace-nowrap ">
                     <div className=" flex gap-2 items-center">
                         {genre_id.name == "" ? (
                             null
@@ -104,7 +104,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                     <ScrollTextIcon strokeWidth={1} className="w-5 h-5" />
                                     <div className="text-base">{genre_id?.name}</div>
                                 </div>
-                                <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts} ta</span>
+                                <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{genre_id?.counts}</span>
                             </div>
                         )}
                         {secondsData.map((item: any, i: any) => (
@@ -121,7 +121,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                             </>
                                         )}
                                         <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                            {item.counts} ta
+                                            {item.counts} 
                                         </span>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                             )}
                                             <div className="text-sm">{itemchild.name}</div>
                                         </div>
-                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts} ta</span>
+                                        <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">{itemchild.counts}</span>
                                     </div>
                                 ))}
 

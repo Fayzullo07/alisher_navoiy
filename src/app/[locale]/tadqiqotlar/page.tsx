@@ -9,9 +9,11 @@ import { useEffect, useState } from "react";
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd'
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useTranslations } from "next-intl";
 
 const TadqiqotListMobile = ({ search, setCountPage, current }) => {
-    const { data, isLoading, isError } = useQuery({
+    const h = useTranslations("Home");
+    const { data, isError } = useQuery({
         queryKey: ["works", search, current],
         queryFn: async () => {
             return await researchGetApi({ search, page: current });
@@ -24,7 +26,6 @@ const TadqiqotListMobile = ({ search, setCountPage, current }) => {
         }
     }, [data])
 
-    // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>Xatolik yuz berdi...</div>;
     return (
         <>
@@ -32,11 +33,11 @@ const TadqiqotListMobile = ({ search, setCountPage, current }) => {
                 <div key={i} className="py-4 px-3 bg-white rounded-2xl space-y-2 border mb-3">
                     <div className="pb-2 text-sm font-semibold">{item.title}</div>
                     <div className="text-sm">
-                        <div><span className="text-blue-300">Muallifi: </span> {item.authors}</div>
-                        <div className="pb-5"><span className="text-blue-300">Yaratilgan vaqti: </span> {item.published_at}</div>
+                        <div><span className="text-blue-300">{h('author')}: </span> {item.authors}</div>
+                        <div className="pb-5"><span className="text-blue-300">{h('created')}: </span> {item.published_at}</div>
                     </div>
                     <Link href={item.pdf_file} target="_blank">
-                        <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{"Ko‘rish"}</button>
+                        <button className="bg-blue-100 text-gray-500 w-full font-semibold rounded-full text-sm md:text-sm py-2.5 ">{h('button_more')}</button>
                     </Link>
                 </div>
             ))}
@@ -45,7 +46,7 @@ const TadqiqotListMobile = ({ search, setCountPage, current }) => {
 };
 
 const TadqiqotList = ({ search, setCountPage, current }) => {
-    const { data, isLoading, isError, error } = useQuery({
+    const { data, isError, error } = useQuery({
         queryKey: ["researches", search, current],
         queryFn: async () => {
             return await researchGetApi({ search });
@@ -87,6 +88,9 @@ const TadqiqotList = ({ search, setCountPage, current }) => {
 };
 
 const Tadqiqotlar = () => {
+    const h = useTranslations("Home");
+    const n = useTranslations("Navbar");
+    const s = useTranslations();
     const [search, setSearch] = useState("");
     const [countPage, setCountPage] = useState(1);
     const [current, setCurrent] = useState(1);
@@ -98,7 +102,7 @@ const Tadqiqotlar = () => {
         <div className="bg-image-flower min-h-screen pt-14 md:pt-20">
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
-                    <Title title="Ilmiy tadqiqotlar" />
+                    <Title title={n('3')} />
                 </div>
 
                 <div className=" hidden lg:block bg-white shadow-lg rounded-lg pb-5 ">
@@ -106,15 +110,15 @@ const Tadqiqotlar = () => {
                     <div className={` overflow-hidden px-4 pt-6 ${countPage > 9 && "h-auto"} `}>
                         <div className="flex items-center gap-2 border p-2 rounded-full mb-5 w-full md:w-[50%] ">
                             <SearchIcon strokeWidth={1} size={20} />
-                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
+                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder={s('search')} className=" w-full inline-block bg-transparent focus:outline-none text-sm text-gray-500" />
                         </div>
                         <table className="w-full table-fixed">
                             <thead className=" rounded-full overflow-hidden">
                                 <tr className="bg-gray-100 rounded-full overflow-hidden text-sm">
-                                    <th className="w-3/4 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">Nomi</th>
-                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">Muallifi</th>
-                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">Sanasi</th>
-                                    <th className="w-1/4 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{"Ko‘rish"}</th>
+                                    <th className="w-3/4 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">{h('name')}</th>
+                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">{h('author')}</th>
+                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">{h('created')}</th>
+                                    <th className="w-1/4 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{h('button_more')}</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white ">
@@ -129,11 +133,11 @@ const Tadqiqotlar = () => {
 
                 <div className="block lg:hidden">
                     <div className="flex items-center justify-center py-5 ">
-                        <h2 className="text-xl font-semibold text-center flex-grow">Ilmiy tadqiqotlar</h2>
+                        <h2 className="text-xl font-semibold text-center flex-grow">{n('3')}</h2>
                     </div>
                     <div className="flex items-center gap-2 border p-2 rounded-full mb-5 bg-white ">
                         <SearchIcon strokeWidth={1} size={20} />
-                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Qidiruv" className=" w-full bg-transparent focus:outline-none text-sm text-gray-500" />
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder={s('search')} className=" w-full bg-transparent focus:outline-none text-sm text-gray-500" />
                     </div>
                     <ScrollArea className="  h-[80vh] md:h-[95vh]">
                         <TadqiqotListMobile search={search} setCountPage={setCountPage} current={current} />

@@ -9,8 +9,12 @@ import GenreList from "@/components/Devonlar/GenreList";
 import JanrlarFilter from "@/components/Devonlar/JanrlarFilter";
 import GazalList from "@/components/Devonlar/GazalList";
 import Gazal from "@/components/Devonlar/Gazal";
+import { useTranslations } from "next-intl";
 
 const Devonlar = () => {
+    const n = useTranslations('Navbar');
+    const h = useTranslations('Home');
+    const d = useTranslations('Devonlar');
     const searchParams = useSearchParams();
     const search = searchParams.get('search') ?? "";
     const [genre_id, setGenreId] = useState({ id: "", name: "", counts: 0 });
@@ -36,18 +40,19 @@ const Devonlar = () => {
             <Container>
                 {/* Devonlar */}
                 <div>
-                    <Title title="Devonlar" />
+                    <Title title={n("1")} />
                     <DevonList
                         devan_id={devan_id}
                         setDevan_id={setDevan_id}
                         genre_id={genre_id}
                         search={search}
+                        h={h}
                     />
                 </div>
 
                 {/* Janrlar */}
                 <div>
-                    <Title title="Janrlar" />
+                    <Title title={d("genres")} />
                     <GenreList
                         search={search}
                         devan_id={devan_id}
@@ -77,6 +82,9 @@ const Devonlar = () => {
 
                             text_type_id__in={text_type_id__in}
                             auditory_age__in={auditory_age__in}
+                            genre_detail_number={genre_detail_number}
+
+                            d={d}
                         />
 
                         {/* Filter 2 */}
@@ -101,6 +109,7 @@ const Devonlar = () => {
                                 setAuditory_age__in={setAuditory_age__in}
                                 text_type_id__in={text_type_id__in}
                                 setText_type_id__in={setText_type_id__in}
+                                d={d}
                             />
 
                             {/* Deteil */}

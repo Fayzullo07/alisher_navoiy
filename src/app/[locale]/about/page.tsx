@@ -4,7 +4,7 @@ import Container from "@/components/Core/Container";
 import Title from "@/components/Core/Title";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRightIcon, UserIcon } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 import React from "react";
@@ -20,8 +20,9 @@ import Image from "next/image";
 
 
 const Workers = () => {
+    const e = useTranslations();
     const plugin2 = React.useRef(
-        AutoScroll({ loop: true, speed: 1, autoScroll: true }),
+        AutoScroll({ loop: true, speed: 1000, autoScroll: true }),
         // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
     )
 
@@ -40,7 +41,7 @@ const Workers = () => {
             {data?.data?.length != 0 && (
                 <>
                     <div className="flex items-center justify-center">
-                        <Title title="Xodimlar haqida" />
+                        <Title title={e('employee')} />
                     </div>
                     <Container>
                         <Carousel
@@ -53,8 +54,8 @@ const Workers = () => {
                                     <CarouselItem key={index} className="pr-5 basis-full lg:basis-2/6 cursor-pointer">
                                         <div
                                             className="bg-gray-100 relative shadow-xl overflow-hidden hover:shadow-2xl group rounded-xl p-5 transition-all duration-500 transform">
-                                            <div className="flex items-center gap-4">
-                                                <div className="h-14 w-14 md:h-24 md:w-24">
+                                            <div className="grid grid-cols-6  gap-4 items-center">
+                                                <div className=" flex items-center justify-center mx-auto col-span-2 h-16 w-16 md:h-24 md:w-24">
 
                                                     {item.photo == null ? (
                                                         <UserIcon
@@ -65,7 +66,7 @@ const Workers = () => {
 
                                                         <Image
                                                             src={item.photo}
-                                                            className=" object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                                                            className=" rounded-full   transition-all duration-500 delay-500 transform"
                                                             width={0}
                                                             height={0}
                                                             sizes="100vw"
@@ -75,21 +76,19 @@ const Workers = () => {
                                                     )}
                                                 </div>
 
-                                                <div className="w-fit transition-all transform duration-500">
+                                                <div className=" col-span-4 w-fit transition-all transform duration-500">
                                                     <h1 className="text-gray-600 font-bold text-sm md:text-base">
                                                         {item.fullname}
                                                     </h1>
-
                                                     <p
-                                                        className="text-sm md:text-base text-gray-500 transform transition-all delay-300 duration-500">
-                                                        {item.role && <span className="text-maincolor inline-block">Lavozim: <span className="text-gray-700">{item.role.length > 20 ? item.role.substring(0, 20) + "..." : item.role}</span></span>}
-                                                        {item.phone_number && <span className="text-maincolor inline-block">Phone: <span className="text-gray-700">{item.phone_number}</span></span>}
+                                                        className="  text-sm md:text-base text-gray-500 transform transition-all delay-300 duration-500">
+                                                        {item.role && <span className="text-maincolor inline-block"> <span className="text-gray-700">{item.role.length > 100 ? item.role.substring(0, 100) + "..." : item.role}</span></span>}
                                                     </p>
+
+                                                    {item.phone_number && <span className="text-maincolor inline-block"> <span className="text-maincolor">{item.phone_number}</span></span>}
                                                 </div>
                                             </div>
-                                            <div className="">
-                                                {item.telegram_link && <Link href={item.telegram_link} target="_blank" className="text-sm md:text-base text-maincolor">Telegram: <span className="text-gray-700">{item.telegram_link}</span></Link>}
-                                            </div>
+                                            
 
                                         </div>
                                     </CarouselItem>
@@ -145,6 +144,7 @@ const AboutPage = () => {
 
 
 const About = () => {
+    const n = useTranslations("Navbar");
     return (
         <div className="pb-5 min-h-screen bg-image-flower md:pt-20 pt-14">
             <Container>
@@ -153,7 +153,7 @@ const About = () => {
                     <Workers />
                 </div>
                 <div className="flex items-center justify-center">
-                    <Title title="Korpus haqida" />
+                    <Title title={n('5')} />
                 </div>
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <AboutPage />

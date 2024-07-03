@@ -37,10 +37,19 @@ const Navbar = () => {
     });
 
     useEffect(() => {
-        router.push(`/${locale}/${pathname.split("/")[2] ? pathname.split("/")[2] : ""}`);
+        if (pathname.split("/")[2] != "devonlar") {
+            setSearch("");
+        }
+    }, [pathname]);
+
+    useEffect(() => {
         setSearch("");
+        router.push(`/${locale}/${pathname.split("/")[2] ? pathname.split("/")[2] : ""}`);
     }, []);
+
     const t = useTranslations('Navbar');
+    const s = useTranslations();
+
     const enterSearch = (e: any) => {
         if (e.key == "Enter") {
             router.push(`/${locale}/devonlar?search=` + e.target.value);
@@ -63,7 +72,7 @@ const Navbar = () => {
 
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
-                    <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder="Qidiruv ..." className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder={`${s("search")} ...`} className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>
@@ -94,7 +103,7 @@ const Navbar = () => {
                                 <SheetHeader>
                                     <SheetDescription className="z-[999]">
                                         <ul
-                                            className="text-xl text-gray-700 flex flex-col justify-start items-start z-[999]">
+                                            className="text-base text-gray-700 flex flex-col justify-start items-start z-[999]">
                                             {navbar.map((item, i) => (
                                                 <li key={item.name} data-aos="fade-left" data-aos-delay={(i + 1) * 100} data-aos-duration={(i + 1) * 100} >
                                                     <SheetClose asChild>

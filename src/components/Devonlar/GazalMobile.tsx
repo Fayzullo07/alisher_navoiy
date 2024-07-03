@@ -2,7 +2,6 @@ import {
     Drawer,
     DrawerClose,
     DrawerContent,
-    DrawerFooter,
     DrawerHeader,
     DrawerTrigger,
 } from "@/components/ui/drawer"

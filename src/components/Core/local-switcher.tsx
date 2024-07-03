@@ -1,6 +1,4 @@
 "use client"
-import { ArrowDownIcon, ChevronDown, ChevronDownIcon, ChevronRightIcon, Languages } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -34,7 +32,7 @@ const LocalSwitcher = () => {
                     <div className=" hidden md:block">
 
                         <Image
-                            src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : "russia"}.png`}
+                            src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : lang == 'ru' ? "russia" : "turkey"}.png`}
                             width={25}
                             height={25}
                             alt="Image"
@@ -45,7 +43,7 @@ const LocalSwitcher = () => {
                         <div className="flex justify-between items-center ">
 
                             <Image
-                                src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : "russia"}.png`}
+                                src={`/languages/${lang == 'uz' ? "uzbekistan" : lang == 'en' ? "english" : lang == 'ru' ? "russia" : "turkey"}.png`}
                                 width={25}
                                 height={25}
                                 alt="Image"
@@ -58,41 +56,61 @@ const LocalSwitcher = () => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onSelectChange("en")}>
-                    <div className="flex justify-between items-center w-full">
-                        <Image
-                            src="/languages/english.png"
-                            width={20}
-                            height={20}
-                            alt="Image"
-                        />
-                        <p className="text-base font-normal">EN</p>
-                    </div>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onSelectChange("ru")}>
-                    <div className="flex justify-between items-center w-full">
+                {lang != 'uz' && (
+                    <DropdownMenuItem onClick={() => onSelectChange("uz")}>
+                        <div className="flex justify-between items-center w-full">
 
-                        <Image
-                            src="/languages/russia.png"
-                            width={20}
-                            height={20}
-                            alt="Image"
-                        />
-                        <p className=" text-base font-normal">RU</p>
-                    </div>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => onSelectChange("uz")}>
-                    <div className="flex justify-between items-center w-full">
+                            <Image
+                                src="/languages/uzbekistan.png"
+                                width={20}
+                                height={20}
+                                alt="Image"
+                            />
+                            <p className=" text-base font-normal">UZ</p>
+                        </div>
+                    </DropdownMenuItem>
+                )}
+                {lang != 'ru' && (
+                    <DropdownMenuItem onClick={() => onSelectChange("ru")}>
+                        <div className="flex justify-between items-center w-full">
 
-                        <Image
-                            src="/languages/uzbekistan.png"
-                            width={20}
-                            height={20}
-                            alt="Image"
-                        />
-                        <p className=" text-base font-normal">UZ</p>
-                    </div>
-                </DropdownMenuItem>
+                            <Image
+                                src="/languages/russia.png"
+                                width={20}
+                                height={20}
+                                alt="Image"
+                            />
+                            <p className=" text-base font-normal">RU</p>
+                        </div>
+                    </DropdownMenuItem>
+                )}
+                {lang != 'en' && (
+                    <DropdownMenuItem onClick={() => onSelectChange("en")}>
+                        <div className="flex justify-between items-center w-full">
+                            <Image
+                                src="/languages/english.png"
+                                width={20}
+                                height={20}
+                                alt="Image"
+                            />
+                            <p className="text-base font-normal">EN</p>
+                        </div>
+                    </DropdownMenuItem>
+                )}
+                {lang != 'tu' && (
+                    <DropdownMenuItem onClick={() => onSelectChange("tu")}>
+                        <div className="flex justify-between items-center w-full">
+
+                            <Image
+                                src="/languages/turkey.png"
+                                width={20}
+                                height={20}
+                                alt="Image"
+                            />
+                            <p className=" text-base font-normal">TU</p>
+                        </div>
+                    </DropdownMenuItem>
+                )}
             </DropdownMenuContent>
         </DropdownMenu>
     )

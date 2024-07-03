@@ -8,7 +8,7 @@ import Link from "next/link";
 import { CalendarFoldIcon, UsersIcon } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
-const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
+const DevonList = ({ devan_id, setDevan_id, genre_id, search, h }) => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [dataDevons, setDataDevons] = useState([]);
 
@@ -72,7 +72,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                                     alt="Image"
                                                 />
                                                 <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                    {item.counts} ta
+                                                    {item.counts}
                                                 </div>
                                             </div>
                                             {/* </Link> */}
@@ -81,7 +81,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
 
                                                     <div className="w-full md:w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
                                                     <div className=" hidden md:block absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                                        {item.counts} ta
+                                                        {item.counts}
                                                     </div>
                                                 </div>
                                                 <div className="h-20 md:h-28 text-gray-500 flex flex-col">
@@ -91,16 +91,16 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
 
                                                     <span className="flex items-center text-xs md:text-sm">
                                                         <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                        {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                        {item.to_year ? item.from_year + "-" + item.to_year + "-" + h("years") : item.from_year + "-" + h("year")}
                                                     </span>
                                                     <span className="flex items-center mb-1 text-xs md:text-sm">
                                                         <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                        {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                        {item.to_age ? item.from_age + "-" + item.to_age + "-" + h("ages") : item.from_age + "-" + h("age")}
                                                     </span>
 
                                                 </div>
                                                 <Link href={item.pdf_file} target="_blank">
-                                                    <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                                    <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>{h("button_more")}</button>
                                                 </Link>
                                             </div>
                                         </div>
@@ -134,7 +134,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
                                                     alt="Image"
                                                 />
                                                 <div className=" block md:hidden absolute bottom-1 right-2 text-[10px] w-max  text-green-600 px-1 py-0.5 rounded-full bg-green-100">
-                                                    {item.counts} ta
+                                                    {item.counts}
                                                 </div>
                                             </div>
                                             {/* </Link> */}
@@ -143,7 +143,7 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
 
                                                     <div className="w-full md:w-[85%]  text-sm md:text-base font-semibold text-gray-700">{item.name}</div>
                                                     <div className=" hidden md:block absolute right-0 top-0 text-[10px] w-max  text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                                        {item.counts} ta
+                                                        {item.counts}
                                                     </div>
                                                 </div>
                                                 <div className="h-20 md:h-28 text-gray-500 flex flex-col">
@@ -153,16 +153,16 @@ const DevonList = ({ devan_id, setDevan_id, genre_id, search }) => {
 
                                                     <span className="flex items-center text-xs md:text-sm">
                                                         <CalendarFoldIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                        {item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}
+                                                        {item.to_year ? item.from_year + "-" + item.to_year + "-" + h("years") : item.from_year + "-" + h("year")}
                                                     </span>
                                                     <span className="flex items-center mb-1 text-xs md:text-sm">
                                                         <UsersIcon className="md:w-4 md:h-4 w-3 h-3 text-gray-400 mr-1" />
-                                                        {item.to_age ? item.from_age + "-" + item.to_age + "-yoshlar" : item.from_age + "-yosh"}
+                                                        {item.to_age ? item.from_age + "-" + item.to_age + "-" + h("ages") : item.from_age + "-" + h("age")}
                                                     </span>
 
                                                 </div>
                                                 <Link href={item.pdf_file} target="_blank">
-                                                    <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>Batafsil</button>
+                                                    <button className={`${item.id == devan_id.id ? "bg-white" : "bg-blue-100"}  w-full rounded-lg text-xs md:text-sm py-0.5  md:py-1`}>{h("button_more")}</button>
                                                 </Link>
                                             </div>
                                         </div>
