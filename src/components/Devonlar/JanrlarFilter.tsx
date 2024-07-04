@@ -10,9 +10,16 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
     const [secondsData, setSecondsData] = useState([]);
     const [poetic_artsData, setPoeticArtsData] = useState([]);
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["janrlar_filter", search, devan_id.id, firstFilter.id, firstFilterChild.id, genre_id.id, text_type_id__in, auditory_age__in, genre_detail_number],
+        queryKey: ["janrlar_filter", search, devan_id.id, genre_id.id, text_type_id__in, auditory_age__in, genre_detail_number],
         queryFn: async () => {
-            return await devonsGetApi({ search: search == null ? "" : search, devan_id: devan_id.id, genre_id: genre_id.id, second: firstFilter.id == 0 ? "" : firstFilter.id, poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id, text_type_id__in, auditory_age__in, genre_detail_number });
+            return await devonsGetApi({
+                search: search == null ? "" : search,
+                devan_id: devan_id.id,
+                genre_id: genre_id.id,
+                text_type_id__in,
+                auditory_age__in,
+                genre_detail_number
+            });
         }
     });
 
@@ -121,7 +128,7 @@ const JanrlarFilter = ({ search, devan_id, genre_id, firstFilter, setFirstFilter
                                             </>
                                         )}
                                         <span className="text-[10px] text-green-600 px-2 py-1 rounded-full bg-green-100">
-                                            {item.counts} 
+                                            {item.counts}
                                         </span>
                                     </div>
                                 </div>

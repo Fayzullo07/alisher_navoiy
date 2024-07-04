@@ -17,9 +17,10 @@ import {
 } from "@/components/ui/popover"
 import { useTranslations } from "next-intl";
 
-const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, auditory_age__in, text_type_id__in, search }) => {
+const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_number, search }) => {
     const h = useTranslations("Home");
     const d = useTranslations("Devonlar");
+    
     const { data: dataNextPrev } = useQuery({
         queryKey: ["gazal_next_prev", current, genre_detail_number],
         queryFn: async () => {

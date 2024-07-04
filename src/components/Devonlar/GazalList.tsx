@@ -22,7 +22,6 @@ import { useTranslations } from "next-intl";
 
 const CheckboxGroup = Checkbox.Group;
 
-
 const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
     const d = useTranslations("Devonlar");
     const { data, isLoading } = useQuery({
@@ -94,7 +93,6 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                     <PopoverContent align="start">
                         <div className="">
                             <ScrollArea className="h-[30vh] p-2">
-
                                 <Checkbox className="w-full" indeterminate={indeterminateTextTypes} onChange={onCheckAllChangeTextTypes} checked={checkAllTextTypes}>
                                     {d("all_button")}
                                 </Checkbox>
@@ -134,7 +132,6 @@ const Filter = ({ setAuditory_age__in, setText_type_id__in }) => {
                                 />
                             </ScrollArea>
                         </div>
-
                     </PopoverContent>
                 </Popover>
             </div>
@@ -146,15 +143,18 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
     const [countPage, setCountPage] = useState(1);
 
     const { data, isLoading } = useQuery({
-        queryKey: ["gazal_list", genre_detail_number, current, devan_id.id, genre_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in, firstFilterChild.id],
+        queryKey: ["gazal_list", search, devan_id.id, genre_id.id, firstFilter.id, firstFilterChild.id, genre_detail_number, auditory_age__in, text_type_id__in, current],
         queryFn: async () => {
             return await devonsGetApi({
-                genre_detail_number, page: current,
+                page: current,
+                search,
                 devan_id: devan_id.id,
                 genre_id: genre_id.id,
-                search, second: firstFilter.id == 0 ? "" : firstFilter.id,
-                auditory_age__in, text_type_id__in,
+                second: firstFilter.id == 0 ? "" : firstFilter.id,
                 poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id,
+                genre_detail_number,
+                auditory_age__in,
+                text_type_id__in,
                 page_size: firstFilter.id == 3 || firstFilter.id == 4 || firstFilter.id == 5 ? 5 : 10
             });
         }
@@ -191,7 +191,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* G'azallar */}
             {firstFilter.id == 0 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{genre_id.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{genre_id.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter
@@ -273,7 +273,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* Arxaizm */}
             {firstFilter.id == 1 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{firstFilter.name}</div>
                     <div className="h-[380px] md:h-[430px]">
                         {data?.data?.main?.count == 0 && (
                             <div
@@ -310,7 +310,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* Istorizm */}
             {firstFilter.id == 2 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{firstFilter.name}</div>
                     <div className="h-[380px] md:h-[430px]">
                         {data?.data?.main?.count == 0 && (
                             <div
@@ -349,7 +349,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* Ibora */}
             {firstFilter.id == 3 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter
@@ -442,7 +442,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* Maqol */}
             {firstFilter.id == 4 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter
@@ -534,7 +534,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
             {/* She'riy San'at */}
             {firstFilter.id == 5 && (
                 <div className="bg-white h-fit rounded-2xl text-center py-2 px-3" >
-                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2">{firstFilter.name}</div>
+                    <div className="text-xl flex-grow text-center font-semibold py-1 pb-2 capitalize">{firstFilter.name}</div>
                     <div className="flex items-center float-center gap-2  md:hidden mb-2">
                         {/* Filter mobile */}
                         <Filter

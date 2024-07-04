@@ -45,9 +45,9 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20 space-y-4 hero_title" style={{ textShadow: '-1px -1px 0 #000' }}>
+                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #000' }}>
                                     <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >Alisher Navoiy</h1>
-                                    <p className=" text-center md:text-3xl  text-base font-semibold hero_title" >{h("hero_desc")}</p>
+                                    <p className="hero_title text-center md:text-3xl  text-base font-semibold " >{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-[80%] mx-auto absolute top-0 bottom-0 left-0 right-0">
 
@@ -73,7 +73,7 @@ const Hero = ({ h }) => {
                                                 plugins={[plugin2.current]}
                                                 onMouseEnter={plugin2.current.stop}
                                                 onMouseLeave={plugin2.current.play}
-                                                className="w-[60%]  h-20 flex justify-center items-center ">
+                                                className="w-[60%] h-20 flex justify-center items-center ">
                                                 <CarouselContent>
                                                     {data?.data?.map((item: any, index: any) => (
                                                         <CarouselItem key={index} className="basis-full  cursor-pointer my-auto">

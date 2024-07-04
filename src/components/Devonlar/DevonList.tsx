@@ -8,14 +8,21 @@ import Link from "next/link";
 import { CalendarFoldIcon, UsersIcon } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
-const DevonList = ({ devan_id, setDevan_id, genre_id, search, h }) => {
+const DevonList = ({ devan_id, setDevan_id, genre_id, search, h, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in, genre_detail_number }) => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [dataDevons, setDataDevons] = useState([]);
 
     const { data } = useQuery({
-        queryKey: ["devans_list", genre_id, search],
+        queryKey: ["devans_list", search, genre_id, firstFilter.id, firstFilterChild.id, auditory_age__in, text_type_id__in, genre_detail_number],
         queryFn: async () => {
-            return await devonsGetApi({ genre_id: genre_id.id, search });
+            return await devonsGetApi({
+                genre_id: genre_id.id,
+                search,
+                genre_detail_number,
+                second: firstFilter.id == 0 ? "" : firstFilter.id,
+                auditory_age__in, text_type_id__in,
+                poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id,
+            });
         }
     });
 

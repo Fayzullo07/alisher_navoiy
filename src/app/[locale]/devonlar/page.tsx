@@ -35,17 +35,39 @@ const Devonlar = () => {
         setGazal_id({ id: "", name: "" });
     }, [devan_id, genre_id, search, firstFilter, firstFilterChild, genre_detail_number, current, auditory_age__in, text_type_id__in]);
 
+
+    const resetFilter = () => {
+        setDevan_id({ id: "", name: "" });
+        setGenreId({ id: "", name: "", counts: 0 });
+        setFirstFilter({ id: 0, name: "" });
+        setFirstFilterChild({ id: 0, name: "" });
+        setAuditory_age__in("");
+        setText_type_id__in("");
+        setGenre_detail_number("");
+        setGazal_id({ id: "", name: "" });
+    }
     return (
         <div className="pb-5 bg-image-flower min-h-screen md:pt-20 pt-14">
             <Container>
                 {/* Devonlar */}
                 <div>
-                    <Title title={n("2")} />
+                    <div className="flex items-center justify-between">
+
+                        <Title title={n("2")} />
+                        {/* <button onClick={resetFilter} className="px-4 py-2 hover:px-6 duration-300 hover:shadow-xl border border-blue-500 bg-blue-100 text-blue-500 font-semibold text-base tracking-wide rounded-full">Reset Filter</button> */}
+                    </div>
                     <DevonList
-                        devan_id={devan_id}
                         setDevan_id={setDevan_id}
-                        genre_id={genre_id}
+
                         search={search}
+                        devan_id={devan_id}
+                        genre_id={genre_id}
+                        firstFilter={firstFilter}
+                        firstFilterChild={firstFilterChild}
+                        auditory_age__in={auditory_age__in}
+                        text_type_id__in={text_type_id__in}
+                        genre_detail_number={genre_detail_number}
+
                         h={h}
                     />
                 </div>
@@ -54,11 +76,13 @@ const Devonlar = () => {
                 <div>
                     <Title title={d("genres")} />
                     <GenreList
+                        setGenreId={setGenreId}
+                        
                         search={search}
                         devan_id={devan_id}
                         genre_id={genre_id}
-                        setGenreId={setGenreId}
                         firstFilter={firstFilter}
+                        firstFilterChild={firstFilterChild}
                         auditory_age__in={auditory_age__in}
                         text_type_id__in={text_type_id__in}
                         genre_detail_number={genre_detail_number}
@@ -71,15 +95,15 @@ const Devonlar = () => {
 
                         {/* Filter 1 */}
                         <JanrlarFilter
+                            setFirstFilter={setFirstFilter}
+                            setFirstFilterChild={setFirstFilterChild}
+                            firstFilter={firstFilter}
+                            firstFilterChild={firstFilterChild}
+
+                            // Filter
                             search={search}
                             devan_id={devan_id}
                             genre_id={genre_id}
-                            // Filter
-                            firstFilter={firstFilter}
-                            setFirstFilter={setFirstFilter}
-                            firstFilterChild={firstFilterChild}
-                            setFirstFilterChild={setFirstFilterChild}
-
                             text_type_id__in={text_type_id__in}
                             auditory_age__in={auditory_age__in}
                             genre_detail_number={genre_detail_number}
@@ -95,20 +119,19 @@ const Devonlar = () => {
                                 devan_id={devan_id}
                                 genre_id={genre_id}
                                 gazal_id={gazal_id}
-                                setGazal_id={setGazal_id}
-                                genre_detail_number={genre_detail_number}
-                                setGenre_detail_number={setGenre_detail_number}
-
-                                // Filter
                                 firstFilter={firstFilter}
                                 firstFilterChild={firstFilterChild}
-
-                                current={current}
-                                setCurrent={setCurrent}
                                 auditory_age__in={auditory_age__in}
-                                setAuditory_age__in={setAuditory_age__in}
                                 text_type_id__in={text_type_id__in}
+                                genre_detail_number={genre_detail_number}
+
+                                // Filter
+                                setGazal_id={setGazal_id}
+                                setGenre_detail_number={setGenre_detail_number}
+                                setCurrent={setCurrent}
+                                setAuditory_age__in={setAuditory_age__in}
                                 setText_type_id__in={setText_type_id__in}
+                                current={current}
                                 d={d}
                             />
 

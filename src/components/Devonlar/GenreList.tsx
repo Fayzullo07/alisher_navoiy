@@ -5,14 +5,22 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
-const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, auditory_age__in, text_type_id__in, genre_detail_number }) => {
+const GenreList = ({ search, devan_id, genre_id, setGenreId, firstFilter, firstFilterChild, auditory_age__in, text_type_id__in, genre_detail_number }) => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [dataGenres, setDataGenres] = useState([]);
 
     const { data } = useQuery({
-        queryKey: ["genre_list", devan_id.id, search, firstFilter.id, auditory_age__in, text_type_id__in, genre_detail_number],
+        queryKey: ["genre_list", search, devan_id.id, firstFilter.id, firstFilterChild.id, auditory_age__in, text_type_id__in, genre_detail_number],
         queryFn: async () => {
-            return await devonsGetApi({ devan_id: devan_id.id, search, second: firstFilter.id == 0 ? "" : firstFilter.id, auditory_age__in: auditory_age__in ? auditory_age__in : "", text_type_id__in: text_type_id__in ? text_type_id__in : "", genre_detail_number });
+            return await devonsGetApi({
+                search,
+                devan_id: devan_id.id,
+                second: firstFilter.id == 0 ? "" : firstFilter.id,
+                poetic_art_id: firstFilterChild.id == 0 ? "" : firstFilterChild.id,
+                auditory_age__in: auditory_age__in ? auditory_age__in : "",
+                text_type_id__in: text_type_id__in ? text_type_id__in : "",
+                genre_detail_number
+            });
         }
     });
 
