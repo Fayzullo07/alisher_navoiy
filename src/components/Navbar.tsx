@@ -62,7 +62,7 @@ const Navbar = () => {
 
                 <Link href={"/"}>
                     <Image
-                        src="/logo.png"
+                        src="/navLogo.svg"
                         width={40}
                         height={40}
                         className=" rounded-full object-cover"

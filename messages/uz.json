@@ -34,6 +34,9 @@
     "employee": "Xodimlar haqida",
     "Footer": {
         "version": "Korpusning 1-versiyasi",
-        "contact": "Murojaat uchun"
+        "contact": "Murojaat uchun",
+        "employee": "Xodimlar",
+        "questions": "Soralar, javoblar",
+        "ruknlar": "Ruknlar"
     }
 }

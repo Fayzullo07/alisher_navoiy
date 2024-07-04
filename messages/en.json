@@ -34,6 +34,9 @@
     "employee": "About employees",
     "Footer": {
         "version": "Version 1",
-        "contact": "Referans için"
+        "contact": "For reference",
+        "employee": "Employees",
+        "questions": "Questions, answers",
+        "ruknlar": "Columns"
     }
 }

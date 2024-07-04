@@ -25,7 +25,7 @@ const Footer = () => {
                             />
                         </div>
                         <div>
-                            <h2 className="text-base md:text-xl font-semibold py-2">Ruknlar</h2>
+                            <h2 className="text-base md:text-xl font-semibold py-2">{f("ruknlar")}</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
                                 <div>
                                     <Link href={`/${locale}/biography`} className="text-maincolor">{n("0")}</Link>
@@ -51,13 +51,13 @@ const Footer = () => {
                             </div>
                         </div>
                         <div>
-                            <h2 className="text-base md:text-xl font-semibold py-2">Korpus haqida</h2>
+                            <h2 className="text-base md:text-xl font-semibold py-2">{n("6")}</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
                                 <div>
-                                    <Link href={`/${locale}/about`} className="text-maincolor">{"Xodimlar"}</Link>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{f("employee")}</Link>
                                 </div>
                                 <div>
-                                    <Link href={`/${locale}/about`} className="text-maincolor">{"Savol, javoblar"}</Link>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{f("questions")}</Link>
                                 </div>
                             </div>
                         </div>

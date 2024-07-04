@@ -34,6 +34,9 @@
     "employee": "Çalışanlar hakkında",
     "Footer": {
         "version": "Korpusun 1. Versiyonu",
-        "contact": "Referans için"
+        "contact": "Referans için",
+        "employee": "Çalışanlar",
+        "questions": "Sorular, cevaplar",
+        "ruknlar": "Sütunlar"
     }
 }
