@@ -45,16 +45,20 @@ const Footer = () => {
                                 <div>
                                     <Link href={`/${locale}/about`} className="text-maincolor">{n("5")}</Link>
                                 </div>
+                                <div>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{n("6")}</Link>
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <h2 className="text-base md:text-xl font-semibold py-2">Janrlar</h2>
+                            <h2 className="text-base md:text-xl font-semibold py-2">Korpus haqida</h2>
                             <div className="text-sm md:text-base text-gray-400 space-y-2">
-                                <div>Maqollar</div>
-                                <div>Iboralar</div>
-                                <div>Arxaizm</div>
-                                <div>Istorizm</div>
-                                <div>{"She’riy san’at"}</div>
+                                <div>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{"Xodimlar"}</Link>
+                                </div>
+                                <div>
+                                    <Link href={`/${locale}/about`} className="text-maincolor">{"Savol, javoblar"}</Link>
+                                </div>
                             </div>
                         </div>
                         <div>
