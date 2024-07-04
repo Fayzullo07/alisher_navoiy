@@ -34,10 +34,10 @@ const Hero = ({ h }) => {
             {/* Desktop */}
             <div className=" hidden md:block relative h-screen overflow-hidden">
                 <Image
-                    src={"/hero.png"}
+                    src={"/scale_1200.jpeg"}
                     width={0}
                     height={0}
-                    className="object-cover"
+                    className="object-contain"
                     sizes="100vw" style={{ width: '100%', height: 'auto' }}
                     alt="Image"
                 />
@@ -45,15 +45,15 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-white font-serif md:pt-20 space-y-4">
-                                    <h1 className="md:text-9xl text-4xl hero_title" data-aos="fade-up" data-aos-delay="100">Alisher Navoiy</h1>
-                                    <p className=" text-center md:text-3xl  text-base font-semibold hero_title" data-aos="fade-up" data-aos-delay="200">{h("hero_desc")}</p>
+                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20 space-y-4">
+                                    <h1 style={{ textShadow: '-1px -1px 0 #000' }} className="md:text-9xl  text-4xl hero_title shadow-black " >Alisher Navoiy</h1>
+                                    <p style={{ textShadow: '-1px -1px 0 #000' }} className=" text-center md:text-3xl  text-base font-semibold hero_title" data-aos="fade-up" data-aos-delay="200">{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-[80%] mx-auto absolute top-0 bottom-0 left-0 right-0">
 
-                                    <div className="hidden w-[46vw] h-[33vw]  md:block absolute  bottom-0 -left-10 ">
+                                    <div className="hidden w-[45%]  md:block absolute  bottom-0 -left-10 ">
                                         <Image
-                                            src={"/alisher_navoiy_book.png"}
+                                            src={"/hero_png_1.png"}
                                             width={0}
                                             height={0}
                                             sizes="100vw" style={{ width: '100%', height: 'auto' }}
@@ -62,7 +62,7 @@ const Hero = ({ h }) => {
                                     </div>
                                     <div className="hidden md:flex justify-center absolute items-center right-0 bottom-0 ">
                                         <Image
-                                            src={"/hero-item.png"}
+                                            src={"/maqol.png"}
                                             width={0}
                                             height={0}
                                             sizes="100vw" style={{ width: '100%', height: 'auto' }}
@@ -99,7 +99,7 @@ const Hero = ({ h }) => {
             {/* Mobile */}
             <div className=" block md:hidden relative mt-8">
                 <Image
-                    src={"/hero.png"}
+                    src={"/scale_1200.jpeg"}
                     width={0}
                     height={0}
                     sizes="100vw" style={{ width: '100%', height: 'auto' }}
@@ -108,10 +108,53 @@ const Hero = ({ h }) => {
                 <div className=" absolute top-0 left-0 bottom-0 right-0 border border-red-500">
                     <Container>
                         <div className=" flex justify-center items-center">
-                            <div className="flex flex-col justify-between h-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-white font-serif md:pt-20">
-                                    <h1 className="md:text-9xl text-4xl hero_title" data-aos="fade-up" data-aos-delay="100">Alisher Navoiy</h1>
-                                    <p className=" text-center md:text-xl text-base font-semibold hero_title" data-aos="fade-up" data-aos-delay="200">{h("hero_desc")}</p>
+                            <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
+                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20"  style={{ textShadow: '-1px -1px 0 #000' }}>
+                                    <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >Alisher Navoiy</h1>
+                                    <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
+                                </div>
+
+                                <div className=" w-full border  absolute top-0 bottom-0 left-0 right-0">
+
+                                    <div className=" w-[60%]   absolute  bottom-0 left-0 ">
+                                        <Image
+                                            src={"/hero_png_1.png"}
+                                            width={0}
+                                            height={0}
+                                            sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                                            alt="Image"
+                                        />
+                                    </div>
+                                    <div className=" w-[50%] justify-center absolute items-center right-0  bottom-0 mx-auto ">
+                                        <Image
+                                            src={"/maqol.png"}
+                                            width={0}
+                                            height={0}
+                                            sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                                            alt="Image"
+                                        />
+                                        <div className="absolute bottom-0 left-0 top-0 right-0 z-10 text-2xl flex items-center justify-center text-black text-center">
+                                            <Carousel
+                                                plugins={[plugin2.current]}
+                                                onMouseEnter={plugin2.current.stop}
+                                                onMouseLeave={plugin2.current.play}
+                                                className="w-[60%]    flex justify-center items-center ">
+                                                <CarouselContent>
+                                                    {data?.data?.map((item: any, index: any) => (
+                                                        <CarouselItem key={index} className="basis-full  cursor-pointer my-auto ">
+                                                            <div
+                                                                className=" whitespace-pre-line text-[7px] tracking-[0px] md:text-lg hero_title leading-[10px]"
+                                                                style={{ whiteSpace: "pre-line" }}
+                                                                dangerouslySetInnerHTML={{ __html: item.text.substring(0, 200) }} />
+                                                                {/* <div className="text-[8px] leading-none">Lorem ipsum dolor sit amet.</div>
+                                                                <div className="text-[8px]">Lorem ipsum dolor sit amet.</div> */}
+                                                        </CarouselItem>
+                                                    ))}
+                                                </CarouselContent>
+
+                                            </Carousel>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

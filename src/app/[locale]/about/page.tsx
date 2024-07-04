@@ -148,7 +148,6 @@ const About = () => {
     return (
         <div className="pb-5 min-h-screen bg-image-flower md:pt-20 pt-14">
             <Container>
-
                 <div>
                     <Workers />
                 </div>

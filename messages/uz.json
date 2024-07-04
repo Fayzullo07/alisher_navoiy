@@ -1,7 +1,7 @@
 {
     "Navbar": [
         "Bosh sahifa",
-        "Tarjimai hol",
+        "Tarjimayi hol",
         "Devonlari",
         "Asarlari",
         "Ilmiy tadqiqotlar",
@@ -27,7 +27,7 @@
         "age_type": "Yosh bo'yicha",
         "search_number": "Raqam bo'yicha qidiruv",
         "genres": "Janrlar",
-        "content_of_devans": "Content of devans",
+        "content_of_devans": "Devonlar tarkibi",
         "all_button": "Hammasi"
     },
     "search": "Qidiruv",

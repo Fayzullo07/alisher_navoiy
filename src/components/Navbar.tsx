@@ -58,7 +58,7 @@ const Navbar = () => {
     }
     return (
         <header className={`flex justify-center items-center    z-[100]`}>
-            <nav className={`${stickyNav ? "active border-b" : ""} max-w-screen-2xl   fixed ${stickyNav ? "top-0" : "top-0 md:top-6"} duration-300  z-50 2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  bg-white z-[10] `}>
+            <nav className={`${stickyNav ? "active border-b" : ""} max-w-screen-2xl   fixed ${stickyNav ? "top-0" : "top-0 md:top-6"} duration-300  z-50 2xl:rounded-full flex items-center justify-between gap-2 md:gap-8 w-screen mx-auto px-5 py-1.5 text-lg text-gray-700  bg-white`}>
 
                 <Link href={"/"}>
                     <Image
