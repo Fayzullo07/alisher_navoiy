@@ -143,8 +143,6 @@ const Devonlar = () => {
                                     current={current}
                                     firstFilter={firstFilter}
                                     genre_detail_number={genre_detail_number}
-                                    auditory_age__in={auditory_age__in}
-                                    text_type_id__in={text_type_id__in}
                                     search={search}
                                 />}
                             </div>

@@ -246,7 +246,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block lg:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} search={search}>
                                         <div
                                             className={` ${gazal_id.id == item.id ? "bg-blue-100" : ""} w-full text-start flex justify-between items-center hover:bg-blue-100 rounded-full duration-300 py-1 px-1 md:px-2 cursor-pointer`}
                                             onClick={() => setGazal_id(item)}
@@ -410,7 +410,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} search={search}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-24 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
@@ -502,7 +502,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} search={search}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
@@ -595,7 +595,7 @@ const GazalList = ({ search, devan_id, genre_id, gazal_id, setGazal_id, firstFil
                                     </div>
                                 </div>
                                 <div className=" block md:hidden">
-                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} search={search}>
+                                    <GazalMobile gazal_id={gazal_id} setGazal_id={setGazal_id} current={current} firstFilter={firstFilter} genre_detail_number={genre_detail_number} search={search}>
                                         <div
                                             className={` ${gazal_id.index == i ? "bg-blue-100" : ""} h-20 w-full text-start flex justify-between items-center hover:bg-blue-100  border-b duration-300 py-1 px-2 cursor-pointer`}
                                             onClick={() => setGazal_id({ ...item, index: i })}
