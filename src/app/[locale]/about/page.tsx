@@ -153,7 +153,7 @@ const About = () => {
                     <Workers />
                 </div>
                 <div className="flex items-center justify-center">
-                    <Title title={n('5')} />
+                    <Title title={n('6')} />
                 </div>
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <AboutPage />

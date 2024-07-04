@@ -17,7 +17,9 @@
         "ages": "yaşlar",
         "author": "Yazar",
         "created": "Yaratılış zamanı",
-        "name": "İsim"
+        "name": "İsim",
+        "auditory_age": "Yaş",
+        "text_type": "Metin türü"
     },
     "Devonlar": {
         "text_type": "Metin türü",

@@ -98,11 +98,16 @@ const Tadqiqotlar = () => {
     const onChange: PaginationProps['onChange'] = (page) => {
         setCurrent(page);
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+    }, [current]);
     return (
         <div className="bg-image-flower min-h-screen pt-14 md:pt-20">
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
-                    <Title title={n('3')} />
+                    <Title title={n('4')} />
                 </div>
 
                 <div className=" hidden lg:block bg-white shadow-lg rounded-lg pb-5 ">
@@ -116,9 +121,9 @@ const Tadqiqotlar = () => {
                             <thead className=" rounded-full overflow-hidden">
                                 <tr className="bg-gray-100 rounded-full overflow-hidden text-sm">
                                     <th className="w-3/4 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">{h('name')}</th>
-                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">{h('author')}</th>
-                                    <th className="w-1/4 py-2 px-6 text-left text-gray-600">{h('created')}</th>
-                                    <th className="w-1/4 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{h('button_more')}</th>
+                                    <th className="w-1/6 py-2 px-6 text-left text-gray-600">{h('author')}</th>
+                                    <th className="w-1/6 py-2 px-6 text-left text-gray-600">{h('created')}</th>
+                                    <th className="w-1/6 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{h('button_more')}</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white ">
@@ -133,7 +138,7 @@ const Tadqiqotlar = () => {
 
                 <div className="block lg:hidden">
                     <div className="flex items-center justify-center py-5 ">
-                        <h2 className="text-xl font-semibold text-center flex-grow">{n('3')}</h2>
+                        <h2 className="text-xl font-semibold text-center flex-grow">{n('4')}</h2>
                     </div>
                     <div className="flex items-center gap-2 border p-2 rounded-full mb-5 bg-white ">
                         <SearchIcon strokeWidth={1} size={20} />

@@ -1,5 +1,6 @@
 {
     "Navbar": [
+        "Bosh sahifa",
         "Tarjimai hol",
         "Devonlari",
         "Asarlari",
@@ -17,7 +18,9 @@
         "ages": "yoshlar",
         "author": "Muallifi",
         "created": "Yaratilgan vaqti",
-        "name": "Nomi"
+        "name": "Nomi",
+        "auditory_age": "Yosh",
+        "text_type": "Matn tipi"
     },
     "Devonlar": {
         "text_type": "Matn tipi",

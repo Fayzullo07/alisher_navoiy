@@ -40,7 +40,7 @@ const Devonlar = () => {
             <Container>
                 {/* Devonlar */}
                 <div>
-                    <Title title={n("1")} />
+                    <Title title={n("2")} />
                     <DevonList
                         devan_id={devan_id}
                         setDevan_id={setDevan_id}

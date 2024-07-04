@@ -97,7 +97,7 @@ const News = () => {
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div>
                     <div className="flex items-center justify-center  ">
-                        <Title title={n("4")} />
+                        <Title title={n("5")} />
                     </div>
                     <div className="flex items-center gap-2 border w-full bg-white p-2 rounded-full mb-5 md:w-[50%] ">
                         <SearchIcon strokeWidth={1} size={20} />

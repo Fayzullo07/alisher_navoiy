@@ -49,8 +49,8 @@ export const questionGetOneAPI = async ({ id = "" }: { id: any }) =>
 
 // -----------------------------------------RESEARCH-----------------------------
 // GET
-export const researchGetApi = async ({ search = "", page = 1 }) => API.get(`/researches/?search=${search}&page=${page}`);
+export const researchGetApi = async ({ search = "", page = 1, page_size = 10 }) => API.get(`/researches/?search=${search}&page=${page}&page_size=${page_size}`);    
 
 // -----------------------------------------WORKS-----------------------------
 // GET
-export const worksGetApi = async ({ search = "", page = 1, auditory_age__in = "", text_type_id__in = "" }) => API.get(`/works/?search=${search}&page=${page}&auditory_age__in=${auditory_age__in}&text_type_id__in=${text_type_id__in}`);
+export const worksGetApi = async ({ search = "", page = 1, auditory_age__in = "", text_type_id__in = "", page_size = 10 }) => API.get(`/works/?search=${search}&page=${page}&auditory_age__in=${auditory_age__in}&text_type_id__in=${text_type_id__in}&page_size=${page_size}`);

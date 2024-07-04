@@ -17,7 +17,9 @@
         "ages": "возрасты",
         "author": "Автор",
         "created": "Время создания",
-        "name": "Имя"
+        "name": "Имя",
+        "auditory_age": "Возраст",
+        "text_type": "Тип текста"
     },
     "Devonlar": {
         "text_type": "Тип текста",

@@ -182,8 +182,8 @@ const AsarListMobile = ({ search, setCountPage, current, auditory_age__in, text_
 
 };
 
-const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_id__in }) => {
-    const { data, isLoading, isError, error } = useQuery({
+const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_id__in, h }) => {
+    const { data, isError, error } = useQuery({
         queryKey: ["works", search, current, auditory_age__in, text_type_id__in],
         queryFn: async () => {
             return await worksGetApi({ search, page: current, auditory_age__in, text_type_id__in });
@@ -196,16 +196,19 @@ const AsarList = ({ search, setCountPage, current, auditory_age__in, text_type_i
         }
     }, [data])
 
+
+
     // if (isLoading) return <h1>Loading...</h1>;
     if (isError) return <div>{error?.message}</div>;
     return (
         <>
             {data?.data?.results.map((item: any, i: any) => (
-                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer" onClick={() => window.open(item.pdf_file, '_blank')}>
-                    <td className="py-3 px-6 border-b border-gray-200 text-xs">{item.title}</td>
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm ">{"Alisher Navoiy"}</td>
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm">{item.to_year ? item.from_year + "-" + item.to_year + "-yillar" : item.from_year + "-yil"}</td>
-                    <td className="py-3 px-6 border-b border-gray-200 text-sm">
+                <tr key={i} className="hover:bg-gray-100 duration-300 cursor-pointer h-20" onClick={() => window.open(item.pdf_file, '_blank')}>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm font-semibold rounded-tl-full rounded-bl-full">{item.title}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm text-center">{item.auditory_age == null ? "-" : item.auditory_age}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm text-center">{item.text_type == null ? "-" : item.text_type}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm text-center">{item.to_year ? item.from_year + "-" + item.to_year + "-" + h('years') : item.from_year + "-" + h('year')}</td>
+                    <td className="py-3 px-6 border-b border-gray-200 text-sm rounded-tr-full rounded-br-full">
                         <Link href={item.pdf_file} target="_blank">
                             <EyeIcon strokeWidth={1} size={20} className=" mx-auto" />
                         </Link>
@@ -232,11 +235,16 @@ const Asarlar = () => {
         setCurrent(page);
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+    }, [current]);
+
     return (
         <div className="bg-image-flower min-h-screen md:pt-20 pt-14">
             <div className="w-full lg:w-[85vw] mx-auto px-4 pb-10">
                 <div className=" hidden md:block">
-                    <Title title={n("2")} />
+                    <Title title={n("3")} />
                 </div>
 
                 <div className="hidden lg:block bg-white shadow-lg rounded-lg pb-5">
@@ -270,14 +278,15 @@ const Asarlar = () => {
                         <table className="w-full table-fixed">
                             <thead className="">
                                 <tr className="bg-gray-100 overflow-hidden text-sm mb-5">
-                                    <th className="w-3/5 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">{h("name")}</th>
-                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">{h("author")}</th>
-                                    <th className="w-1/5 py-2 px-6 text-left text-gray-600">{h("created")}</th>
-                                    <th className="w-1/5 py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{"Ko‘rish"}</th>
+                                    <th className="w-3/4 py-2 px-6 text-left text-gray-600 rounded-tl-full rounded-bl-full">{h("name")}</th>
+                                    <th className="w-1/6 py-2 px-6 text-center text-gray-600">{h("created")}</th>
+                                    <th className="w-1/6 py-2 px-6  text-gray-600 text-center">{h("auditory_age")}</th>
+                                    <th className="w-1/6 py-2 px-6 text-gray-600 text-center">{h("text_type")}</th>
+                                    <th className="w-[10%] py-2 px-6 text-center text-gray-600 rounded-tr-full rounded-br-full">{h("button_more")}</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white ">
-                                <AsarList search={search} setCountPage={setCountPage} current={current} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} />
+                                <AsarList search={search} setCountPage={setCountPage} current={current} auditory_age__in={auditory_age__in} text_type_id__in={text_type_id__in} h={h} />
                             </tbody>
                         </table>
                     </div>
@@ -288,7 +297,7 @@ const Asarlar = () => {
 
                 <div className="block lg:hidden ">
                     <div className="flex items-center justify-center py-5 ">
-                        <h2 className="text-xl font-semibold text-center flex-grow">{n("2")}</h2>
+                        <h2 className="text-xl font-semibold text-center flex-grow">{n("3")}</h2>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-2 mb-2 w-full ">
 

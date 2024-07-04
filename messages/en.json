@@ -17,7 +17,9 @@
         "ages": "ages",
         "author": "Author",
         "created": "Time of creation",
-        "name": "Name"
+        "name": "Name",
+        "auditory_age": "Age",
+        "text_type": "Text type"
     },
     "Devonlar": {
         "text_type": "Text type",
