@@ -105,7 +105,7 @@ const Hero = ({ h }) => {
                     sizes="100vw" style={{ width: '100%', height: 'auto' }}
                     alt="Image"
                 />
-                <div className=" absolute top-0 left-0 bottom-0 right-0 border border-red-500">
+                <div className=" absolute top-0 left-0 bottom-0 right-0">
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
@@ -114,9 +114,9 @@ const Hero = ({ h }) => {
                                     <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
                                 </div>
 
-                                <div className=" w-full border  absolute top-0 bottom-0 left-0 right-0">
+                                <div className=" w-full absolute top-0 bottom-0 left-0 right-0">
 
-                                    <div className=" w-[60%]   absolute  bottom-0 left-0 ">
+                                    <div className=" w-[60%]  absolute  bottom-0 left-0 ">
                                         <Image
                                             src={"/hero_png_1.png"}
                                             width={0}
@@ -125,12 +125,12 @@ const Hero = ({ h }) => {
                                             alt="Image"
                                         />
                                     </div>
-                                    <div className=" w-[50%] justify-center absolute items-center right-0  bottom-0 mx-auto ">
+                                    <div className=" w-[50%] h-40 justify-center absolute items-center right-0  bottom-0 mx-auto ">
                                         <Image
                                             src={"/maqol.png"}
                                             width={0}
                                             height={0}
-                                            sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                                            sizes="100vw" style={{ width: '100%', height: '100%' }}
                                             alt="Image"
                                         />
                                         <div className="absolute bottom-0 left-0 top-0 right-0 z-10 text-2xl flex items-center justify-center text-black text-center">
@@ -138,7 +138,7 @@ const Hero = ({ h }) => {
                                                 plugins={[plugin2.current]}
                                                 onMouseEnter={plugin2.current.stop}
                                                 onMouseLeave={plugin2.current.play}
-                                                className="w-[60%]    flex justify-center items-center ">
+                                                className="w-[60%] flex justify-center items-center ">
                                                 <CarouselContent>
                                                     {data?.data?.map((item: any, index: any) => (
                                                         <CarouselItem key={index} className="basis-full  cursor-pointer my-auto ">
