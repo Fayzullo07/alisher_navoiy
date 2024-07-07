@@ -140,9 +140,10 @@ h3 {
 .star {
   fill: white;
   stroke: white;
-  stroke-width: 50;
+  stroke-width: 5;
   animation: sparkleAnimation 0.8s infinite;
   /* border-radius: 50%; */
+  transform: scale(3);
   box-shadow:
     0 0 420px 30px #fff,
     /* inner white */
@@ -154,7 +155,7 @@ h3 {
 
 @keyframes sparkleAnimation {
   0% {
-    transform: scale(0.5) rotate(0deg);
+    transform: scale(0) rotate(0deg);
   }
 
   50% {
@@ -162,7 +163,7 @@ h3 {
   }
 
   100% {
-    transform: scale(0.5) rotate(180deg);
+    transform: scale(0) rotate(180deg);
   }
 }
 

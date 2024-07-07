@@ -223,19 +223,19 @@ const Home = () => {
 
                         <Title title={n("1")} />
                         <div>
-                            {/* <Devons h={h} /> */}
+                            <Devons h={h} />
                         </div>
                     </div>
                     <div className="">
-                        {/* <NewsList n={n} h={h} /> */}
+                        <NewsList n={n} h={h} />
                     </div>
 
 
                     <div>
-                        {/* <AboutPage n={n} /> */}
+                        <AboutPage n={n} />
                     </div>
 
-                    {/* <div className="py-5 pb-10">
+                    <div className="py-5 pb-10">
                         <Title title={h("bio")} />
                         <Link href={`/${locale}/biography`} className="grid grid-cols-1 gap-0 md:gap-4 lg:grid-cols-5 bg-white p-2 md:p-4 shadow-lg rounded-3xl relative" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                             <div className=" overflow-hidden rounded-xl col-span-2">
@@ -258,7 +258,7 @@ const Home = () => {
                             </div>
                             <div className=" text-blue-500 text-base font-semibold text-center cursor-pointer relative sm:absolute sm:bottom-5 sm:right-5">{h("button_more")}...</div>
                         </Link>
-                    </div> */}
+                    </div>
                 </Container>
             </div>
         </>

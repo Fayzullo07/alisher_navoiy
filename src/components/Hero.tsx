@@ -43,55 +43,24 @@ const Hero = ({ h }) => {
                     alt="Image"
                 />
                 <div className=" absolute top-0 left-0 bottom-0 right-0">
-                    {/* <div className=" top-0 left-0 bottom-0 right-0">
-                        <div className="content">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div className="content">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div> */}
+                  
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #000' }}>
+                                <div className="font-bold text-[#000] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #000' }}>
                                     <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >
                                         <span className=" relative">
                                         {h("alisher").substring(0,1)}
-                                            <span className=" absolute right-1 top-[60px] ">
+                                            <span className=" absolute right-3.5 top-[60px] ">
                                                 <StarIcon className="star" size={8} />
                                             </span>
-                                            <span className=" absolute right-2 top-[110px] ">
+                                            <span className=" absolute right-4 top-[110px] ">
                                                 <StarIcon className="star" size={10} />
                                             </span>
-                                            <span className=" absolute left-2 top-[110px] ">
+                                            <span className=" absolute left-0 top-[110px] ">
                                                 <StarIcon className="star" size={12} />
                                             </span>
-                                            <span className=" absolute left-14  bottom-[50px] ">
+                                            <span className=" absolute left-11  bottom-[50px] ">
                                                 <StarIcon className="star" size={10} />
                                             </span>
                                         </span>
