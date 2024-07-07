@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { provebsGetApi } from "@/api/AdminRequest";
 import Autoplay from "embla-carousel-autoplay"
-import { StarIcon } from "lucide-react";
+import { DotIcon, StarIcon, SunIcon } from "lucide-react";
 
 const Hero = ({ h }) => {
     const plugin2 = useRef(
@@ -52,16 +52,16 @@ const Hero = ({ h }) => {
                                         <span className=" relative">
                                         {h("alisher").substring(0,1)}
                                             <span className=" absolute right-3.5 top-[60px] ">
-                                                <StarIcon className="star" size={8} />
+                                                <DotIcon className="star" size={8} />
                                             </span>
                                             <span className=" absolute right-4 top-[110px] ">
-                                                <StarIcon className="star" size={10} />
+                                                <DotIcon className="star" size={10} />
                                             </span>
                                             <span className=" absolute left-0 top-[110px] ">
-                                                <StarIcon className="star" size={12} />
+                                                <DotIcon className="star" size={12} />
                                             </span>
-                                            <span className=" absolute left-11  bottom-[50px] ">
-                                                <StarIcon className="star" size={10} />
+                                            <span className=" absolute left-11  bottom-[50px] p-0 m-0">
+                                                <DotIcon className="star p-0 m-0" size={10} />
                                             </span>
                                         </span>
 
@@ -133,20 +133,10 @@ const Hero = ({ h }) => {
                                     <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >
                                     <span className=" relative">
                                         {h("alisher").substring(0,1)}
-                                            <span className=" absolute right-1 top-[60px] ">
-                                                <StarIcon className="star" size={8} />
-                                            </span>
-                                            <span className=" absolute right-2 top-[110px] ">
-                                                <StarIcon className="star" size={10} />
-                                            </span>
-                                            <span className=" absolute left-2 top-[110px] ">
-                                                <StarIcon className="star" size={12} />
-                                            </span>
-                                            <span className=" absolute left-14  bottom-[50px] ">
-                                                <StarIcon className="star" size={10} />
+                                            <span className=" absolute right-1 top-[30px] ">
+                                                <DotIcon className="star" size={5} />
                                             </span>
                                         </span>
-
                                         {h("alisher").substring(1)}
                                     </h1>
                                     <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
@@ -154,7 +144,7 @@ const Hero = ({ h }) => {
 
                                 <div className=" w-full absolute top-0 bottom-0 left-0 right-0">
 
-                                    <div className=" w-[55%]  absolute  bottom-0 left-0 ">
+                                    <div className=" w-[50%]  absolute  bottom-0 left-0 ">
                                         <Image
                                             src={"/improve.png"}
                                             width={0}

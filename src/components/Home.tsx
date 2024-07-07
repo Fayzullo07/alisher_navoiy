@@ -13,7 +13,6 @@ import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
-
 const NewsList = ({ n, h }) => {
     const locale = useLocale();
     const { data, isLoading, isError, error } = useQuery({
@@ -206,7 +205,6 @@ const Devons = ({ h }) => {
         </>
     )
 }
-
 
 const Home = () => {
     const locale = useLocale();
