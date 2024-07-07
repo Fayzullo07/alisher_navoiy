@@ -47,7 +47,7 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-[#000] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #000' }}>
+                                <div className="font-bold text-[#000] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #fff' }}>
                                     <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >
                                         <span className=" relative">
                                         {h("alisher").substring(0,1)}
@@ -129,7 +129,7 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
-                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20" style={{ textShadow: '-1px -1px 0 #000' }}>
+                                <div className="font-bold text-[#F4CD96] font-serif md:pt-20" style={{ textShadow: '-1px -1px 0 #fff' }}>
                                     <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >
                                     <span className=" relative">
                                         {h("alisher").substring(0,1)}
