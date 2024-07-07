@@ -20,7 +20,8 @@
         "created": "Время создания",
         "name": "Имя",
         "auditory_age": "Возраст",
-        "text_type": "Тип текста"
+        "text_type": "Тип текста",
+        "alisher": "Алишера Навои"
     },
     "Devonlar": {
         "text_type": "Тип текста",

@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { provebsGetApi } from "@/api/AdminRequest";
 import Autoplay from "embla-carousel-autoplay"
+import { StarIcon } from "lucide-react";
 
 const Hero = ({ h }) => {
     const plugin2 = useRef(
@@ -34,19 +35,69 @@ const Hero = ({ h }) => {
             {/* Desktop */}
             <div className=" hidden md:block relative h-screen overflow-hidden">
                 <Image
-                    src={"/scale_1200.jpeg"}
+                    src={"/gif.gif"}
                     width={0}
                     height={0}
-                    className="object-contain"
-                    sizes="100vw" style={{ width: '100%', height: 'auto' }}
+                    // className="object-contain"
+                    sizes="100vw" style={{ width: '100vw', height: '100%' }}
                     alt="Image"
                 />
                 <div className=" absolute top-0 left-0 bottom-0 right-0">
+                    {/* <div className=" top-0 left-0 bottom-0 right-0">
+                        <div className="content">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div className="content">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div> */}
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
                                 <div className="font-bold text-[#F4CD96] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #000' }}>
-                                    <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >Alisher Navoiy</h1>
+                                    <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >
+                                        <span className=" relative">
+                                        {h("alisher").substring(0,1)}
+                                            <span className=" absolute right-1 top-[60px] ">
+                                                <StarIcon className="star" size={8} />
+                                            </span>
+                                            <span className=" absolute right-2 top-[110px] ">
+                                                <StarIcon className="star" size={10} />
+                                            </span>
+                                            <span className=" absolute left-2 top-[110px] ">
+                                                <StarIcon className="star" size={12} />
+                                            </span>
+                                            <span className=" absolute left-14  bottom-[50px] ">
+                                                <StarIcon className="star" size={10} />
+                                            </span>
+                                        </span>
+
+                                        {h("alisher").substring(1)}
+                                        </h1>
                                     <p className="hero_title text-center md:text-3xl  text-base font-semibold " >{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-[80%] mx-auto absolute top-0 bottom-0 left-0 right-0">
@@ -99,7 +150,7 @@ const Hero = ({ h }) => {
             {/* Mobile */}
             <div className=" block md:hidden relative mt-8">
                 <Image
-                    src={"/scale_1200.jpeg"}
+                    src={"/gif.gif"}
                     width={0}
                     height={0}
                     sizes="100vw" style={{ width: '100%', height: 'auto' }}
@@ -110,7 +161,25 @@ const Hero = ({ h }) => {
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
                                 <div className="font-bold text-[#F4CD96] font-serif md:pt-20" style={{ textShadow: '-1px -1px 0 #000' }}>
-                                    <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >Alisher Navoiy</h1>
+                                    <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >
+                                    <span className=" relative">
+                                        {h("alisher").substring(0,1)}
+                                            <span className=" absolute right-1 top-[60px] ">
+                                                <StarIcon className="star" size={8} />
+                                            </span>
+                                            <span className=" absolute right-2 top-[110px] ">
+                                                <StarIcon className="star" size={10} />
+                                            </span>
+                                            <span className=" absolute left-2 top-[110px] ">
+                                                <StarIcon className="star" size={12} />
+                                            </span>
+                                            <span className=" absolute left-14  bottom-[50px] ">
+                                                <StarIcon className="star" size={10} />
+                                            </span>
+                                        </span>
+
+                                        {h("alisher").substring(1)}
+                                    </h1>
                                     <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
                                 </div>
 
@@ -146,8 +215,6 @@ const Hero = ({ h }) => {
                                                                 className=" whitespace-pre-line text-[7px] tracking-[0px] md:text-lg hero_title leading-[10px]"
                                                                 style={{ whiteSpace: "pre-line" }}
                                                                 dangerouslySetInnerHTML={{ __html: item.text.substring(0, 200) }} />
-                                                            {/* <div className="text-[8px] leading-none">Lorem ipsum dolor sit amet.</div>
-                                                                <div className="text-[8px]">Lorem ipsum dolor sit amet.</div> */}
                                                         </CarouselItem>
                                                     ))}
                                                 </CarouselContent>

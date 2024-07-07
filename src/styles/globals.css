@@ -117,6 +117,7 @@ input::-webkit-inner-spin-button {
   /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+
 input[type=number] {
   -moz-appearance: textfield;
   /* Firefox */
@@ -132,6 +133,45 @@ h2 {
 
 h3 {
   @apply text-lg font-semibold;
+}
+
+
+
+.star {
+  fill: white;
+  stroke: white;
+  stroke-width: 50;
+  animation: sparkleAnimation 0.8s infinite;
+  /* border-radius: 50%; */
+  box-shadow:
+    0 0 420px 30px #fff,
+    /* inner white */
+    0 0 1000px 60px #fff;
+    /* middle magenta */
+    /* 0 0 280px 90px #fff; */
+  /* outer cyan */
+}
+
+@keyframes sparkleAnimation {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1) rotate(90deg);
+  }
+
+  100% {
+    transform: scale(0.5) rotate(180deg);
+  }
+}
+
+/* Set the style of the sun to be yellow and round */
+.sun {
+  fill: yellow;
+  stroke: yellow;
+  stroke-width: 5;
+  border-radius: 50%;
 }
 
 /* Navbar */

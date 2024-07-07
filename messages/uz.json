@@ -20,7 +20,8 @@
         "created": "Yaratilgan vaqti",
         "name": "Nomi",
         "auditory_age": "Yosh",
-        "text_type": "Matn tipi"
+        "text_type": "Matn tipi",
+        "alisher": "Alisher Navoiy"
     },
     "Devonlar": {
         "text_type": "Matn tipi",
@@ -36,7 +37,7 @@
         "version": "Korpusning 1-versiyasi",
         "contact": "Murojaat uchun",
         "employee": "Xodimlar",
-        "questions": "Soralar, javoblar",
+        "questions": "Sovollar, javoblar",
         "ruknlar": "Ruknlar"
     }
 }

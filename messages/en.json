@@ -11,7 +11,7 @@
     "Home": {
         "bio": "Biography of Alisher Navoi",
         "button_more": "More",
-        "hero_desc": "Author corpus",
+        "hero_desc": "Author's corpus",
         "year": "year",
         "years": "year",
         "age": "age",
@@ -20,7 +20,8 @@
         "created": "Time of creation",
         "name": "Name",
         "auditory_age": "Age",
-        "text_type": "Text type"
+        "text_type": "Text type",
+        "alisher": "Ali Şir Nevai"
     },
     "Devonlar": {
         "text_type": "Text type",
