@@ -1,34 +1,37 @@
-'use client'
+'use client';
 import Image from "next/image";
 import Container from "./Core/Container";
 
-
-import AutoScroll from "embla-carousel-auto-scroll"
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+
 import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { provebsGetApi } from "@/api/AdminRequest";
-import Autoplay from "embla-carousel-autoplay"
-import { DotIcon, StarIcon, SunIcon } from "lucide-react";
+
+import Autoplay from "embla-carousel-autoplay";
+import { useLocale } from "next-intl";
 
 const Hero = ({ h }) => {
-    const plugin2 = useRef(
-        Autoplay({ delay: 5000, stopOnInteraction: true })
-        // Autoplay({ delay: 2000, stopOnInteraction: true, speed: 1, })
-    )
+    const locale = useLocale();
+    const pluginDesktop = useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    );
 
-    const { data, isLoading, isError, error } = useQuery({
-        queryKey: ["proverbs"],
+    const pluginMobile = useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    );
+
+    const { data, isError, error } = useQuery({
+        queryKey: ["proverbs", locale],
         queryFn: async () => {
-            return await provebsGetApi();
+            return await provebsGetApi({ language: locale });
         }
     });
 
-    // if (isLoading) return <h1></h1>;
     if (isError) return <div>{error?.message}</div>;
     return (
         <div>
@@ -43,15 +46,14 @@ const Hero = ({ h }) => {
                     alt="Image"
                 />
                 <div className=" absolute top-0 left-0 bottom-0 right-0">
-                  
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full w-full  items-center pt-20 absolute bottom-0 ">
-                                <div className="font-bold text-[#000] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #fff' }}>
+                                <div className="font-bold text-[#fff] font-serif md:pt-20 space-y-4 " style={{ textShadow: '-1px -1px 0 #fff' }}>
                                     <h1 className="md:text-9xl  text-4xl hero_title shadow-black " >
                                         <span className=" relative">
-                                        {h("alisher").substring(0,1)}
-                                            <span className=" absolute right-3.5 top-[60px] ">
+                                            {h("alisher").substring(0, 1)}
+                                            {/* <span className=" absolute right-3.5 top-[60px] ">
                                                 <DotIcon className="star" size={8} />
                                             </span>
                                             <span className=" absolute right-4 top-[110px] ">
@@ -62,11 +64,11 @@ const Hero = ({ h }) => {
                                             </span>
                                             <span className=" absolute left-11  bottom-[50px] p-0 m-0">
                                                 <DotIcon className="star p-0 m-0" size={10} />
-                                            </span>
+                                            </span> */}
                                         </span>
 
                                         {h("alisher").substring(1)}
-                                        </h1>
+                                    </h1>
                                     <p className="hero_title text-center md:text-3xl  text-base font-semibold " >{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-[80%] mx-auto absolute top-0 bottom-0 left-0 right-0">
@@ -90,9 +92,10 @@ const Hero = ({ h }) => {
                                         />
                                         <div className="absolute bottom-0 left-0 top-0 right-0 z-10 text-2xl flex items-center justify-center text-black text-center">
                                             <Carousel
-                                                plugins={[plugin2.current]}
-                                                onMouseEnter={plugin2.current.stop}
-                                                onMouseLeave={plugin2.current.play}
+                                                plugins={[pluginDesktop.current]}
+                                                onMouseEnter={pluginDesktop.current.stop}
+                                                onMouseLeave={pluginDesktop.current.play}
+
                                                 className="w-[60%] h-20 flex justify-center items-center ">
                                                 <CarouselContent>
                                                     {data?.data?.map((item: any, index: any) => (
@@ -129,21 +132,19 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
-                                <div className="font-bold text-[#000] font-serif md:pt-20" style={{ textShadow: '-1px -1px 0 #fff' }}>
+                                <div className="font-bold text-red-500 font-serif md:pt-20" style={{ textShadow: '-1px -1px 0 #fff' }}>
                                     <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >
-                                    <span className=" relative">
-                                        {h("alisher").substring(0,1)}
-                                            <span className=" absolute right-1 top-[30px] ">
+                                        <span className=" relative">
+                                            {h("alisher").substring(0, 1)}
+                                            {/* <span className=" absolute right-1 top-[30px] ">
                                                 <DotIcon className="star" size={5} />
-                                            </span>
+                                            </span> */}
                                         </span>
                                         {h("alisher").substring(1)}
                                     </h1>
                                     <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
                                 </div>
-
                                 <div className=" w-full absolute top-0 bottom-0 left-0 right-0">
-
                                     <div className=" w-[50%]  absolute  bottom-0 left-0 ">
                                         <Image
                                             src={"/improve.png"}
@@ -163,9 +164,9 @@ const Hero = ({ h }) => {
                                         />
                                         <div className="absolute bottom-0 left-0 top-0 right-0 z-10 text-2xl flex items-center justify-center text-black text-center">
                                             <Carousel
-                                                plugins={[plugin2.current]}
-                                                onMouseEnter={plugin2.current.stop}
-                                                onMouseLeave={plugin2.current.play}
+                                                plugins={[pluginMobile.current]}
+                                                onMouseEnter={pluginMobile.current.stop}
+                                                onMouseLeave={pluginMobile.current.play}
                                                 className="w-[60%] flex justify-center items-center ">
                                                 <CarouselContent>
                                                     {data?.data?.map((item: any, index: any) => (
@@ -177,23 +178,16 @@ const Hero = ({ h }) => {
                                                         </CarouselItem>
                                                     ))}
                                                 </CarouselContent>
-
                                             </Carousel>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </Container>
                 </div>
             </div>
-
         </div>
-
-
-
     )
 }
 

@@ -4,8 +4,7 @@ const API = axios.create({ baseURL: URL });
 
 // -----------------------------------------PROVERBS-----------------------------
 // GET
-export const provebsGetApi = async () => API.get(`/general/proverbs`);
-
+export const provebsGetApi = async ({ language = "uz" }) => API.get(`/general/proverbs?language=${language}`);
 
 // -----------------------------------------WORKERS-----------------------------
 // GET
@@ -15,7 +14,6 @@ export const workersGetApi = async () => API.get(`/general/workers`);
 // GET
 export const filtersGetApi = async () => API.get(`/general/filters`);
 
-
 // -----------------------------------------DEVONS-----------------------------
 // GET
 export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_number = "", genre_id = "", second = "", poetic_art_id = "", auditory_age__in = "", text_type_id__in = "", page = 1, page_size = 10 }) =>
@@ -24,7 +22,6 @@ export const devonsGetApi = async ({ search = "", devan_id = "", genre_detail_nu
 // -----------------------------------------DEVONS-----------------------------
 // GET
 export const biographyGetApi = async () => API.get(`/general/biography`);
-
 
 // -----------------------------------------GENRES-----------------------------
 // GET BY ID
@@ -49,7 +46,7 @@ export const questionGetOneAPI = async ({ id = "" }: { id: any }) =>
 
 // -----------------------------------------RESEARCH-----------------------------
 // GET
-export const researchGetApi = async ({ search = "", page = 1, page_size = 10 }) => API.get(`/researches/?search=${search}&page=${page}&page_size=${page_size}`);    
+export const researchGetApi = async ({ search = "", page = 1, page_size = 10 }) => API.get(`/researches/?search=${search}&page=${page}&page_size=${page_size}`);
 
 // -----------------------------------------WORKS-----------------------------
 // GET
