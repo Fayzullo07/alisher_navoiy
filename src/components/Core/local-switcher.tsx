@@ -97,8 +97,8 @@ const LocalSwitcher = () => {
                         </div>
                     </DropdownMenuItem>
                 )}
-                {lang != 'tu' && (
-                    <DropdownMenuItem onClick={() => onSelectChange("tu")}>
+                {lang != 'tr' && (
+                    <DropdownMenuItem onClick={() => onSelectChange("tr")}>
                         <div className="flex justify-between items-center w-full">
 
                             <Image

@@ -5,7 +5,6 @@ const TopLoader = () => {
   return (
     <NextTopLoader
       color="var(--main_color)"
-      
       initialPosition={0.08}
       crawlSpeed={200}
       height={5}

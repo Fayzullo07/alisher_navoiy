@@ -25,7 +25,6 @@ const Modal = ({ children, button, title }: Readonly<{ children: React.ReactNode
                 </DialogHeader>
             </DialogContent>
         </Dialog>
-
     )
 }
 

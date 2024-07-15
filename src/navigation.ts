@@ -3,7 +3,7 @@ import {
   Pathnames
 } from 'next-intl/navigation';
 
-export const locales = ['en', 'ru', 'uz', 'tu'] as const;
+export const locales = ['en', 'ru', 'uz', 'tr'] as const;
 export const localePrefix = 'always'; // Default
 
 // The `pathnames` object holds pairs of internal
