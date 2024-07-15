@@ -103,7 +103,7 @@ const Hero = ({ h }) => {
                                                             <div
                                                                 className=" whitespace-pre-line text-sm md:text-lg hero_title leading-none font-normal tracking-wide"
                                                                 style={{ whiteSpace: "pre-line" }}
-                                                                dangerouslySetInnerHTML={{ __html: item.text.substring(0, 200) }} />
+                                                                dangerouslySetInnerHTML={{ __html: item.text }} />
                                                         </CarouselItem>
                                                     ))}
                                                 </CarouselContent>
@@ -174,7 +174,7 @@ const Hero = ({ h }) => {
                                                             <div
                                                                 className=" whitespace-pre-line text-[7px] tracking-[0px] md:text-lg hero_title leading-[10px]"
                                                                 style={{ whiteSpace: "pre-line" }}
-                                                                dangerouslySetInnerHTML={{ __html: item.text.substring(0, 200) }} />
+                                                                dangerouslySetInnerHTML={{ __html: item.text }} />
                                                         </CarouselItem>
                                                     ))}
                                                 </CarouselContent>
