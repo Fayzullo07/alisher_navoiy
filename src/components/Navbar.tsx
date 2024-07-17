@@ -85,54 +85,55 @@ const Navbar = () => {
                     <SearchIcon strokeWidth={1} size={20} />
                     <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder={`${s("search")} ...`} className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
                     <div className=" relative">
-                        <div className="cursor-pointer md:hidden block m-0 p-0">
-                            <Drawer >
-                                <DrawerTrigger className="w-full m-0 p-0">
+                        <div className="cursor-pointer md:hidden block m-0 p-0 h-5 w-5">
+                            <Sheet >
+                                <SheetTrigger >
                                     <div >
                                         <MessageCircleQuestionIcon strokeWidth={1} size={20} />
                                     </div>
-                                </DrawerTrigger>
-                                <DrawerContent>
-                                    <DrawerHeader className=" absolute right-0 top-0">
-                                        <DrawerClose>
-                                            <XIcon />
-                                        </DrawerClose>
-                                    </DrawerHeader>
-                                    <table className="text-sm">
-                                        <thead>
-                                            <tr className="">
-                                                <th className="px-2 text-start">Search operations</th>
-                                                <th className="px-2">What id does</th>
-                                                <th className="px-2">Example</th>
-                                            </tr>
-                                        </thead>
+                                </SheetTrigger>
+                                <SheetContent side="top">
+                                    <SheetHeader>
+                                        <SheetDescription className="z-[999]">
+                                            <table className="w-full border-collapse border border-blue-500 max-w-xl mt-8 mx-auto">
+                                                <thead>
+                                                    <tr className="bg-blue-500 text-white">
+                                                        <th className="py-2 px-4 text-left w-10">Search operations</th>
+                                                        <th className="py-2 px-4 text-left">What id does</th>
+                                                        <th className="py-2 px-4 text-left">Example</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr className="bg-white border-b border-blue-500">
+                                                        <td className="py-2 px-4 text-red-500">"<span className="text-black">bla bla bla</span>"</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                    </tr>
+                                                    <tr className="bg-white border-b border-blue-500">
+                                                        <td className="py-2 px-4 text-red-500"><span className="text-black">bla</span>*</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                    </tr>
+                                                    <tr className="bg-white border-b border-blue-500">
+                                                        <td className="py-2 px-4 text-red-500">*<span className="text-black">bla</span></td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                    </tr>
 
-                                        <tbody className="text-sm">
-                                            <tr>
-                                                <td className="px-2">"bla bla bla"</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-2">bla*</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                    <tr className="bg-white border-b border-blue-500">
+                                                        <td className="py-2 px-4 text-red-500">*<span className="text-black">bla</span>*</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                        <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </SheetDescription>
+                                    </SheetHeader>
+                                </SheetContent>
+                            </Sheet>
 
-                                            </tr>
-                                            <tr>
-                                                <td className="px-2">*bla</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-2">*bla*</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </DrawerContent>
-                            </Drawer>
+
+
                         </div>
 
                         <div className="cursor-pointer md:block hidden" onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)}>
@@ -142,7 +143,7 @@ const Navbar = () => {
                             <div onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)} className="absolute right-0 cursor-pointer w-auto h-auto rounded-lg shadow border bg-white z-50 flex justify-center items-center">
                                 <div className="w-max h-full p-2">
 
-                                    <table className="text-sm">
+                                    <table className="text-base">
                                         <thead>
                                             <tr className="">
                                                 <th className="px-2 text-start">Search operations</th>
@@ -151,25 +152,25 @@ const Navbar = () => {
                                             </tr>
                                         </thead>
 
-                                        <tbody className="text-sm">
+                                        <tbody>
                                             <tr>
-                                                <td className="px-2">"bla bla bla"</td>
+                                                <td className="px-2 text-red-500">"<span className="text-black">bla bla bla</span>"</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
                                             <tr>
-                                                <td className="px-2">bla*</td>
+                                                <td className="px-2 text-red-500"><span className="text-black">bla</span>*</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
 
                                             </tr>
                                             <tr>
-                                                <td className="px-2">*bla</td>
+                                                <td className="px-2 text-red-500">*<span className="text-black">bla</span></td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
                                             <tr>
-                                                <td className="px-2">*bla*</td>
+                                                <td className="px-2 text-red-500">*<span className="text-black">bla</span>*</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
