@@ -18,11 +18,11 @@ import { useLocale } from "next-intl";
 const Hero = ({ h }) => {
     const locale = useLocale();
     const pluginDesktop = useRef(
-        Autoplay({ delay: 3000, stopOnInteraction: true })
+        Autoplay({ delay: 10000, stopOnInteraction: true })
     );
 
     const pluginMobile = useRef(
-        Autoplay({ delay: 3000, stopOnInteraction: true })
+        Autoplay({ delay: 10000, stopOnInteraction: true })
     );
 
     const { data, isError, error } = useQuery({
@@ -132,7 +132,7 @@ const Hero = ({ h }) => {
                     <Container>
                         <div className=" flex justify-center items-center">
                             <div className="flex flex-col justify-between h-full  items-center pt-10 absolute bottom-0 right-0  left-0 top-0">
-                                <div className="font-bold text-white font-serif md:pt-20" style={{ textShadow: '5px 5px 15px #000' }}>
+                                <div className="font-bold text-white font-serif md:pt-20" style={{ textShadow: '1px 1px 5px #000' }}>
                                     <h1 className="md:text-9xl text-4xl hero_title drop-shadow-xl" >
                                         <span className=" relative">
                                             {h("alisher").substring(0, 1)}
@@ -145,7 +145,7 @@ const Hero = ({ h }) => {
                                     <p className=" text-center md:text-xl text-base font-semibold hero_title" >{h("hero_desc")}</p>
                                 </div>
                                 <div className=" w-full absolute top-0 bottom-0 left-0 right-0">
-                                    <div className=" w-[50%]  absolute  bottom-0 left-0 ">
+                                    <div className=" w-[45%]  absolute  bottom-0 left-0 ">
                                         <Image
                                             src={"/improve.png"}
                                             width={0}

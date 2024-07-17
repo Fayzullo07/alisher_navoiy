@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { AlignRightIcon, SearchIcon } from "lucide-react";
+import { AlignRightIcon, MessageCircleIcon, MessageCircleQuestionIcon, SearchIcon, XIcon } from "lucide-react";
 import LocalSwitcher from "./Core/local-switcher";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -17,12 +17,24 @@ import { navbar } from "../../data/data";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer"
+
 const Navbar = () => {
     const inputRef = useRef(null);
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const searchParam = searchParams.get('search');
     const locale = useLocale();
+    const [isInfo, setIsInfo] = useState(false);
     const [stickyNav, setStickyNav] = useState(false);
     const [search, setSearch] = useState(searchParam ? searchParam : "");
     const router = useRouter();
@@ -72,6 +84,101 @@ const Navbar = () => {
                 <div className="flex items-center gap-2 border p-2 rounded-full flex-1">
                     <SearchIcon strokeWidth={1} size={20} />
                     <input ref={inputRef} value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={enterSearch} type="text" placeholder={`${s("search")} ...`} className=" flex-grow bg-transparent focus:outline-none text-sm text-gray-500" />
+                    <div className=" relative">
+                        <div className="cursor-pointer md:hidden block m-0 p-0">
+                            <Drawer >
+                                <DrawerTrigger className="w-full m-0 p-0">
+                                    <div >
+                                        <MessageCircleQuestionIcon strokeWidth={1} size={20} />
+                                    </div>
+                                </DrawerTrigger>
+                                <DrawerContent>
+                                    <DrawerHeader className=" absolute right-0 top-0">
+                                        <DrawerClose>
+                                            <XIcon />
+                                        </DrawerClose>
+                                    </DrawerHeader>
+                                    <table className="text-sm">
+                                        <thead>
+                                            <tr className="">
+                                                <th className="px-2 text-start">Search operations</th>
+                                                <th className="px-2">What id does</th>
+                                                <th className="px-2">Example</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody className="text-sm">
+                                            <tr>
+                                                <td className="px-2">"bla bla bla"</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">bla*</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">*bla</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">*bla*</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </DrawerContent>
+                            </Drawer>
+                        </div>
+
+                        <div className="cursor-pointer md:block hidden" onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)}>
+                            <MessageCircleQuestionIcon strokeWidth={1} size={20} />
+                        </div>
+                        {isInfo && (
+                            <div onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)} className="absolute right-0 cursor-pointer w-auto h-auto rounded-lg shadow border bg-white z-50 flex justify-center items-center">
+                                <div className="w-max h-full p-2">
+
+                                    <table className="text-sm">
+                                        <thead>
+                                            <tr className="">
+                                                <th className="px-2 text-start">Search operations</th>
+                                                <th className="px-2">What id does</th>
+                                                <th className="px-2">Example</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody className="text-sm">
+                                            <tr>
+                                                <td className="px-2">"bla bla bla"</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">bla*</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">*bla</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-2">*bla*</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>)}
+                    </div>
                 </div>
 
                 <div className={`hidden w-full lg:flex md:items-center lg:w-auto overflow-auto bg-transparent z-10`}>

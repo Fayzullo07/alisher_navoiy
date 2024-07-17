@@ -31,7 +31,6 @@ const GazalMobile = ({ gazal_id, children, setGazal_id, current, firstFilter, ge
                 />
             </DrawerContent>
         </Drawer>
-
     )
 }
 

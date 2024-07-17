@@ -111,7 +111,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
                                                             <PopoverContent className="p-1 px-2">
                                                                 <div>
                                                                     <p className="text-xs">Semantik izoh:</p>
-                                                                    <span className="text-sm w-[70vw]">{getExplanation(item_in, item.id)}</span>
+                                                                    <span className="text-sm">{getExplanation(item_in, item.id)}</span>
                                                                 </div>
                                                             </PopoverContent>
                                                         </Popover>
