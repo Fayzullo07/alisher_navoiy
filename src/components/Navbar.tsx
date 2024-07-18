@@ -105,23 +105,23 @@ const Navbar = () => {
                                                 </thead>
                                                 <tbody>
                                                     <tr className="bg-white border-b border-blue-500">
-                                                        <td className="py-2 px-4 text-red-500">"<span className="text-black">bla bla bla</span>"</td>
+                                                        <td className="py-2 px-4 text-red-500">{`"`}<span className="text-black">bla bla bla</span>{`"`}</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
                                                     <tr className="bg-white border-b border-blue-500">
-                                                        <td className="py-2 px-4 text-red-500"><span className="text-black">bla</span>*</td>
+                                                        <td className="py-2 px-4 text-red-500"><span className="text-black">bla</span>{`*`}</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
                                                     <tr className="bg-white border-b border-blue-500">
-                                                        <td className="py-2 px-4 text-red-500">*<span className="text-black">bla</span></td>
+                                                        <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span></td>s
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
 
                                                     <tr className="bg-white border-b border-blue-500">
-                                                        <td className="py-2 px-4 text-red-500">*<span className="text-black">bla</span>*</td>
+                                                        <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span>{`*`}</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
@@ -154,23 +154,23 @@ const Navbar = () => {
 
                                         <tbody>
                                             <tr>
-                                                <td className="px-2 text-red-500">"<span className="text-black">bla bla bla</span>"</td>
+                                                <td className="px-2 text-red-500">{`"`}<span className="text-black">bla bla bla</span>{`"`}</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
                                             <tr>
-                                                <td className="px-2 text-red-500"><span className="text-black">bla</span>*</td>
+                                                <td className="px-2 text-red-500"><span className="text-black">bla</span>{`*`}</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
 
                                             </tr>
                                             <tr>
-                                                <td className="px-2 text-red-500">*<span className="text-black">bla</span></td>
+                                                <td className="px-2 text-red-500">{`*`}<span className="text-black">bla</span></td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
                                             <tr>
-                                                <td className="px-2 text-red-500">*<span className="text-black">bla</span>*</td>
+                                                <td className="px-2 text-red-500">{`*`}<span className="text-black">bla</span>{`*`}</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                                 <td className="px-2">Lorem ipsum dolor sit amet.</td>
                                             </tr>
