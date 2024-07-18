@@ -115,7 +115,7 @@ const Navbar = () => {
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
                                                     <tr className="bg-white border-b border-blue-500">
-                                                        <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span></td>s
+                                                        <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span></td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                         <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                                     </tr>
@@ -136,43 +136,42 @@ const Navbar = () => {
 
                         </div>
 
-                        <div className="cursor-pointer md:block hidden" onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)}>
+                        <div className="cursor-pointer md:block hidden" onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(true)}>
                             <MessageCircleQuestionIcon strokeWidth={1} size={20} />
                         </div>
                         {isInfo && (
-                            <div onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)} className="absolute right-0 cursor-pointer w-auto h-auto rounded-lg shadow border bg-white z-50 flex justify-center items-center">
-                                <div className="w-max h-full p-2">
-
-                                    <table className="text-base">
+                            <div onMouseEnter={() => setIsInfo(true)} onMouseLeave={() => setIsInfo(false)} className="absolute top-10 right-0 cursor-pointer w-auto h-auto shadow  bg-white z-50 flex justify-center items-center rounded-tl-[100px] rounded-bl-[100px] rounded-br-[100px] overflow-hidden border-4 border-blue-500">
+                                <div className="w-max h-full px-10 p-5">
+                                  
+                                    <table className="w-full    mx-auto">
                                         <thead>
-                                            <tr className="">
-                                                <th className="px-2 text-start">Search operations</th>
-                                                <th className="px-2">What id does</th>
-                                                <th className="px-2">Example</th>
+                                            <tr >
+                                                <th className="py-2 px-4 text-left ">Search operations</th>
+                                                <th className="py-2 px-4 text-left">What id does</th>
+                                                <th className="py-2 px-4 text-left">Example</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-                                            <tr>
-                                                <td className="px-2 text-red-500">{`"`}<span className="text-black">bla bla bla</span>{`"`}</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            <tr className="bg-white border-b border-blue-500">
+                                                <td className="py-2 px-4 text-red-500">{`"`}<span className="text-black">bla bla bla</span>{`"`}</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                             </tr>
-                                            <tr>
-                                                <td className="px-2 text-red-500"><span className="text-black">bla</span>{`*`}</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            <tr className="bg-white border-b border-blue-500">
+                                                <td className="py-2 px-4 text-red-500"><span className="text-black">bla</span>{`*`}</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
+                                            <tr className="bg-white border-b border-blue-500">
+                                                <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span></td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                            </tr>
 
-                                            </tr>
-                                            <tr>
-                                                <td className="px-2 text-red-500">{`*`}<span className="text-black">bla</span></td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-2 text-red-500">{`*`}<span className="text-black">bla</span>{`*`}</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
-                                                <td className="px-2">Lorem ipsum dolor sit amet.</td>
+                                            <tr className="bg-white border-b border-blue-500">
+                                                <td className="py-2 px-4 text-red-500">{`*`}<span className="text-black">bla</span>{`*`}</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
+                                                <td className="py-2 px-4">Lorem ipsum dolor sit amet.</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -151,6 +151,9 @@ h3 {
     /* 0 0 280px 90px #fff; */
   /* outer cyan */
 }
+.leaf-shape {
+  clip-path: polygon(100% 0%, 61% 10%, 66% 24%, 66% 39%, 61% 52%, 50% 62%, 39% 52%, 34% 39%, 34% 24%, 39% 10%);
+}
 
 @keyframes sparkleAnimation {
   0% {
