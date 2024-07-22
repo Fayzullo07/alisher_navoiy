@@ -56,7 +56,7 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
         searchWord = cleanedText.replace(/\s+/g, '');
 
         // Example usage
-        let allowedChars = "’‘"; // Characters you want to keep (in this case, just the apostrophe)
+        let allowedChars = "’‘-"; // Characters you want to keep (in this case, just the apostrophe)
         searchWord = filterString(searchWord, allowedChars);
 
         // searchWord = searchWord.replace(/[.,?!"]/g, '');
