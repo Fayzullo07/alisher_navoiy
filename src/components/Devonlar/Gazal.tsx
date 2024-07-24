@@ -56,10 +56,10 @@ const Gazal = ({ gazal_id, setGazal_id, current, firstFilter, genre_detail_numbe
         searchWord = cleanedText.replace(/\s+/g, '');
 
         // Example usage
-        let allowedChars = "’‘-"; // Characters you want to keep (in this case, just the apostrophe)
-        searchWord = filterString(searchWord, allowedChars);
+        let allowedChars = "’‘<>-"; // Characters you want to keep (in this case, just the apostrophe)
+        // searchWord = filterString(searchWord, allowedChars);
 
-        // searchWord = searchWord.replace(/[.,?!"]/g, '');
+        searchWord = searchWord.replace(/[.,"]/g, '');
         const result = data.data.word_explanations.find(entry => entry.word.toLowerCase() === searchWord.toLowerCase() && entry.genre_detail_line == id);
         return result ? result.explanation : 'Kiritilmagan';
     }

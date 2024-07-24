@@ -1,6 +1,6 @@
 const Loading = () => {
     return (
-        <div className="h-full  bg-white rounded-2xl  flex justify-center items-center">
+        <div className="h-full rounded-2xl  flex justify-center items-center">
             <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
                 <svg className="h-10 w-10 animate-spin stroke-gray-500" viewBox="0 0 256 256">
                     <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
